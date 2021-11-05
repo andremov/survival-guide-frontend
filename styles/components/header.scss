@@ -16,6 +16,12 @@ header {
     padding: 1.25rem;
     border-radius: 0;
 
+    svg {
+      height: 30px;
+      width: auto;
+      max-height: none;
+    }
+
     &:hover {
       color: #6fa7ea;
     }

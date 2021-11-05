@@ -1,30 +1,35 @@
 import React from 'react';
-import { Modal } from './Modal';
+import { ModalTemplate } from './ModalTemplate';
 import { DualInput, Input } from '../Input';
 import { Button } from '../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { createTask } from '../../services/api';
 import { SuccessContents } from '../SuccessContents';
 import { RequestingContents } from '../RequestingContents';
+import { useDispatch } from 'react-redux';
+import { setModal } from '../../services/uiSlice';
 
-export function NewTaskModal( { closeCallback } ) {
+export function NewTaskModal() {
 	const [ taskData, setTaskData ] = React.useState( {
 		status : 'PENDING'
 	} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
+	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
 		setTaskData( { ...taskData, [ name ] : value } )
 		setError( false )
 	}
 
+	const close = () => dispatch(setModal(''))
+
 	const createTaskRequest = () => {
 		setFormState( 1 )
 		createTask( taskData )
 			.then( () => {
 				setFormState( 2 )
-				setTimeout( closeCallback, 3000 )
+				setTimeout( close, 3000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )
@@ -33,19 +38,19 @@ export function NewTaskModal( { closeCallback } ) {
 	}
 
 	if ( formState === 1 ) {
-		return <Modal>
+		return <ModalTemplate>
 			<RequestingContents text={'Enviando...'}/>
-		</Modal>
+		</ModalTemplate>
 	}
 
 	if ( formState === 2 ) {
-		return <Modal>
+		return <ModalTemplate>
 			<SuccessContents/>
-		</Modal>
+		</ModalTemplate>
 	}
 
 	return (
-		<Modal
+		<ModalTemplate
 			title={ 'Nueva tarea' }
 		>
 			<Input value={ taskData.name } name={ 'name' } placeholder={ 'Nombre' } onChange={ handleChange }/>
@@ -55,7 +60,7 @@ export function NewTaskModal( { closeCallback } ) {
 			       type={ 'date' }/>
 			<DualInput>
 				<Button
-					onClick={ closeCallback }
+					onClick={ close }
 					label={ 'Cancelar' }
 					color={ 'gray' }
 				/>
@@ -66,7 +71,7 @@ export function NewTaskModal( { closeCallback } ) {
 					color={ 'green' }
 				/>
 			</DualInput>
-		</Modal>
+		</ModalTemplate>
 	);
 }
 

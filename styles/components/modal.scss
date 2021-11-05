@@ -10,23 +10,24 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+}
 
-  .modal {
-    min-width: 300px;
-    min-height: 300px;
-    background-color: white;
-    border-radius: 10px;
-    position: relative;
-    padding: 1rem;
-    overflow: hidden;
+.modal {
+  //min-width: 300px;
+  min-height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  padding: 1rem;
+  overflow: hidden;
 
-    .modal-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
+
 
 .loading-spinner {
   border-radius: 50%;

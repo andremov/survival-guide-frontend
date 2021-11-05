@@ -1,11 +1,11 @@
 import React from 'react';
-import { Modal } from './Modal';
+import { ModalTemplate } from './ModalTemplate';
 
 export function LoadingModal() {
 	return (
-		<Modal>
+		<ModalTemplate>
 			<div className={ 'loading-spinner' }/>
-		</Modal>
+		</ModalTemplate>
 	);
 }
 

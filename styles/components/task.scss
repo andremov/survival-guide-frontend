@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #00000020;
-  cursor: pointer;
 
   &:last-child {
     border-bottom: none;
@@ -41,6 +40,7 @@
   border-radius: 4px;
   margin-right: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .task-item.mock-up {

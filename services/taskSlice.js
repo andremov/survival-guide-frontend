@@ -4,13 +4,17 @@ import { fetchTasks } from './api';
 const initialState = {
 	tasks : [],
 	prefetching : true,
-	loading : true
+	loading : true,
+	selectedTask: ''
 }
 
 export const taskSlice = createSlice( {
 	name : 'tasks',
 	initialState,
 	reducers : {
+		setSelectedTask: ( state, action ) => {
+			state.selectedTask = action.payload
+		},
 		tasksReceived : ( state, action ) => {
 			state.tasks = action.payload
 			state.prefetching = false
@@ -24,7 +28,7 @@ export const taskSlice = createSlice( {
 	},
 } )
 
-export const { tasksReceived, tasksLoading } = taskSlice.actions
+export const { tasksReceived, tasksLoading, setSelectedTask } = taskSlice.actions
 
 export const refreshTasks = async ( dispatch ) => {
 	dispatch( tasksLoading() )
@@ -34,5 +38,7 @@ export const refreshTasks = async ( dispatch ) => {
 
 export const getTasks = ( state ) => state.tasks.tasks
 export const isPrefetching = ( state ) => state.tasks.prefetching
+export const isLoading = ( state ) => state.tasks.loading
+export const getSelectedTask = ( state ) => state.tasks.tasks.find(item => item._id === state.tasks.selectedTask)
 
 export default taskSlice.reducer
