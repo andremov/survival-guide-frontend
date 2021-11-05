@@ -27,11 +27,12 @@ export function TaskInfoModal() {
 				icon : faTrash,
 			}
 		]}>
-			<div>
+			<div className={'task-value'}>
 				{ taskData.information ? taskData.information : 'No hay información.' }
 			</div>
-			<div>
-				{ taskData.dueDate }
+
+			<div className={'task-value'}>
+				{ taskData.due_date ? `Fecha de plazo: ${(new Date(taskData.due_date)).toLocaleDateString('es')}` : 'No hay fecha de plazo establecida.'}
 			</div>
 
 			<div>
@@ -61,7 +62,7 @@ const DoneBadge = () => <Badge color={ 'green' }>
 </Badge>
 
 
-const PendingBadge = () => <Badge className={ 'yellow' }>
+const PendingBadge = () => <Badge color={ 'yellow' }>
 	<FontAwesomeIcon icon={ faQuestion }/>
 	<div className={'badge-label'}>
 		Pendiente
