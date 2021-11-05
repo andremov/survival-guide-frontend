@@ -1,13 +1,18 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faInfo } from '@fortawesome/free-solid-svg-icons';
 import { patchTask } from '../services/api';
+import { Button } from './Buttons';
+import { refreshTasks } from '../services/taskSlice';
+import { useDispatch } from 'react-redux';
 
-export function Task( { taskData, refreshTasks } ) {
+export function Task( { taskData } ) {
+	const dispatch = useDispatch()
 
 	const handleClick = async () => {
-		await patchTask( { ...taskData, status : taskData.status === 'DONE'? 'PENDING' : 'DONE' } )
-		refreshTasks()
+		const task = { ...taskData, status : taskData.status === 'DONE'? 'PENDING' : 'DONE' }
+		await patchTask( task )
+		dispatch( refreshTasks )
 	}
 
 	return (
@@ -18,6 +23,10 @@ export function Task( { taskData, refreshTasks } ) {
 			<div className={ 'task-label' }>
 				{ taskData.name }
 			</div>
+			<Button
+				icon={faInfo}
+				className={'bordered'}
+			/>
 		</div>
 	);
 }

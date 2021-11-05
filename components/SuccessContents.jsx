@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function SuccessForm() {
+export function SuccessContents() {
 	return (
 		<div className={'form-state color-green'}>
 			Exito.

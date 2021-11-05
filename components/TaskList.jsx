@@ -1,11 +1,16 @@
 import React from 'react';
-import { useTasks } from '../hooks/useTasks';
 import { Task, TaskMock } from './Task';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTasks, isPrefetching, refreshTasks } from '../services/taskSlice';
 
 export function TaskList() {
-	const [ tasks, updateTasks, isPrefetching ] = useTasks();
+	const tasks = useSelector(getTasks)
+	const prefetching = useSelector(isPrefetching)
+const dispatch = useDispatch()
 
-	if ( isPrefetching ) {
+	React.useEffect(() => dispatch(refreshTasks), [])
+
+	if ( prefetching ) {
 		return <>
 			{
 				[ ...new Array( 4 ).keys() ].map( ( item, i ) => <TaskMock key={ i }/> )
@@ -21,7 +26,7 @@ export function TaskList() {
 
 	return <>
 		{
-			tasks.map( ( item, i ) => <Task key={ i } taskData={item} refreshTasks={updateTasks} /> )
+			tasks.map( ( item, i ) => <Task key={ i } taskData={item} /> )
 		}
 	</>
 }

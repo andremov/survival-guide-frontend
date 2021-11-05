@@ -41,6 +41,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    .header-buttons {
+      display: flex;
+      grid-gap: 10px;
+    }
   }
 }
 

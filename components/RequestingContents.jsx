@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function RequestingForm() {
+export function RequestingContents({text}) {
 	return (
 		<div className={'form-state color-blue'}>
-			Enviando...
+			{ text }
 		</div>
 	);
 }

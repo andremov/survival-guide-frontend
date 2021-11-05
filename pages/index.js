@@ -1,23 +1,19 @@
-import Head from 'next/head'
+import React from 'react';
 import { TaskList } from '../components/TaskList';
 import { Button } from '../components/Buttons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import { faPlus, faRetweet } from '@fortawesome/free-solid-svg-icons';
 import { NewTaskModal } from '../components/Modals/NewTaskModal';
+import { useDispatch } from 'react-redux';
+import { refreshTasks } from '../services/taskSlice';
 
 export default function Home() {
 	const [ taskModalActive, setTaskModalActive ] = React.useState( false )
+	const dispatch = useDispatch()
 
 	const toggleTaskModal = () => setTaskModalActive( !taskModalActive )
 
 	return (
 		<>
-			<Head>
-				<title>Guía de Supervivencia</title>
-				<meta name="description" content="¿Como sobrevivir sin supervisión?"/>
-				<link rel="icon" href="/favicon.ico"/>
-			</Head>
-
 			{ taskModalActive && <NewTaskModal closeCallback={ toggleTaskModal }/> }
 
 			<main>
@@ -26,12 +22,20 @@ export default function Home() {
 						<h2>
 							Lista de Tareas
 						</h2>
-						<Button
-							className={ 'new-item-button' }
-							color={ 'green' }
-							icon={ faPlus }
-							onClick={ toggleTaskModal }
-						/>
+						<div className={ 'header-buttons' }>
+							<Button
+								className={ 'icon-button' }
+								color={ 'blue' }
+								icon={ faRetweet }
+								onClick={ () => dispatch( refreshTasks ) }
+							/>
+							<Button
+								className={ 'icon-button' }
+								color={ 'green' }
+								icon={ faPlus }
+								onClick={ toggleTaskModal }
+							/>
+						</div>
 					</div>
 					<hr/>
 					<TaskList/>

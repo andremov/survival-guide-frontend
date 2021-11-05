@@ -4,8 +4,8 @@ import { DualInput, Input } from '../Input';
 import { Button } from '../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { createTask } from '../../services/api';
-import { SuccessForm } from '../SuccessForm';
-import { RequestingForm } from '../RequestingForm';
+import { SuccessContents } from '../SuccessContents';
+import { RequestingContents } from '../RequestingContents';
 
 export function NewTaskModal( { closeCallback } ) {
 	const [ taskData, setTaskData ] = React.useState( {
@@ -34,13 +34,13 @@ export function NewTaskModal( { closeCallback } ) {
 
 	if ( formState === 1 ) {
 		return <Modal>
-			<RequestingForm/>
+			<RequestingContents text={'Enviando...'}/>
 		</Modal>
 	}
 
 	if ( formState === 2 ) {
 		return <Modal>
-			<SuccessForm/>
+			<SuccessContents/>
 		</Modal>
 	}
 

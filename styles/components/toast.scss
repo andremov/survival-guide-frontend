@@ -1,0 +1,24 @@
+
+.toast {
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  overflow: hidden;
+
+  > div {
+    font-size: 18px;
+  }
+}
+
+.toast.do-fade-out {
+  animation: 1.5s fade-out linear forwards;
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+}
