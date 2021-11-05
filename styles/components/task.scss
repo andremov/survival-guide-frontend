@@ -1,3 +1,4 @@
+
 .task-item {
   height: 50px;
   display: flex;
@@ -20,16 +21,26 @@
     }
   }
 
-  .check-box {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #444444;
-    padding: 3px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-right: 10px;
-    color: white;
+  .task-label {
+    flex: 1;
   }
+
+  button {
+    //padding: 0.5rem;
+    //width: 5px;
+    //height: 5px;
+  }
+}
+
+.task-item .check-box {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #444444;
+  padding: 3px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-right: 10px;
+  color: white;
 }
 
 .task-item.mock-up {

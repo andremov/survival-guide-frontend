@@ -15,6 +15,10 @@ button {
   align-items: center;
   justify-content: center;
 
+  &.bordered {
+    border: 1px solid #444444;
+  }
+
   svg {
     height: 100%;
     width: auto;
@@ -52,3 +56,6 @@ a.button {
   @extend button;
 }
 
+.new-item-button {
+  padding: 0.75rem;
+}
