@@ -27,6 +27,8 @@ export function TaskInfoModal() {
 				icon : faTrash,
 			}
 		]}>
+			<div></div>
+
 			<div className={'task-value'}>
 				{ taskData.information ? taskData.information : 'No hay información.' }
 			</div>

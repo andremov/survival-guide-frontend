@@ -48,6 +48,7 @@ export function DeleteTaskModal() {
 			title={ 'Borrar tarea' }
 		>
 			<div></div>
+
 			<div className={ 'task-value' } style={ { textAlign : 'center' } }>
 				{ `¿ Seguro desea borrar tarea "${ taskData.name }" ?` }
 			</div>
