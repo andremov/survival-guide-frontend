@@ -36,6 +36,8 @@ main {
   transition: color 0.15s ease, border-color 0.15s ease;
   min-width: 500px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   .card-header {
     display: flex;
@@ -46,6 +48,15 @@ main {
       display: flex;
       grid-gap: 10px;
     }
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    flex: 1;
   }
 }
 
@@ -129,7 +140,6 @@ h2 {
   }
 }
 
-.task-value {
-  margin: 1rem 0;
-  font-size: 18px;
+.task-list {
+  width: 100%;
 }

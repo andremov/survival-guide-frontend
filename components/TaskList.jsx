@@ -11,11 +11,11 @@ const dispatch = useDispatch()
 	React.useEffect(() => dispatch(refreshTasks), [])
 
 	if ( prefetching ) {
-		return <>
+		return <div className={'task-list'}>
 			{
 				[ ...new Array( 4 ).keys() ].map( ( item, i ) => <TaskMock key={ i }/> )
 			}
-		</>
+		</div>
 	}
 
 	if ( tasks.length === 0 ) {
@@ -24,10 +24,10 @@ const dispatch = useDispatch()
 		</>
 	}
 
-	return <>
+	return <div className={'task-list'}>
 		{
 			tasks.map( ( item, i ) => <Task key={ i } taskData={item} /> )
 		}
-	</>
+	</div>
 }
 

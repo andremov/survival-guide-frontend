@@ -15,7 +15,8 @@ export function DeleteTaskModal() {
 	const dispatch = useDispatch()
 	const [ formState, setFormState ] = React.useState( 0 );
 
-	const close = () => dispatch( setModal( 'task-info' ) )
+	const close = () => dispatch( setModal( '' ) )
+	const back = () => dispatch( setModal( 'task-info' ) )
 
 	const deleteTaskRequest = () => {
 		setFormState( 1 )
@@ -46,11 +47,14 @@ export function DeleteTaskModal() {
 		<ModalTemplate
 			title={ 'Borrar tarea' }
 		>
-			{ `Seguro desea borrar tarea ${ taskData.name }?` }
+			<div></div>
+			<div className={ 'task-value' } style={ { textAlign : 'center' } }>
+				{ `¿ Seguro desea borrar tarea "${ taskData.name }" ?` }
+			</div>
 
 			<DualInput>
 				<Button
-					onClick={ close }
+					onClick={ back }
 					label={ 'Cancelar' }
 					color={ 'gray' }
 				/>

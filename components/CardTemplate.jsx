@@ -21,7 +21,9 @@ export function CardTemplate({title='', className='', buttons=[], children}) {
 				</div> }
 			</div>
 			<hr/>
-			{ children }
+			<div className={'card-body'}>
+				{ children }
+			</div>
 		</div>
 	);
 }

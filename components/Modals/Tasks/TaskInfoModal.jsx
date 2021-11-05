@@ -42,15 +42,7 @@ export function TaskInfoModal() {
 	);
 }
 
-const Badge = ({children, color}) => <div
-	className={`badge color-${color}`}
-	style={{
-		position: 'absolute',
-		bottom: '20px',
-		left: '50%',
-		transform: 'translateX(-50%)'
-	}}
->
+const Badge = ({children, color}) => <div className={`badge color-${color}`}>
 	{children}
 </div>
 
