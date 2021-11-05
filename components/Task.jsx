@@ -16,7 +16,11 @@ export function Task( { taskData } ) {
 	}
 
 	const handleClick = async () => {
-		const task = { ...taskData, status : taskData.status === 'DONE' ? 'PENDING' : 'DONE' }
+		const task = {
+			...taskData,
+			status : taskData.status === 'DONE' ? 'PENDING' : 'DONE',
+			done_date: taskData.status === 'DONE' ? '' : Date.now()
+		}
 		await patchTask( task )
 		dispatch( refreshTasks )
 	}

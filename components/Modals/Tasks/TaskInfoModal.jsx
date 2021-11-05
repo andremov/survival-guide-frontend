@@ -13,7 +13,7 @@ export function TaskInfoModal() {
 	const onDelete = () => dispatch( setModal( 'delete-task' ) )
 
 	return (
-		<ModalTemplate title={ taskData.name } doCloseButton={ true } buttons={[
+		<ModalTemplate title={ taskData.name } doCloseButton={ true } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',
@@ -26,31 +26,38 @@ export function TaskInfoModal() {
 				color : 'red',
 				icon : faTrash,
 			}
-		]}>
+		] }>
 			<div></div>
 
-			<div className={'task-value'}>
+			<div className={ 'task-value' }>
 				{ taskData.information ? taskData.information : 'No hay información.' }
 			</div>
+			
+			{ taskData.done_date &&
+			<div className={ 'task-value' }>
+				{ `Fecha de entrega: ${ ( new Date( taskData.done_date ) ).toLocaleDateString( 'es' ) }` }
+			</div>
+			}
 
-			<div className={'task-value'}>
-				{ taskData.due_date ? `Fecha de plazo: ${(new Date(taskData.due_date)).toLocaleDateString('es')}` : 'No hay fecha de plazo establecida.'}
+			<div className={ 'task-value' }>
+				{ taskData.due_date ? `Fecha de plazo: ${ ( new Date( taskData.due_date ) ).toLocaleDateString(
+					'es' ) }` : 'No hay fecha de plazo establecida.' }
 			</div>
 
 			<div>
-				{ taskData.status === 'DONE'? <DoneBadge /> : <PendingBadge/> }
+				{ taskData.status === 'DONE' ? <DoneBadge/> : <PendingBadge/> }
 			</div>
 		</ModalTemplate>
 	);
 }
 
-const Badge = ({children, color}) => <div className={`badge color-${color}`}>
-	{children}
+const Badge = ( { children, color } ) => <div className={ `badge color-${ color }` }>
+	{ children }
 </div>
 
 const DoneBadge = () => <Badge color={ 'green' }>
 	<FontAwesomeIcon icon={ faCheck }/>
-	<div className={'badge-label'}>
+	<div className={ 'badge-label' }>
 		Hecho
 	</div>
 </Badge>
@@ -58,7 +65,7 @@ const DoneBadge = () => <Badge color={ 'green' }>
 
 const PendingBadge = () => <Badge color={ 'yellow' }>
 	<FontAwesomeIcon icon={ faQuestion }/>
-	<div className={'badge-label'}>
+	<div className={ 'badge-label' }>
 		Pendiente
 	</div>
 </Badge>
