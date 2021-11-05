@@ -1,0 +1,54 @@
+
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  min-height: 40px;
+  min-width: 40px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    height: 20px;
+    width: auto;
+  }
+
+  &.color-green {
+    background-color: #20ad23;
+    color: white;
+
+    &:hover {
+      background-color: #249327;
+    }
+  }
+
+  &.color-gray {
+    background-color: #7d7d7d;
+    color: white;
+
+    &:hover {
+      background-color: #555555;
+    }
+  }
+
+  .button-icon {
+    &.pos-right {
+      margin-left: 1rem;
+    }
+    &.pos-left {
+      margin-right: 1rem;
+    }
+  }
+}
+
+a.button {
+  @extend button;
+}
+

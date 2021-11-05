@@ -1,0 +1,58 @@
+.task-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00000020;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.checked {
+    .task-label {
+      text-decoration: line-through;
+      color: #555555;
+    }
+
+    .check-box {
+      background-color: #444444;
+    }
+  }
+
+  .check-box {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #444444;
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-right: 10px;
+    color: white;
+  }
+}
+
+.task-item.mock-up {
+
+  .check-box {
+    background-color: #888;
+    border: none;
+  }
+
+  .task-label {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #55555555 25%, #cccccc55 50%, #55555555 75%);
+    background-size: 400% 100%;
+    width: 70%;
+    animation: 1s mock-animate infinite linear;
+  }
+}
+
+@keyframes mock-animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
