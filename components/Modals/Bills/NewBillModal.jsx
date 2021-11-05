@@ -10,16 +10,14 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { refreshTasks } from '../../../services/taskSlice';
 
-export default function NewTaskModal() {
-	const [ taskData, setTaskData ] = React.useState( {
-		status : 'PENDING'
-	} )
+export default function NewBillModal() {
+	const [ billData, setBillData ] = React.useState( {} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
-		setTaskData( { ...taskData, [ name ] : value } )
+		setBillData( { ...billData, [ name ] : value } )
 		setError( false )
 	}
 
@@ -27,7 +25,7 @@ export default function NewTaskModal() {
 
 	const createTaskRequest = () => {
 		setFormState( 1 )
-		createTask( taskData )
+		createBill( billData )
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshTasks )
@@ -53,22 +51,22 @@ export default function NewTaskModal() {
 
 	return (
 		<ModalTemplate
-			title={ 'Nueva tarea' }
+			title={ 'Nueva Factura' }
 		>
 			<Input
-				value={ taskData.name }
+				value={ billData.name }
 				name={ 'name' }
 				placeholder={ 'Nombre' }
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ taskData.information }
+				value={ billData.information }
 				name={ 'information' }
 				placeholder={ 'Información' }
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ taskData.due_date }
+				value={ billData.due_date }
 				name={ 'due_date' }
 				placeholder={ 'Fecha limite' }
 				onChange={ handleChange }

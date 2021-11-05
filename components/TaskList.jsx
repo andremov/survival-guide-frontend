@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, isPrefetching, refreshTasks } from '../services/taskSlice';
 
 export function TaskList() {
-	const tasks = useSelector(getTasks)
-	const prefetching = useSelector(isPrefetching)
-const dispatch = useDispatch()
+	const tasks = useSelector( getTasks )
+	const prefetching = useSelector( isPrefetching )
+	const dispatch = useDispatch()
 
-	React.useEffect(() => dispatch(refreshTasks), [])
+	React.useEffect( () => dispatch( refreshTasks ), [] )
 
 	if ( prefetching ) {
-		return <div className={'task-list'}>
+		return <div className={ 'task-list' }>
 			{
 				[ ...new Array( 4 ).keys() ].map( ( item, i ) => <TaskMock key={ i }/> )
 			}
@@ -24,9 +24,9 @@ const dispatch = useDispatch()
 		</>
 	}
 
-	return <div className={'task-list'}>
+	return <div className={ 'task-list' }>
 		{
-			tasks.map( ( item, i ) => <Task key={ i } taskData={item} /> )
+			tasks.map( ( item, i ) => <Task key={ i } taskData={ item }/> )
 		}
 	</div>
 }

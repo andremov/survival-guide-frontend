@@ -10,7 +10,7 @@ import { deleteTask, patchTask } from '../../../services/api';
 import { RequestingContents } from '../../RequestingContents';
 import { SuccessContents } from '../../SuccessContents';
 
-export default function DeleteTaskModal() {
+export default function DeleteBillModal() {
 	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch()
 	const [ formState, setFormState ] = React.useState( 0 );

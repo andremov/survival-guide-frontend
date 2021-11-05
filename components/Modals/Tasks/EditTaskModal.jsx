@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
 
-export function EditTaskModal() {
+export default function EditTaskModal() {
 	const initialData = useSelector( getSelectedTask )
 	const [ taskData, setTaskData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );

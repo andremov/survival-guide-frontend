@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 
-export default function TaskInfoModal() {
+export default function BillInfoModal() {
 	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch();
 	const onEdit = () => dispatch( setModal( 'edit-task' ) )

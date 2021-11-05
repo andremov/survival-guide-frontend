@@ -1,17 +1,21 @@
 import React from 'react';
 import { TaskList } from '../components/TaskList';
-import { Button } from '../components/Buttons';
 import { faPlus, faRetweet } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { refreshTasks } from '../services/taskSlice';
 import { setModal } from '../services/uiSlice';
 import { CardTemplate } from '../components/CardTemplate';
+import { BillList } from '../components/BillList';
+import { refreshBills } from '../services/billSlice';
 
 export default function Home() {
 	const dispatch = useDispatch()
 
-	const onNewTask = () => dispatch( refreshTasks )
-	const onRefreshTasks = () => dispatch( setModal( 'new-task' ) )
+	const onRefreshTasks = () => dispatch( refreshTasks )
+	const onNewTask = () => dispatch( setModal( 'new-task' ) )
+
+	const onRefreshBills = () => dispatch( refreshBills )
+	const onNewBill = () => dispatch( setModal( 'new-bill' ) )
 
 	return (
 		<>
@@ -23,16 +27,35 @@ export default function Home() {
 							className : 'icon-button',
 							color : 'blue',
 							icon : faRetweet,
-							onClick : onNewTask,
+							onClick : onRefreshTasks,
 						}, {
 							className : 'icon-button',
 							color : 'green',
 							icon : faPlus,
-							onClick : onRefreshTasks,
+							onClick : onNewTask,
 						}
 					] }
 				>
 					<TaskList/>
+				</CardTemplate>
+
+				<CardTemplate
+					title={ 'Lista de Facturas' }
+					buttons={ [
+						{
+							className : 'icon-button',
+							color : 'blue',
+							icon : faRetweet,
+							onClick : onRefreshBills,
+						}, {
+							className : 'icon-button',
+							color : 'green',
+							icon : faPlus,
+							onClick : onNewBill,
+						}
+					] }
+				>
+					<BillList/>
 				</CardTemplate>
 			</main>
 		</>
