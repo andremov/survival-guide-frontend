@@ -1,14 +1,14 @@
 import React from 'react';
-import { ModalTemplate } from './ModalTemplate';
-import { DualInput, Input } from '../Input';
-import { Button } from '../Buttons';
+import { ModalTemplate } from '../ModalTemplate';
+import { DualInput, Input } from '../../Input';
+import { Button } from '../../Buttons';
 import { faPen, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createTask, fetchTasks, patchTask } from '../../services/api';
-import { SuccessContents } from '../SuccessContents';
-import { RequestingContents } from '../RequestingContents';
+import { createTask, fetchTasks, patchTask } from '../../../services/api';
+import { SuccessContents } from '../../SuccessContents';
+import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModal } from '../../services/uiSlice';
-import { getSelectedTask, refreshTasks } from '../../services/taskSlice';
+import { setModal } from '../../../services/uiSlice';
+import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
 
 export function EditTaskModal() {
 	const initialData = useSelector( getSelectedTask )
@@ -30,7 +30,7 @@ export function EditTaskModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshTasks )
-				setTimeout( close, 3000 )
+				setTimeout( close, 2000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )
@@ -40,7 +40,7 @@ export function EditTaskModal() {
 
 	if ( formState === 1 ) {
 		return <ModalTemplate>
-			<RequestingContents text={ 'Enviando...' }/>
+			<RequestingContents text={ 'Editando...' }/>
 		</ModalTemplate>
 	}
 
@@ -54,11 +54,25 @@ export function EditTaskModal() {
 		<ModalTemplate
 			title={ 'Editar tarea' }
 		>
-			<Input value={ taskData.name } name={ 'name' } placeholder={ 'Nombre' } onChange={ handleChange }/>
-			<Input value={ taskData.information } name={ 'information' } placeholder={ 'Información' }
-			       onChange={ handleChange }/>
-			<Input value={ taskData.due_date } name={ 'due_date' } placeholder={ 'Fecha limite' } onChange={ handleChange }
-			       type={ 'date' }/>
+			<Input
+				value={ taskData.name }
+				name={ 'name' }
+				placeholder={ 'Nombre' }
+				onChange={ handleChange }
+			/>
+			<Input
+				value={ taskData.information }
+				name={ 'information' }
+				placeholder={ 'Información' }
+				onChange={ handleChange }
+			/>
+			<Input
+				value={ taskData.due_date }
+				name={ 'due_date' }
+				placeholder={ 'Fecha limite' }
+				onChange={ handleChange }
+				type={ 'date' }
+			/>
 			<DualInput>
 				<Button
 					onClick={ close }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getModal } from '../../services/uiSlice';
-import { NewTaskModal } from './NewTaskModal';
-import { TaskInfoModal } from './TaskInfoModal';
-import { EditTaskModal } from './EditTaskModal';
+import { NewTaskModal } from './Tasks/NewTaskModal';
+import { TaskInfoModal } from './Tasks/TaskInfoModal';
+import { EditTaskModal } from './Tasks/EditTaskModal';
 
 export function ModalHandler() {
   const curModal = useSelector(getModal)

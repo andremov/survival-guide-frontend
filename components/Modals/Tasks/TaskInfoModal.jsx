@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSelectedTask } from '../../services/taskSlice';
-import { ModalTemplate } from './ModalTemplate';
+import { getSelectedTask } from '../../../services/taskSlice';
+import { ModalTemplate } from '../ModalTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { setModal } from '../../services/uiSlice';
+import { setModal } from '../../../services/uiSlice';
 
 export function TaskInfoModal() {
 	const taskData = useSelector( getSelectedTask )
