@@ -2,18 +2,17 @@ import React from 'react';
 import { ModalTemplate } from './ModalTemplate';
 import { DualInput, Input } from '../Input';
 import { Button } from '../Buttons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createTask } from '../../services/api';
+import { faPen, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { createTask, fetchTasks, patchTask } from '../../services/api';
 import { SuccessContents } from '../SuccessContents';
 import { RequestingContents } from '../RequestingContents';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
-import { refreshTasks } from '../../services/taskSlice';
+import { getSelectedTask, refreshTasks } from '../../services/taskSlice';
 
-export function NewTaskModal() {
-	const [ taskData, setTaskData ] = React.useState( {
-		status : 'PENDING'
-	} )
+export function EditTaskModal() {
+	const initialData = useSelector( getSelectedTask )
+	const [ taskData, setTaskData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
@@ -23,11 +22,11 @@ export function NewTaskModal() {
 		setError( false )
 	}
 
-	const close = () => dispatch(setModal(''))
+	const close = () => dispatch( setModal( 'task-info' ) )
 
-	const createTaskRequest = () => {
+	const editTaskRequest = () => {
 		setFormState( 1 )
-		createTask( taskData )
+		patchTask( taskData )
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshTasks )
@@ -41,7 +40,7 @@ export function NewTaskModal() {
 
 	if ( formState === 1 ) {
 		return <ModalTemplate>
-			<RequestingContents text={'Enviando...'}/>
+			<RequestingContents text={ 'Enviando...' }/>
 		</ModalTemplate>
 	}
 
@@ -53,7 +52,7 @@ export function NewTaskModal() {
 
 	return (
 		<ModalTemplate
-			title={ 'Nueva tarea' }
+			title={ 'Editar tarea' }
 		>
 			<Input value={ taskData.name } name={ 'name' } placeholder={ 'Nombre' } onChange={ handleChange }/>
 			<Input value={ taskData.information } name={ 'information' } placeholder={ 'Información' }
@@ -67,9 +66,9 @@ export function NewTaskModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ createTaskRequest }
-					icon={ faPlus }
-					label={ 'Agregar' }
+					onClick={ editTaskRequest }
+					icon={ faPen }
+					label={ 'Editar' }
 					color={ 'green' }
 				/>
 			</DualInput>

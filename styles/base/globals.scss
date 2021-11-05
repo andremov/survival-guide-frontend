@@ -104,3 +104,27 @@ h2 {
     flex: 1;
   }
 }
+
+.badge {
+  height: 40px;
+  width: 150px;
+  border-radius: 35px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+
+  &.color-yellow {
+    background-color: #ad7520;
+  }
+
+  &.color-green {
+    background-color: #20ad23;
+  }
+
+  svg {
+    width: 20px;
+  }
+}

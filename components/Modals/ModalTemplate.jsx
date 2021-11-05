@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-export function ModalTemplate( { children, title, doCloseButton } ) {
+export function ModalTemplate( { children, title, doCloseButton, buttons = [] } ) {
 	const dispatch = useDispatch();
 	const closeModal = () => dispatch( setModal( '' ) )
 
@@ -13,14 +13,14 @@ export function ModalTemplate( { children, title, doCloseButton } ) {
 			<CardTemplate
 				className={ 'modal' }
 				title={ title }
-				buttons={ doCloseButton ? [
+				buttons={ doCloseButton ? [...buttons,
 					{
 						onClick : closeModal,
 						className : 'icon-button',
 						color : 'transp',
 						icon : faTimes,
 					}
-				] : undefined }
+				] : buttons }
 			>
 				{ children }
 			</CardTemplate>

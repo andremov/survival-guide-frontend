@@ -38,6 +38,24 @@ button {
     }
   }
 
+  &.color-yellow {
+    background-color: #ad7520;
+    color: white;
+
+    &:hover {
+      background-color: #7b571f;
+    }
+  }
+
+  &.color-red {
+    background-color: #c70f0f;
+    color: white;
+
+    &:hover {
+      background-color: #8e1515;
+    }
+  }
+
   &.color-gray {
     background-color: #7d7d7d;
     color: white;
