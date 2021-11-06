@@ -3,22 +3,24 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { patchTask } from '../../../services/api';
+import { patchBill } from '../../../services/api';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
+import { getInstitutions, getPeople, getSelectedBill, refreshBills } from '../../../services/billSlice';
 
 export default function EditBillModal() {
-	const initialData = useSelector( getSelectedTask )
-	const [ taskData, setTaskData ] = React.useState( { ...initialData } )
+	const initialData = useSelector( getSelectedBill )
+	const [ billData, setBillData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
+	const institutions = useSelector(getInstitutions)
+	const people = useSelector(getPeople)
 
 	const handleChange = ( name, value ) => {
-		setTaskData( { ...taskData, [ name ] : value } )
+		setBillData( { ...billData, [ name ] : value } )
 		setError( false )
 	}
 
@@ -26,10 +28,10 @@ export default function EditBillModal() {
 
 	const editRequest = () => {
 		setFormState( 1 )
-		patchTask( taskData )
+		patchBill( billData )
 			.then( () => {
 				setFormState( 2 )
-				dispatch( refreshTasks )
+				dispatch( refreshBills )
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
@@ -55,23 +57,44 @@ export default function EditBillModal() {
 			title={ 'Editar factura' }
 		>
 			<Input
-				value={ taskData.name }
+				value={ billData.name }
 				name={ 'name' }
 				placeholder={ 'Nombre' }
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ taskData.information }
+				value={ billData.institution }
+				name={ 'institution' }
+				placeholder={ 'Institución' }
+				onChange={ handleChange }
+				type={'smart'}
+				options={institutions}
+			/>
+			<Input
+				value={ billData.person_name }
+				name={ 'person_name' }
+				placeholder={ 'A nombre de' }
+				onChange={ handleChange }
+				type={'smart'}
+				options={people}
+			/>
+			<Input
+				value={ billData.information }
 				name={ 'information' }
-				placeholder={ 'Información' }
+				placeholder={ 'Información adicional' }
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ taskData.due_date }
-				name={ 'due_date' }
-				placeholder={ 'Fecha limite' }
+				value={ billData.bill_type }
+				name={ 'bill_type' }
+				placeholder={ 'Tipo de Factura' }
 				onChange={ handleChange }
-				type={ 'date' }
+				type={ 'select' }
+				options={[
+					{ label : 'Fisica', val : 'PHYSICAL' },
+					{ label : 'Virtual', val : 'VIRTUAL' },
+					{ label : 'Ambos', val : 'BOTH' }
+				]}
 			/>
 			<DualInput>
 				<Button
