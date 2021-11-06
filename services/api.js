@@ -27,14 +27,17 @@ export const deleteTask = ( id ) => API.delete( `tasks/${ id }` )
 
 //
 
-export const fetchBills = () => API.get( 'bills/list' )
-	.then( r => r.data.bills );
-
 export const fetchInstitutions = () => API.get( 'bills/options/institutions' )
 	.then( r => r.data.options );
 
 export const fetchPeople = () => API.get( 'bills/options/people' )
 	.then( r => r.data.options );
+
+
+//
+
+export const fetchBills = () => API.get( 'bills/list' )
+	.then( r => r.data.bills );
 
 export const createBill = ( task ) => API.post( 'bills/', task )
 	.then( r => r.data );
@@ -50,3 +53,12 @@ export const deleteBill = ( id ) => API.delete( `bills/${ id }` )
 
 export const fetchMonthlies = () => API.get( 'monthlies/list' )
 	.then( r => r.data.monthlies );
+
+export const createMonthly = ( task ) => API.post( 'monthlies/', task )
+	.then( r => r.data );
+
+export const patchMonthly = ( { _id, ...task } ) => API.patch( `monthlies/${ _id }`, task )
+	.then( r => r.data );
+
+export const deleteMonthly = ( id ) => API.delete( `monthlies/${ id }` )
+	.then( r => r.data );
