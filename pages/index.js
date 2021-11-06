@@ -28,7 +28,7 @@ export default function Home() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					margin: 'auto'
+					margin: '0 auto'
 				}}>
 					<CardTemplate
 						title={ 'Lista de Tareas' }
