@@ -32,7 +32,7 @@ export default function CreateBillModal() {
 				setFormState( 2 )
 				dispatch( refreshBills )
 				dispatch( refreshExtras )
-				setTimeout( close, 2000 )
+				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )

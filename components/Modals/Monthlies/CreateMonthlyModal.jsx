@@ -30,7 +30,7 @@ export default function CreateMonthlyModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshMonthlies )
-				setTimeout( close, 2000 )
+				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )

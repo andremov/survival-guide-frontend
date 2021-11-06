@@ -24,7 +24,7 @@ export default function DeleteBillModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshBills )
-				setTimeout( close, 2000 )
+				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )

@@ -31,7 +31,7 @@ export default function CreateTaskModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshTasks )
-				setTimeout( close, 2000 )
+				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
 				setFormState( 0 )
