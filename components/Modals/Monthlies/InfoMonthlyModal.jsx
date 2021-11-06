@@ -6,6 +6,7 @@ import { setModal } from '../../../services/uiSlice';
 import { getSelectedMonthly } from '../../../services/billSlice';
 import { Button } from '../../Buttons';
 import { formatDate, formatPrice } from '../../../services/utils';
+import { DoneBadge } from '../../Items/Badge';
 
 export default function InfoMonthlyModal() {
 	const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export default function InfoMonthlyModal() {
 			{
 				monthlyData.status === 'PAID'?
 					<>
+						<hr style={{width: '80%'}}/>
 						<div className={ 'monthly-value' }>
 							{ `Valor pagado: ${formatPrice(monthlyData.amount_paid)}` }
 						</div>
@@ -51,17 +53,16 @@ export default function InfoMonthlyModal() {
 						<div className={ 'monthly-value' }>
 							{ `Pagado: ${formatDate( monthlyData.paid_date )}` }
 						</div>
-					</> : <></>
+						<hr style={{width: '80%'}}/>
+						<DoneBadge/>
+					</> :
+					<Button
+						color={'blue'}
+						onClick={onPay}
+						label={'Marcar Pagado'}
+						icon={faDollarSign}
+					/>
 			}
-			{
-
-			}
-			<Button
-				color={'blue'}
-				onClick={onPay}
-				label={'Marcar Pagado'}
-				icon={faDollarSign}
-			/>
 		</ModalTemplate>
 	);
 }

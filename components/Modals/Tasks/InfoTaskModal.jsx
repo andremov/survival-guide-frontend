@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { formatDate } from '../../../services/utils';
+import { DoneBadge, PendingBadge } from '../../Items/Badge';
 
 export default function InfoTaskModal() {
 	const taskData = useSelector( getSelectedTask )
@@ -50,23 +51,3 @@ export default function InfoTaskModal() {
 		</ModalTemplate>
 	);
 }
-
-const Badge = ( { children, color } ) => <div className={ `badge color-${ color }` }>
-	{ children }
-</div>
-
-const DoneBadge = () => <Badge color={ 'green' }>
-	<FontAwesomeIcon icon={ faCheck }/>
-	<div className={ 'badge-label' }>
-		Hecho
-	</div>
-</Badge>
-
-
-const PendingBadge = () => <Badge color={ 'yellow' }>
-	<FontAwesomeIcon icon={ faQuestion }/>
-	<div className={ 'badge-label' }>
-		Pendiente
-	</div>
-</Badge>
-

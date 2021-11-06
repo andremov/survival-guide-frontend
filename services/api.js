@@ -39,10 +39,10 @@ export const fetchPeople = () => API.get( 'bills/options/people' )
 export const fetchBills = () => API.get( 'bills/list' )
 	.then( r => r.data.bills );
 
-export const createBill = ( task ) => API.post( 'bills/', task )
+export const createBill = ( bill ) => API.post( 'bills/', bill )
 	.then( r => r.data );
 
-export const patchBill = ( { _id, ...task } ) => API.patch( `bills/${ _id }`, task )
+export const patchBill = ( { _id, ...bill } ) => API.patch( `bills/${ _id }`, bill )
 	.then( r => r.data );
 
 export const deleteBill = ( id ) => API.delete( `bills/${ id }` )
@@ -54,10 +54,10 @@ export const deleteBill = ( id ) => API.delete( `bills/${ id }` )
 export const fetchMonthlies = () => API.get( 'monthlies/list' )
 	.then( r => r.data.monthlies );
 
-export const createMonthly = ( task ) => API.post( 'monthlies/', task )
+export const createMonthly = ( monthly ) => API.post( 'monthlies/', monthly )
 	.then( r => r.data );
 
-export const patchMonthly = ( { _id, ...task } ) => API.patch( `monthlies/${ _id }`, task )
+export const patchMonthly = ( { _id, ...monthly } ) => API.patch( `monthlies/${ _id }`, monthly )
 	.then( r => r.data );
 
 export const deleteMonthly = ( id ) => API.delete( `monthlies/${ id }` )
