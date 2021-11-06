@@ -8,7 +8,7 @@ import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getInstitutions, getPeople, getSelectedBill, refreshBills } from '../../../services/billSlice';
+import { getInstitutions, getPeople, getSelectedBill, refreshBills, refreshExtras } from '../../../services/billSlice';
 
 export default function EditBillModal() {
 	const initialData = useSelector( getSelectedBill )
@@ -32,6 +32,7 @@ export default function EditBillModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshBills )
+				dispatch( refreshExtras )
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
