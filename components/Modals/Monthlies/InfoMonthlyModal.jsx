@@ -16,7 +16,7 @@ export default function InfoMonthlyModal() {
 	const onPay = () => dispatch( setModal( 'pay-monthly' ) )
 
 	return (
-		<ModalTemplate title={ `Mensual [${formatDate(monthlyData.due_date)}]` } doCloseButton={ true } buttons={ [
+		<ModalTemplate title={ `Mensual [${formatDate(monthlyData.exp_date)}]` } doCloseButton={ true } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',
