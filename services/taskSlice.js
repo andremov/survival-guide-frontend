@@ -33,7 +33,12 @@ export const { tasksReceived, tasksLoading, setSelectedTask } = taskSlice.action
 export const refreshTasks = async ( dispatch ) => {
 	dispatch( tasksLoading() )
 	const tasks = await fetchTasks()
-	dispatch( tasksReceived( tasks ) )
+
+	if (!tasks) {
+		setTimeout(() => dispatch(refreshTasks), 100)
+	} else {
+		dispatch( tasksReceived( tasks ) )
+	}
 }
 
 export const getTasks = ( state ) => state.tasks.tasks

@@ -7,58 +7,73 @@ const API = axios.create( {
 } );
 
 export const ping = () => API.get( 'ping' )
-	.then( r => r.data );
+	.then( () => true )
+	.catch( () => false )
 
 
 //
 
 export const fetchTasks = () => API.get( 'tasks/list' )
-	.then( r => r.data.tasks );
+	.then( r => r.data.tasks )
+	.catch(e => false)
 
 export const createTask = ( task ) => API.post( 'tasks/', task )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const patchTask = ( { _id, ...task } ) => API.patch( `tasks/${ _id }`, task )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const deleteTask = ( id ) => API.delete( `tasks/${ id }` )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 
 //
 
 export const fetchInstitutions = () => API.get( 'bills/options/institutions' )
-	.then( r => r.data.options );
+	.then( r => r.data.options )
+	.catch(e => false)
 
 export const fetchPeople = () => API.get( 'bills/options/people' )
-	.then( r => r.data.options );
+	.then( r => r.data.options )
+	.catch(e => false)
 
 
 //
 
 export const fetchBills = () => API.get( 'bills/list' )
-	.then( r => r.data.bills );
+	.then( r => r.data.bills )
+	.catch(e => false)
 
 export const createBill = ( bill ) => API.post( 'bills/', bill )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const patchBill = ( { _id, ...bill } ) => API.patch( `bills/${ _id }`, bill )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const deleteBill = ( id ) => API.delete( `bills/${ id }` )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 
 //
 
 export const fetchMonthlies = () => API.get( 'monthlies/list' )
-	.then( r => r.data.monthlies );
+	.then( r => r.data.monthlies )
+	.catch(e => false)
 
 export const createMonthly = ( monthly ) => API.post( 'monthlies/', monthly )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const patchMonthly = ( { _id, ...monthly } ) => API.patch( `monthlies/${ _id }`, monthly )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)
 
 export const deleteMonthly = ( id ) => API.delete( `monthlies/${ id }` )
-	.then( r => r.data );
+	.then( r => r.data )
+	.catch(e => false)

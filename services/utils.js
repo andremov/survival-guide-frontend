@@ -1,12 +1,18 @@
 
 export const formatDate = (date) => {
+	if (!date) {
+		return undefined
+	}
 	const [year, month,day] = date.split('T')[0].split('-')
 	return `${ [day,month,year].join('/') }`
 }
 
 const twoDigits = (value) => `${value < 10? `0${value}` : value}`
 
-export const formatDateValue = (date)=> {
+export const formatDateValue = (date) => {
+	if (!date) {
+		return undefined
+	}
 	const [day, month, year] =  formatDate(date).split('/')
 	return [year, twoDigits(month), twoDigits(day)].join('-')
 }
