@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
 import { patchMonthly } from '../../../services/api';
+import { formatDateValue } from '../../../services/utils';
 
 export default function EditMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
@@ -61,7 +62,7 @@ export default function EditMonthlyModal() {
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ monthlyData.exp_date }
+				value={ formatDateValue(monthlyData.exp_date) }
 				name={ 'exp_date' }
 				placeholder={ 'Plazo' }
 				onChange={ handleChange }

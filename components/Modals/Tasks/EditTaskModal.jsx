@@ -9,6 +9,7 @@ import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
+import { formatDateValue } from '../../../services/utils';
 
 export default function EditTaskModal() {
 	const initialData = useSelector( getSelectedTask )
@@ -67,7 +68,7 @@ export default function EditTaskModal() {
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ taskData.due_date }
+				value={ formatDateValue(taskData.due_date) }
 				name={ 'due_date' }
 				placeholder={ 'Fecha limite' }
 				onChange={ handleChange }
