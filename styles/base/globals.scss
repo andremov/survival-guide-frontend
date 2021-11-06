@@ -16,12 +16,12 @@ a {
 }
 
 main {
-  height: calc(100vh - 70px);
   padding: 5rem 0;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 
 .card {
@@ -182,7 +182,6 @@ hr {
 
 @media (max-width: 1050px) {
   main {
-    padding-top: 10rem;
     align-items: center;
     flex-direction: column;
   }
@@ -191,7 +190,7 @@ hr {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 530px) {
   .card {
     border-radius: 0;
   }

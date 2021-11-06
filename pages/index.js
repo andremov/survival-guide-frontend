@@ -7,6 +7,7 @@ import { setModal } from '../services/uiSlice';
 import { CardTemplate } from '../components/CardTemplate';
 import { BillList } from '../components/BillList';
 import { refreshBills, refreshMonthlies } from '../services/billSlice';
+import { TotalStatus } from '../components/TotalStatus';
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -23,24 +24,33 @@ export default function Home() {
 	return (
 		<>
 			<main>
-				<CardTemplate
-					title={ 'Lista de Tareas' }
-					buttons={ [
-						{
-							className : 'icon-button',
-							color : 'blue',
-							icon : faRetweet,
-							onClick : onRefreshTasks,
-						}, {
-							className : 'icon-button',
-							color : 'green',
-							icon : faPlus,
-							onClick : onNewTask,
-						}
-					] }
-				>
-					<TaskList/>
-				</CardTemplate>
+				<div style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					margin: 'auto'
+				}}>
+					<CardTemplate
+						title={ 'Lista de Tareas' }
+						buttons={ [
+							{
+								className : 'icon-button',
+								color : 'blue',
+								icon : faRetweet,
+								onClick : onRefreshTasks,
+							}, {
+								className : 'icon-button',
+								color : 'green',
+								icon : faPlus,
+								onClick : onNewTask,
+							}
+						] }
+					>
+						<TaskList/>
+					</CardTemplate>
+
+					<TotalStatus/>
+				</div>
 
 				<CardTemplate
 					title={ 'Lista de Facturas' }
