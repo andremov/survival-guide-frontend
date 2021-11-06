@@ -12,10 +12,10 @@ export default function Home() {
 	const dispatch = useDispatch()
 
 	const onRefreshTasks = () => dispatch( refreshTasks )
-	const onNewTask = () => dispatch( setModal( 'new-task' ) )
+	const onNewTask = () => dispatch( setModal( 'create-task' ) )
 
 	const onRefreshBills = () => dispatch( refreshBills )
-	const onNewBill = () => dispatch( setModal( 'new-bill' ) )
+	const onNewBill = () => dispatch( setModal( 'create-bill' ) )
 
 	return (
 		<>

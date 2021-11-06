@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedBill, refreshBills, refreshMonthlies } from '../../../services/billSlice';
 
-export default function NewMonthlyModal() {
+export default function CreateMonthlyModal() {
 	const parent = useSelector(getSelectedBill)._id
 	const [ monthlyData, setMonthlyData ] = React.useState( {parent, status: 'PENDING'} )
 	const [ formState, setFormState ] = React.useState( 0 );

@@ -1,6 +1,6 @@
-import BillInfoModal from './BillInfoModal';
-import NewBillModal from './NewBillModal';
+import InfoBillModal from './InfoBillModal';
+import CreateBillModal from './CreateBillModal';
 import EditBillModal from './EditBillModal';
 import DeleteBillModal from './DeleteBillModal';
 
-export { BillInfoModal, EditBillModal, NewBillModal, DeleteBillModal }
+export { InfoBillModal, EditBillModal, CreateBillModal, DeleteBillModal }

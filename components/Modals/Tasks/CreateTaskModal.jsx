@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { refreshTasks } from '../../../services/taskSlice';
 
-export default function NewTaskModal() {
+export default function CreateTaskModal() {
 	const [ taskData, setTaskData ] = React.useState( {
 		status : 'PENDING'
 	} )

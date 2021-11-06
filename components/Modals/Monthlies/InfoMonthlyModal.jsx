@@ -7,7 +7,7 @@ import { getSelectedMonthly } from '../../../services/billSlice';
 import { Button } from '../../Buttons';
 import { formatDate, formatPrice } from '../../../services/utils';
 
-export default function MonthlyInfoModal() {
+export default function InfoMonthlyModal() {
 	const dispatch = useDispatch();
 	const monthlyData = useSelector( getSelectedMonthly )
 

@@ -16,7 +16,7 @@ export default function DeleteTaskModal() {
 	const [ formState, setFormState ] = React.useState( 0 );
 
 	const close = () => dispatch( setModal( '' ) )
-	const back = () => dispatch( setModal( 'task-info' ) )
+	const back = () => dispatch( setModal( 'info-task' ) )
 
 	const deleteRequest = () => {
 		setFormState( 1 )

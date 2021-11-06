@@ -12,7 +12,7 @@ export function Task( { taskData } ) {
 
 	const openTask = () => {
 		dispatch( setSelectedTask( taskData._id ) )
-		dispatch( setModal( 'task-info' ) )
+		dispatch( setModal( 'info-task' ) )
 	}
 
 	const handleClick = async () => {

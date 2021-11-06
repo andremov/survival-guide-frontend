@@ -7,7 +7,7 @@ import { getMonthlies, getSelectedBill, isMonthlyPrefetching } from '../../../se
 import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
 import { Button } from '../../Buttons';
 
-export default function BillInfoModal() {
+export default function InfoBillModal() {
 	const dispatch = useDispatch();
 	const billData = useSelector( getSelectedBill )
 	const monthlies = useSelector( getMonthlies )
@@ -15,7 +15,7 @@ export default function BillInfoModal() {
 
 	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
 	const onDelete = () => dispatch( setModal( 'delete-bill' ) )
-	const onAdd = () => dispatch( setModal( 'new-monthly' ) )
+	const onAdd = () => dispatch( setModal( 'create-monthly' ) )
 
 	return (
 		<ModalTemplate title={ billData.name } doCloseButton={ true } buttons={ [

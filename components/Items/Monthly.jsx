@@ -9,7 +9,7 @@ export function Monthly( { monthlyData } ) {
 
 	const openMonthly = () => {
 		dispatch( setSelectedMonthly( monthlyData._id ) )
-		dispatch( setModal( 'monthly-info' ) )
+		dispatch( setModal( 'info-monthly' ) )
 	}
 
 	return (

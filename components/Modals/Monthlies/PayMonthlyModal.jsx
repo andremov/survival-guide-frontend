@@ -10,7 +10,7 @@ import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
 
-export default function EditMonthlyModal() {
+export default function PayMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
 	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData, paid_date: Date.now(), status: 'PAID' } )
 	const [ formState, setFormState ] = React.useState( 0 );
@@ -22,7 +22,7 @@ export default function EditMonthlyModal() {
 		setError( false )
 	}
 
-	const close = () => dispatch( setModal( 'monthly-info' ) )
+	const close = () => dispatch( setModal( 'info-monthly' ) )
 
 	const editRequest = () => {
 		setFormState( 1 )

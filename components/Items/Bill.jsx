@@ -12,7 +12,7 @@ export function Bill( { billData } ) {
 
 	const openBill = () => {
 		dispatch( setSelectedBill( billData._id ) )
-		dispatch( setModal( 'bill-info' ) )
+		dispatch( setModal( 'info-bill' ) )
 	}
 
 	return (

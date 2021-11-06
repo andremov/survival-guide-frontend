@@ -16,7 +16,7 @@ export default function DeleteBillModal() {
 	const [ formState, setFormState ] = React.useState( 0 );
 
 	const close = () => dispatch( setModal( '' ) )
-	const back = () => dispatch( setModal( 'bill-info' ) )
+	const back = () => dispatch( setModal( 'info-bill' ) )
 
 	const deleteRequest = () => {
 		setFormState( 1 )

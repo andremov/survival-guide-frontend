@@ -1,40 +1,42 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getModal } from '../../services/uiSlice';
-import { DeleteTaskModal, EditTaskModal, NewTaskModal, TaskInfoModal } from './Tasks';
-import { NewBillModal, EditBillModal, DeleteBillModal, BillInfoModal } from './Bills';
-import { DeleteMonthlyModal, EditMonthlyModal, MonthlyInfoModal, NewMonthlyModal } from './Monthlies';
+import { DeleteTaskModal, EditTaskModal, CreateTaskModal, InfoTaskModal } from './Tasks';
+import { CreateBillModal, EditBillModal, DeleteBillModal, InfoBillModal } from './Bills';
+import { DeleteMonthlyModal, EditMonthlyModal, InfoMonthlyModal, CreateMonthlyModal, PayMonthlyModal } from './Monthlies';
 
 export function ModalHandler() {
   const curModal = useSelector(getModal)
 
 	switch(curModal) {
-		case 'new-task':
-			return <NewTaskModal />
+		case 'create-task':
+			return <CreateTaskModal />
 		case 'edit-task':
 			return <EditTaskModal />
 		case 'delete-task':
 			return <DeleteTaskModal />
-		case 'task-info':
-			return <TaskInfoModal />
+		case 'info-task':
+			return <InfoTaskModal />
 
-		case 'new-bill':
-			return <NewBillModal />
+		case 'create-bill':
+			return <CreateBillModal />
 		case 'edit-bill':
 			return <EditBillModal />
 		case 'delete-bill':
 			return <DeleteBillModal />
-		case 'bill-info':
-			return <BillInfoModal />
+		case 'info-bill':
+			return <InfoBillModal />
 
-		case 'new-monthly':
-			return <NewMonthlyModal />
+		case 'create-monthly':
+			return <CreateMonthlyModal />
 		case 'edit-monthly':
 			return <EditMonthlyModal />
 		case 'delete-monthly':
 			return <DeleteMonthlyModal />
-		case 'monthly-info':
-			return <MonthlyInfoModal />
+		case 'info-monthly':
+			return <InfoMonthlyModal />
+		case 'pay-monthly':
+			return <PayMonthlyModal />
 
 		default:
 			return <></>

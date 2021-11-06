@@ -7,7 +7,7 @@ import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg
 import { setModal } from '../../../services/uiSlice';
 import { formatDate } from '../../../services/utils';
 
-export default function TaskInfoModal() {
+export default function InfoTaskModal() {
 	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch();
 	const onEdit = () => dispatch( setModal( 'edit-task' ) )

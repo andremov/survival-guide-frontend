@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getInstitutions, getPeople, refreshBills, refreshExtras } from '../../../services/billSlice';
 
-export default function NewBillModal() {
+export default function CreateBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );

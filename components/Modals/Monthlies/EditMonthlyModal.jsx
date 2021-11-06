@@ -23,7 +23,7 @@ export default function EditMonthlyModal() {
 		setError( false )
 	}
 
-	const close = () => dispatch( setModal( 'monthly-info' ) )
+	const close = () => dispatch( setModal( 'info-monthly' ) )
 
 	const editRequest = () => {
 		setFormState( 1 )

@@ -23,7 +23,7 @@ export default function EditTaskModal() {
 		setError( false )
 	}
 
-	const close = () => dispatch( setModal( 'task-info' ) )
+	const close = () => dispatch( setModal( 'info-task' ) )
 
 	const editRequest = () => {
 		setFormState( 1 )
