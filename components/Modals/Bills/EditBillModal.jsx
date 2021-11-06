@@ -2,8 +2,8 @@ import React from 'react';
 import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
-import { faPen, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createTask, fetchTasks, patchTask } from '../../../services/api';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { patchTask } from '../../../services/api';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,7 +52,7 @@ export default function EditBillModal() {
 
 	return (
 		<ModalTemplate
-			title={ 'Editar tarea' }
+			title={ 'Editar factura' }
 		>
 			<Input
 				value={ taskData.name }

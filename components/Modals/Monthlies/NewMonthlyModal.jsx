@@ -3,7 +3,7 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createBill, createMonthly } from '../../../services/api';
+import { createMonthly } from '../../../services/api';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';

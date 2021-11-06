@@ -2,23 +2,23 @@ import React from 'react';
 import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
-import { faPen, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createTask, fetchTasks, patchTask } from '../../../services/api';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
+import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
+import { patchMonthly } from '../../../services/api';
 
 export default function EditMonthlyModal() {
-	const initialData = useSelector( getSelectedTask )
-	const [ taskData, setTaskData ] = React.useState( { ...initialData } )
+	const initialData = useSelector( getSelectedMonthly )
+	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
-		setTaskData( { ...taskData, [ name ] : value } )
+		setMonthlyData( { ...monthlyData, [ name ] : value } )
 		setError( false )
 	}
 
@@ -26,10 +26,10 @@ export default function EditMonthlyModal() {
 
 	const editTaskRequest = () => {
 		setFormState( 1 )
-		patchTask( taskData )
+		patchMonthly( monthlyData )
 			.then( () => {
 				setFormState( 2 )
-				dispatch( refreshTasks )
+				dispatch( refreshMonthlies )
 				setTimeout( close, 2000 )
 			} )
 			.catch( () => {
