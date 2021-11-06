@@ -3,13 +3,12 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createBill, createTask } from '../../../services/api';
+import { createBill } from '../../../services/api';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { refreshTasks } from '../../../services/taskSlice';
-import { getInstitutions, getPeople } from '../../../services/billSlice';
+import { getInstitutions, getPeople, refreshBills, refreshExtras } from '../../../services/billSlice';
 
 export default function NewBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
@@ -26,12 +25,13 @@ export default function NewBillModal() {
 
 	const close = () => dispatch( setModal( '' ) )
 
-	const createTaskRequest = () => {
+	const createBillRequest = () => {
 		setFormState( 1 )
 		createBill( billData )
 			.then( () => {
 				setFormState( 2 )
-				dispatch( refreshTasks )
+				dispatch( refreshBills )
+				dispatch( refreshExtras )
 				setTimeout( close, 2000 )
 			} )
 			.catch( () => {
@@ -103,7 +103,7 @@ export default function NewBillModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ createTaskRequest }
+					onClick={ createBillRequest }
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }

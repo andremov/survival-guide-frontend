@@ -1,14 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBills, isBillPrefetching, refreshBills } from '../services/billSlice';
-import { Bill, BillMock } from './Bill';
+import { useSelector } from 'react-redux';
+import { getBills, isBillPrefetching } from '../services/billSlice';
+import { Bill, BillMock } from './Items/Bill';
 
 export function BillList() {
 	const bills = useSelector( getBills )
 	const prefetching = useSelector( isBillPrefetching )
-	const dispatch = useDispatch()
-
-	React.useEffect( () => dispatch( refreshBills ), [] )
 
 	if ( prefetching ) {
 		return <div className={ 'bill-list' }>

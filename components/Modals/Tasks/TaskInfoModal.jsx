@@ -5,6 +5,7 @@ import { ModalTemplate } from '../ModalTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
+import { formatDate } from '../../../services/utils';
 
 export default function TaskInfoModal() {
 	const taskData = useSelector( getSelectedTask )
@@ -30,18 +31,17 @@ export default function TaskInfoModal() {
 			<div></div>
 
 			<div className={ 'task-value' }>
-				{ taskData.information ? taskData.information : 'No hay información.' }
+				{ taskData.information ? taskData.information : 'No hay información adicional.' }
 			</div>
 
 			{ taskData.done_date &&
 			<div className={ 'task-value' }>
-				{ `Fecha de entrega: ${ ( new Date( taskData.done_date ) ).toLocaleDateString( 'es' ) }` }
+				{ `Fecha de entrega: ${formatDate( taskData.done_date)}` }
 			</div>
 			}
 
 			<div className={ 'task-value' }>
-				{ taskData.due_date ? `Fecha de plazo: ${ ( new Date( taskData.due_date ) ).toLocaleDateString(
-					'es' ) }` : 'No hay fecha de plazo establecida.' }
+				{ taskData.due_date ? `Fecha de plazo: ${formatDate( taskData.due_date )}` : 'No hay fecha de plazo establecida.' }
 			</div>
 
 			<div>

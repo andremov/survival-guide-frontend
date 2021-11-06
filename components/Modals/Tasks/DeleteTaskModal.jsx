@@ -4,9 +4,9 @@ import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
 import { ModalTemplate } from '../ModalTemplate';
 import { DualInput } from '../../Input';
 import { Button } from '../../Buttons';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { deleteTask, patchTask } from '../../../services/api';
+import { deleteTask } from '../../../services/api';
 import { RequestingContents } from '../../RequestingContents';
 import { SuccessContents } from '../../SuccessContents';
 

@@ -1,17 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
 import { ModalTemplate } from '../ModalTemplate';
 import { DualInput } from '../../Input';
 import { Button } from '../../Buttons';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { deleteTask, patchTask } from '../../../services/api';
+import { deleteBill } from '../../../services/api';
 import { RequestingContents } from '../../RequestingContents';
 import { SuccessContents } from '../../SuccessContents';
+import { getSelectedBill, refreshBills } from '../../../services/billSlice';
 
 export default function DeleteBillModal() {
-	const taskData = useSelector( getSelectedTask )
+	const billData = useSelector( getSelectedBill )
 	const dispatch = useDispatch()
 	const [ formState, setFormState ] = React.useState( 0 );
 
@@ -20,10 +20,10 @@ export default function DeleteBillModal() {
 
 	const deleteTaskRequest = () => {
 		setFormState( 1 )
-		deleteTask( taskData._id )
+		deleteBill( billData._id )
 			.then( () => {
 				setFormState( 2 )
-				dispatch( refreshTasks )
+				dispatch( refreshBills )
 				setTimeout( close, 2000 )
 			} )
 			.catch( () => {
@@ -45,12 +45,12 @@ export default function DeleteBillModal() {
 
 	return (
 		<ModalTemplate
-			title={ 'Borrar tarea' }
+			title={ 'Borrar factura' }
 		>
 			<div></div>
 
-			<div className={ 'task-value' } style={ { textAlign : 'center' } }>
-				{ `¿ Seguro desea borrar tarea "${ taskData.name }" ?` }
+			<div className={ 'bill-value' } style={ { textAlign : 'center' } }>
+				{ `¿ Seguro desea borrar factura "${ billData.name }" ?` }
 			</div>
 
 			<DualInput>

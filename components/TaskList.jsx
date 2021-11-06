@@ -1,14 +1,11 @@
 import React from 'react';
-import { Task, TaskMock } from './Task';
+import { Task, TaskMock } from './Items/Task';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTasks, isPrefetching, refreshTasks } from '../services/taskSlice';
+import { getTasks, isPrefetching } from '../services/taskSlice';
 
 export function TaskList() {
 	const tasks = useSelector( getTasks )
 	const prefetching = useSelector( isPrefetching )
-	const dispatch = useDispatch()
-
-	React.useEffect( () => dispatch( refreshTasks ), [] )
 
 	if ( prefetching ) {
 		return <div className={ 'task-list' }>
