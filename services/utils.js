@@ -1,6 +1,7 @@
 
-export const formatDate = (date)=> {
-	return `${ (new Date( date) ).toLocaleDateString( 'es' ) }`
+export const formatDate = (date) => {
+	const [year, month,day] = date.split('T')[0].split('-')
+	return `${ [day,month,year].join('/') }`
 }
 
 const twoDigits = (value) => `${value < 10? `0${value}` : value}`
