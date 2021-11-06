@@ -7,18 +7,18 @@ import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
 import { patchMonthly } from '../../../services/api';
+import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
 
 export default function EditMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
-	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData } )
+	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData, paid_date: Date.now(), status: 'PAID' } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
-		setMonthlyData( { ...monthlyData, [ name ] : value } )
+		setMonthlyData( { monthlyDatataskData, [ name ] : value } )
 		setError( false )
 	}
 
@@ -40,7 +40,7 @@ export default function EditMonthlyModal() {
 
 	if ( formState === 1 ) {
 		return <ModalTemplate>
-			<RequestingContents text={ 'Editando...' }/>
+			<RequestingContents text={ 'Pagando...' }/>
 		</ModalTemplate>
 	}
 
@@ -55,17 +55,10 @@ export default function EditMonthlyModal() {
 			title={ 'Editar mensual' }
 		>
 			<Input
-				value={ monthlyData.amount_due }
-				name={ 'amount_due' }
-				placeholder={ 'Valor a pagar' }
+				value={ monthlyData.amount_paid }
+				name={ 'amount_paid' }
+				placeholder={ 'Valor pagado' }
 				onChange={ handleChange }
-			/>
-			<Input
-				value={ monthlyData.exp_date }
-				name={ 'exp_date' }
-				placeholder={ 'Plazo' }
-				onChange={ handleChange }
-				type={'date'}
 			/>
 			<DualInput>
 				<Button
