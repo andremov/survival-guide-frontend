@@ -1,19 +1,24 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSelectedTask } from '../../../services/taskSlice';
 import { ModalTemplate } from '../ModalTemplate';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPen, faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
+import { getMonthlies, getSelectedBill, isMonthlyPrefetching } from '../../../services/billSlice';
+import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
+import { Button } from '../../Buttons';
 
 export default function BillInfoModal() {
-	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch();
-	const onEdit = () => dispatch( setModal( 'edit-task' ) )
-	const onDelete = () => dispatch( setModal( 'delete-task' ) )
+	const billData = useSelector( getSelectedBill )
+	const monthlies = useSelector( getMonthlies )
+	const monthlyPrefetching = useSelector(isMonthlyPrefetching)
+
+	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
+	const onDelete = () => dispatch( setModal( 'delete-bill' ) )
+	const onAdd = () => dispatch( setModal( 'new-monthly' ) )
 
 	return (
-		<ModalTemplate title={ taskData.name } doCloseButton={ true } buttons={ [
+		<ModalTemplate title={ billData.name } doCloseButton={ true } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',
@@ -27,46 +32,40 @@ export default function BillInfoModal() {
 				icon : faTrash,
 			}
 		] }>
+
 			<div></div>
 
-			<div className={ 'task-value' }>
-				{ taskData.information ? taskData.information : 'No hay información.' }
+			<div className={ 'bill-value' }>
+				{ `A nombre de: ${ billData.person_name }` }
 			</div>
 
-			{ taskData.done_date &&
-			<div className={ 'task-value' }>
-				{ `Fecha de entrega: ${ ( new Date( taskData.done_date ) ).toLocaleDateString( 'es' ) }` }
+			<div className={ 'bill-value' }>
+				{ `Pagar a: ${ billData.institution }` }
+			</div>
+
+			<div className={ 'bill-value' }>
+				{ billData.information ? billData.information : 'No hay información adicional.' }
+			</div>
+			{
+				monthlyPrefetching ?
+					<div className={ 'bill-value' }>
+						{ [ ...new Array( 3 ).keys() ].map( ( item, i ) => <MonthlyMock key={ i }/> ) }
+					</div>:
+			<div className={ 'bill-value' }>
+				{
+					monthlies.filter( item => item.parent === billData._id )
+						.map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
+				}
+				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank key={ i }/> ) }
 			</div>
 			}
 
-			<div className={ 'task-value' }>
-				{ taskData.due_date ? `Fecha de plazo: ${ ( new Date( taskData.due_date ) ).toLocaleDateString(
-					'es' ) }` : 'No hay fecha de plazo establecida.' }
-			</div>
-
-			<div>
-				{ taskData.status === 'DONE' ? <DoneBadge/> : <PendingBadge/> }
-			</div>
+			<Button
+				color={'green'}
+				onClick={onAdd}
+				label={'Agregar Mensual'}
+				icon={faPlus}
+			/>
 		</ModalTemplate>
 	);
 }
-
-const Badge = ( { children, color } ) => <div className={ `badge color-${ color }` }>
-	{ children }
-</div>
-
-const DoneBadge = () => <Badge color={ 'green' }>
-	<FontAwesomeIcon icon={ faCheck }/>
-	<div className={ 'badge-label' }>
-		Hecho
-	</div>
-</Badge>
-
-
-const PendingBadge = () => <Badge color={ 'yellow' }>
-	<FontAwesomeIcon icon={ faQuestion }/>
-	<div className={ 'badge-label' }>
-		Pendiente
-	</div>
-</Badge>
-

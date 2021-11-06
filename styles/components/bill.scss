@@ -1,0 +1,44 @@
+
+.bill-item {
+  height: 100px;
+  border-bottom: 1px solid #00000020;
+
+  .bill-data, .monthly-bill-data {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  .monthly-bill-data {
+    grid-gap: 10px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .bill-label {
+    flex: 1;
+  }
+}
+
+.bill-item.mock-up {
+  .bill-label {
+    height: 30px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #55555555 25%, #cccccc55 50%, #55555555 75%);
+    background-size: 400% 100%;
+    width: 70%;
+    flex: none;
+    animation: 1s mock-animate infinite linear;
+  }
+}
+
+@keyframes mock-animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

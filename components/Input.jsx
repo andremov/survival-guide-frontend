@@ -53,6 +53,11 @@ export function SuggestiveInput({ placeholder, onChange, name, options=[], ...pr
     setShowOptions(false)
   }
 
+  const handleChange = e => {
+    onChange(name, e.target.value)
+    setShowOptions(true)
+  }
+
   return (
     <div className={'input-component'}>
       {
@@ -62,7 +67,7 @@ export function SuggestiveInput({ placeholder, onChange, name, options=[], ...pr
       }
       <input
         onClick={() => setShowOptions(!showOptions)}
-        onChange={e => onChange(name, e.target.value)}
+        onChange={handleChange}
         value={props.value}
       />
       { options.filter( item => item.label.includes( props.value ) ).length > 0 &&
@@ -96,6 +101,11 @@ export function Select({ placeholder, onChange, name, options=[], ...props}) {
     setShowOptions(false)
   }
 
+  const handleChange = e => {
+    setFilterText( e.target.value )
+    setShowOptions(true)
+  }
+
   return (
     <div className={'input-component'}>
       {
@@ -105,11 +115,11 @@ export function Select({ placeholder, onChange, name, options=[], ...props}) {
       }
       <input
         onClick={() => setShowOptions(!showOptions)}
-        onChange={e => setFilterText(e.target.value)}
+        onChange={handleChange}
         value={filterText}
       />
 
-      { options.filter( item => item.label.includes( props.value ) ).length > 0 &&
+      { options.filter( item => item.label.includes( filterText ) ).length > 0 &&
         <div className={ `dropdown ${ showOptions ? 'visible' : '' }` }
              { ...props }
              onChange={ e => onChange( name, e.target.value ) }

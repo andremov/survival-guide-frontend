@@ -1,0 +1,47 @@
+
+.monthly-item {
+  font-weight: bold;
+  height: 48px;
+  border: 1px solid #00000020;
+  flex: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &.paid {
+    background-color: #20ad23;
+    color: white;
+  }
+
+  .monthly-date {
+    position: absolute;
+    font-size: 10px;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.monthly-item.mock-up {
+  cursor: auto;
+  background: linear-gradient(90deg, #55555555 25%, #cccccc55 50%, #55555555 75%);
+  background-size: 400% 100%;
+  animation: 1s mock-animate infinite linear;
+}
+
+.monthly-item.blank {
+  cursor: auto;
+  background-color: #ddd;
+}
+
+@keyframes mock-animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
