@@ -20,9 +20,8 @@ main {
   padding: 5rem 0;
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .card {
@@ -179,4 +178,21 @@ hr {
   grid-gap: 10px;
   justify-content: center;
   width: 100%;
+}
+
+@media (max-width: 1050px) {
+  main {
+    padding-top: 10rem;
+    align-items: center;
+    flex-direction: column;
+  }
+  .card {
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    border-radius: 0;
+  }
 }

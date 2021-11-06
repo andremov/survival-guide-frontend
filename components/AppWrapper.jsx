@@ -18,7 +18,7 @@ export function AppWrapper({ Component, pageProps }) {
 
 	return (
 		<>
-			<Header/>
+			{/*<Header/>*/}
 			<ModalHandler/>
 			<ApiLoadModal
 				precached={precached}
