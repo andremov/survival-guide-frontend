@@ -28,7 +28,7 @@ export function ApiLoadModal( { precached } ) {
 
 		const doPing = async () => {
 			const payload = await ping()
-			
+
 			dispatch( updateLastRequestDate() )
 			dispatch( setOnline( payload ) )
 

@@ -6,7 +6,7 @@ import { refreshTasks } from '../services/taskSlice';
 import { setModal } from '../services/uiSlice';
 import { CardTemplate } from '../components/CardTemplate';
 import { BillList } from '../components/BillList';
-import { refreshBills } from '../services/billSlice';
+import { refreshBills, refreshMonthlies } from '../services/billSlice';
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -14,7 +14,10 @@ export default function Home() {
 	const onRefreshTasks = () => dispatch( refreshTasks )
 	const onNewTask = () => dispatch( setModal( 'create-task' ) )
 
-	const onRefreshBills = () => dispatch( refreshBills )
+	const onRefreshBills = () => {
+		dispatch( refreshBills )
+		dispatch( refreshMonthlies )
+	}
 	const onNewBill = () => dispatch( setModal( 'create-bill' ) )
 
 	return (
