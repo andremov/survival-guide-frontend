@@ -105,6 +105,29 @@ h2 {
     box-sizing: border-box;
     border-radius: 4px;
   }
+
+  .dropdown {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    border: 1px solid #909196;
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+
+    .dropdown-option {
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: 0.2s background-color;
+
+      &:hover {
+        background-color: #0070f3;
+        color: white;
+      }
+    }
+  }
 }
 
 .dual-input-container {

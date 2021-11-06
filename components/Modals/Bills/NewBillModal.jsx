@@ -3,18 +3,21 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { createTask } from '../../../services/api';
+import { createBill, createTask } from '../../../services/api';
 import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { refreshTasks } from '../../../services/taskSlice';
+import { getInstitutions, getPeople } from '../../../services/billSlice';
 
 export default function NewBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
+	const institutions = useSelector(getInstitutions)
+	const people = useSelector(getPeople)
 
 	const handleChange = ( name, value ) => {
 		setBillData( { ...billData, [ name ] : value } )
@@ -60,17 +63,38 @@ export default function NewBillModal() {
 				onChange={ handleChange }
 			/>
 			<Input
+				value={ billData.institution }
+				name={ 'institution' }
+				placeholder={ 'Institución' }
+				onChange={ handleChange }
+				type={'smart'}
+				options={institutions}
+			/>
+			<Input
+				value={ billData.person_name }
+				name={ 'person_name' }
+				placeholder={ 'A nombre de' }
+				onChange={ handleChange }
+				type={'smart'}
+				options={people}
+			/>
+			<Input
 				value={ billData.information }
 				name={ 'information' }
-				placeholder={ 'Información' }
+				placeholder={ 'Información adicional' }
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ billData.due_date }
-				name={ 'due_date' }
-				placeholder={ 'Fecha limite' }
+				value={ billData.bill_type }
+				name={ 'bill_type' }
+				placeholder={ 'Tipo de Factura' }
 				onChange={ handleChange }
-				type={ 'date' }
+				type={ 'select' }
+				options={[
+					{ label : 'Fisica', val : 'PHYSICAL' },
+					{ label : 'Virtual', val : 'VIRTUAL' },
+					{ label : 'Ambos', val : 'BOTH' }
+				]}
 			/>
 			<DualInput>
 				<Button

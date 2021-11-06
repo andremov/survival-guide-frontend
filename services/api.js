@@ -30,6 +30,12 @@ export const deleteTask = ( id ) => API.delete( `tasks/${ id }` )
 export const fetchBills = () => API.get( 'bills/list' )
 	.then( r => r.data.bills );
 
+export const fetchInstitutions = () => API.get( 'bills/options/institutions' )
+	.then( r => r.data.options );
+
+export const fetchPeople = () => API.get( 'bills/options/people' )
+	.then( r => r.data.options );
+
 export const createBill = ( task ) => API.post( 'bills/', task )
 	.then( r => r.data );
 

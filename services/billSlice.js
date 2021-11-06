@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchBills, fetchMonthlies } from './api';
+import { fetchBills, fetchInstitutions, fetchMonthlies, fetchPeople } from './api';
 
 const initialState = {
 	bills : [],
@@ -11,6 +11,11 @@ const initialState = {
 	monthlyPrefetching : true,
 	monthlyLoading : true,
 	selectedMonthly: '',
+
+	institutions: [],
+	people: [],
+	extraPrefetching : true,
+	extraLoading : true,
 }
 
 export const billSlice = createSlice( {
@@ -30,6 +35,7 @@ export const billSlice = createSlice( {
 				state.billLoading = true
 			}
 		},
+
 		setSelectedMonthly: ( state, action ) => {
 			state.selectedMonthly = action.payload
 		},
@@ -43,10 +49,22 @@ export const billSlice = createSlice( {
 				state.monthlyLoading = true
 			}
 		},
+
+		extraReceived : ( state, action ) => {
+			state.institutions = action.payload.institutions
+			state.people = action.payload.people
+			state.extraPrefetching = false
+			state.extraLoading = false
+		},
+		extraLoading : ( state ) => {
+			if ( !state.extraLoading ) {
+				state.extraLoading = true
+			}
+		},
 	},
 } )
 
-export const { billsReceived, billsLoading, setSelectedBill, setSelectedMonthly, monthlyReceived, monthlyLoading } = billSlice.actions
+export const { billsReceived, billsLoading, setSelectedBill, setSelectedMonthly, monthlyReceived, monthlyLoading, extraLoading, extraReceived } = billSlice.actions
 
 export const refreshBills = async ( dispatch ) => {
 	dispatch( billsLoading() )
@@ -60,6 +78,17 @@ export const refreshMonthlies = async ( dispatch ) => {
 	dispatch( monthlyReceived( monthlies ) )
 }
 
+export const refreshExtras = async ( dispatch ) => {
+	dispatch( extraLoading() )
+	let institutions = await fetchInstitutions()
+	let people = await fetchPeople()
+
+	institutions = institutions.map(item => ({label: item, val: item}))
+	people = people.map(item => ({label: item, val: item}))
+
+	dispatch( extraReceived( { institutions, people } ) )
+}
+
 export const getBills = ( state ) => state.bills.bills
 export const isBillPrefetching = ( state ) => state.bills.billPrefetching
 export const isBillLoading = ( state ) => state.bills.billLoading
@@ -69,5 +98,8 @@ export const getMonthlies = ( state ) => state.bills.monthlies
 export const isMonthlyPrefetching = ( state ) => state.bills.monthlyPrefetching
 export const isMonthlyLoading = ( state ) => state.bills.monthlyLoading
 export const getSelectedMonthly = ( state ) => state.bills.monthlies.find(item => item._id === state.bills.selectedMonthly)
+
+export const getInstitutions = ( state ) => state.bills.institutions
+export const getPeople = ( state ) => state.bills.people
 
 export default billSlice.reducer

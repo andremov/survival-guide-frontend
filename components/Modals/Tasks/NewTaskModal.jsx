@@ -64,7 +64,7 @@ export default function NewTaskModal() {
 			<Input
 				value={ taskData.information }
 				name={ 'information' }
-				placeholder={ 'Información' }
+				placeholder={ 'Información adicional' }
 				onChange={ handleChange }
 			/>
 			<Input
