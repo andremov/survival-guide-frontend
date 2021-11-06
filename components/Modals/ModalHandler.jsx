@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getModal } from '../../services/uiSlice';
-import { DeleteTaskModal, EditTaskModal, NewTaskModal, TaskInfoModal } from './Tasks/TaskModals';
-import { NewBillModal, EditBillModal, DeleteBillModal, BillInfoModal } from './Bills/BillModals';
+import { DeleteTaskModal, EditTaskModal, NewTaskModal, TaskInfoModal } from './Tasks';
+import { NewBillModal, EditBillModal, DeleteBillModal, BillInfoModal } from './Bills';
 
 export function ModalHandler() {
   const curModal = useSelector(getModal)
@@ -16,6 +16,7 @@ export function ModalHandler() {
 			return <DeleteTaskModal />
 		case 'task-info':
 			return <TaskInfoModal />
+
 		case 'new-bill':
 			return <NewBillModal />
 		case 'edit-bill':
@@ -24,6 +25,7 @@ export function ModalHandler() {
 			return <DeleteBillModal />
 		case 'bill-info':
 			return <BillInfoModal />
+
 		default:
 			return <></>
 	}
