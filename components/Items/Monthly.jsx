@@ -18,11 +18,11 @@ export function Monthly( { monthlyData } ) {
 			onClick={ openMonthly }
 		>
 			<div className={'monthly-price'}>
-				{ `${formatPrice( monthlyData.paid ? monthlyData.amount_paid : monthlyData.amount_due )}` }
+				{ `${formatPrice( monthlyData.status === 'PAID' ? monthlyData.amount_paid : monthlyData.amount_due )}` }
 			</div>
 
 			<div className={'monthly-date'}>
-				{ `${formatDate( monthlyData.paid ? monthlyData.paid_date : monthlyData.exp_date )}` }
+				{ `${formatDate( monthlyData.status === 'PAID' ? monthlyData.paid_date : monthlyData.exp_date )}` }
 			</div>
 		</div>
 	);
