@@ -21,7 +21,10 @@ export function Monthly( { monthlyData } ) {
 				{ `${ formatPrice( monthlyData.status === 'PAID' ? monthlyData.amount_paid : monthlyData.amount_due ) }` }
 			</div>
 
-			<div className={ 'monthly-date' }>
+			<div
+				className={ 'monthly-date' }
+				style={ monthlyData.status !== 'PAID' && Date.parse(monthlyData.exp_date) < Date.now() ? { color : '#ff0000' } : {} }
+			>
 				{ `${ formatDate( monthlyData.status === 'PAID' ? monthlyData.paid_date : monthlyData.exp_date ) }` }
 			</div>
 		</div>
