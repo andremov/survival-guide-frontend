@@ -9,7 +9,7 @@ export function TotalStatus() {
 	return (
 		<CardTemplate title={'Total a pagar'}>
 			<div style={{margin: '1rem', fontWeight: 'bold', fontSize: '24px'}}>
-				{ formatPrice(monthlies.reduce((a,b) => a + b)) }
+				{ formatPrice(monthlies.reduce((a,b) => a + b), 0) }
 			</div>
 		</CardTemplate>
 	);
