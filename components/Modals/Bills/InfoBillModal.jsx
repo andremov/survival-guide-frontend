@@ -10,7 +10,7 @@ import { Button } from '../../Buttons';
 export default function InfoBillModal() {
 	const dispatch = useDispatch();
 	const billData = useSelector( getSelectedBill )
-	const monthlies = useSelector( getMonthlies )
+	const monthlies = useSelector( getMonthlies ).filter( item => item.parent === billData._id )
 	const monthlyPrefetching = useSelector(isMonthlyPrefetching)
 
 	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
@@ -53,10 +53,10 @@ export default function InfoBillModal() {
 					</div>:
 			<div className={ 'bill-value' }>
 				{
-					monthlies.filter( item => item.parent === billData._id )
+					monthlies
 						.map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
 				}
-				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank key={ i }/> ) }
+				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank parent={billData._id} key={ i }/> ) }
 			</div>
 			}
 

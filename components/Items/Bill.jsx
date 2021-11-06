@@ -8,7 +8,7 @@ import { getMonthlies, setSelectedBill } from '../../services/billSlice';
 
 export function Bill( { billData } ) {
 	const dispatch = useDispatch()
-	const monthlies = useSelector( getMonthlies )
+	const monthlies = useSelector( getMonthlies ).filter(item => item.parent === billData._id)
 
 	const openBill = () => {
 		dispatch( setSelectedBill( billData._id ) )
@@ -30,9 +30,9 @@ export function Bill( { billData } ) {
 			</div>
 			<div className={'monthly-bill-data'}>
 				{
-					monthlies.filter(item => item.parent === billData._id).map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
+					monthlies.map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
 				}
-				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank key={ i }/> ) }
+				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank parent={billData._id} key={ i }/> ) }
 			</div>
 		</div>
 	);

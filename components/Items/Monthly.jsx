@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
-import { setSelectedMonthly } from '../../services/billSlice';
+import { setSelectedBill, setSelectedMonthly } from '../../services/billSlice';
 import { formatDate, formatPrice } from '../../services/utils';
 
 export function Monthly( { monthlyData } ) {
@@ -17,12 +17,12 @@ export function Monthly( { monthlyData } ) {
 			className={ `monthly-item ${ monthlyData.status === 'PAID' ? 'paid' : '' }` }
 			onClick={ openMonthly }
 		>
-			<div className={'monthly-price'}>
-				{ `${formatPrice( monthlyData.status === 'PAID' ? monthlyData.amount_paid : monthlyData.amount_due )}` }
+			<div className={ 'monthly-price' }>
+				{ `${ formatPrice( monthlyData.status === 'PAID' ? monthlyData.amount_paid : monthlyData.amount_due ) }` }
 			</div>
 
-			<div className={'monthly-date'}>
-				{ `${formatDate( monthlyData.status === 'PAID' ? monthlyData.paid_date : monthlyData.exp_date )}` }
+			<div className={ 'monthly-date' }>
+				{ `${ formatDate( monthlyData.status === 'PAID' ? monthlyData.paid_date : monthlyData.exp_date ) }` }
 			</div>
 		</div>
 	);
@@ -34,9 +34,15 @@ export function MonthlyMock() {
 	);
 }
 
-export function MonthlyBlank() {
+export function MonthlyBlank( { parent } ) {
+	const dispatch = useDispatch()
+	const onAdd = () => {
+		dispatch( setSelectedBill( parent ) )
+		dispatch( setModal( 'create-monthly' ) )
+	}
+
 	return (
-		<div className={ 'monthly-item blank' }/>
+		<div className={ 'monthly-item blank' } onClick={ onAdd }/>
 	);
 }
 
