@@ -17,7 +17,7 @@ export default function DeleteMonthlyModal() {
 	const [ formState, setFormState ] = React.useState( 0 );
 
 	const close = () => dispatch( setModal( '' ) )
-	const back = () => dispatch( setModal( 'task-info' ) )
+	const back = () => dispatch( setModal( 'monthly-info' ) )
 
 	const deleteRequest = () => {
 		setFormState( 1 )

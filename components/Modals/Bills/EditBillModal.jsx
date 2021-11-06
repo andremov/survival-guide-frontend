@@ -22,7 +22,7 @@ export default function EditBillModal() {
 		setError( false )
 	}
 
-	const close = () => dispatch( setModal( 'task-info' ) )
+	const close = () => dispatch( setModal( 'bill-info' ) )
 
 	const editRequest = () => {
 		setFormState( 1 )
