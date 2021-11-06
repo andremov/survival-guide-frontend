@@ -19,7 +19,7 @@ export default function DeleteMonthlyModal() {
 	const close = () => dispatch( setModal( '' ) )
 	const back = () => dispatch( setModal( 'task-info' ) )
 
-	const deleteTaskRequest = () => {
+	const deleteRequest = () => {
 		setFormState( 1 )
 		deleteMonthly( monthlyData._id )
 			.then( () => {
@@ -61,7 +61,7 @@ export default function DeleteMonthlyModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ deleteTaskRequest }
+					onClick={ deleteRequest }
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }

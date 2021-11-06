@@ -25,7 +25,7 @@ export default function NewTaskModal() {
 
 	const close = () => dispatch( setModal( '' ) )
 
-	const createTaskRequest = () => {
+	const createRequest = () => {
 		setFormState( 1 )
 		createTask( taskData )
 			.then( () => {
@@ -81,7 +81,7 @@ export default function NewTaskModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ createTaskRequest }
+					onClick={ createRequest }
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }

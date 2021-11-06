@@ -24,7 +24,7 @@ export default function NewMonthlyModal() {
 
 	const close = () => dispatch( setModal( '' ) )
 
-	const createMonthlyRequest = () => {
+	const createRequest = () => {
 		setFormState( 1 )
 		createMonthly( monthlyData )
 			.then( () => {
@@ -74,7 +74,7 @@ export default function NewMonthlyModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ createMonthlyRequest }
+					onClick={ createRequest }
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }

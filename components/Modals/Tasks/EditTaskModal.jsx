@@ -24,7 +24,7 @@ export default function EditTaskModal() {
 
 	const close = () => dispatch( setModal( 'task-info' ) )
 
-	const editTaskRequest = () => {
+	const editRequest = () => {
 		setFormState( 1 )
 		patchTask( taskData )
 			.then( () => {
@@ -80,7 +80,7 @@ export default function EditTaskModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ editTaskRequest }
+					onClick={ editRequest }
 					icon={ faPen }
 					label={ 'Editar' }
 					color={ 'green' }

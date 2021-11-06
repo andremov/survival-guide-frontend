@@ -25,7 +25,7 @@ export default function NewBillModal() {
 
 	const close = () => dispatch( setModal( '' ) )
 
-	const createBillRequest = () => {
+	const createRequest = () => {
 		setFormState( 1 )
 		createBill( billData )
 			.then( () => {
@@ -103,7 +103,7 @@ export default function NewBillModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ createBillRequest }
+					onClick={ createRequest }
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }

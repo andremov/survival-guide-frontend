@@ -18,7 +18,7 @@ export default function DeleteBillModal() {
 	const close = () => dispatch( setModal( '' ) )
 	const back = () => dispatch( setModal( 'task-info' ) )
 
-	const deleteTaskRequest = () => {
+	const deleteRequest = () => {
 		setFormState( 1 )
 		deleteBill( billData._id )
 			.then( () => {
@@ -60,7 +60,7 @@ export default function DeleteBillModal() {
 					color={ 'gray' }
 				/>
 				<Button
-					onClick={ deleteTaskRequest }
+					onClick={ deleteRequest }
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }
