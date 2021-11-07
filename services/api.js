@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create( {
-	baseURL : 'https://andremov-survival-api.herokuapp.com/',
-	// baseURL : process.env.NODE_ENV === 'development' ? 'http://localhost:3030/' : 'https://andremov-survival-api.herokuapp.com/',
+	baseURL : process.env.NODE_ENV === 'development' ? 'http://localhost:3030/' : 'https://andremov-survival-api.herokuapp.com/',
 	timeout : 15000,
 	responseType : 'json',
 } );
