@@ -1,19 +1,17 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { splitItemExpDate } from '../services/utils';
 import { getMonthlies } from '../services/monthlySlice';
 
-const parseMonthlies = m => {
-	let monthlies= m.map(item => ({...item, ...splitItemExpDate(item)}))
-	const startYear = Math.min(...monthlies.map(item => item.exp_year) )
-	monthlies= monthlies.map(item => ({...item, monthID: item.exp_month + ((item.exp_year-startYear)*12)}))
-	const startMonth = Math.min(...monthlies.map(item => item.monthID) )
-	const endMonth = Math.max(...monthlies.map(item => item.monthID) )
-	const labels = [ ...new Array( (endMonth-startMonth)+1 ).keys() ].map(item => item+startMonth)
+const parseMonthlies = monthlies => {
+	const startMonth = Math.min(...monthlies.map(item => item.month_id) )
+	const endMonth = Math.max(...monthlies.map(item => item.month_id) )
+	let labels = [ ...new Array( (endMonth-startMonth)+1 ).keys() ].map(item => item+startMonth)
 
-	let dueData = labels.map(label => monthlies.filter(monthly => monthly.exp_month === label).map(monthly => monthly.amount_due).reduce((a,b) => a + b, 0))
-	let paidData = labels.map(label => monthlies.filter(monthly => monthly.exp_month === label).map(monthly => monthly.amount_paid ?? 0).reduce((a,b) => a + b, 0))
+	let dueData = labels.map(label => monthlies.filter(monthly => monthly.month_id === label).map(monthly => monthly.amount_due).reduce((a,b) => a + b, 0))
+	let paidData = labels.map(label => monthlies.filter(monthly => monthly.month_id === label).map(monthly => monthly.amount_paid ?? 0).reduce((a,b) => a + b, 0))
+
+	labels = labels.map(item => `${((item-1)%12)+1}/${(""+(Math.floor(item/12)+2010)).substring(2)}`)
 
 	return {
 		labels, datasets: [

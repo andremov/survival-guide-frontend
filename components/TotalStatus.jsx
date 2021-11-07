@@ -13,13 +13,13 @@ export function TotalStatus() {
 	return (
 		<CardTemplate title={'Totales'}>
 			<div style={{margin: '1rem', fontWeight: 'bold', fontSize: '24px'}}>
-				{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }
+				{/*{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }*/}
 			</div>
 			<div style={{margin: '1rem', fontWeight: 'bold', fontSize: '24px'}}>
-				{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }
+				{/*{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }*/}
 			</div>
 			<div style={{margin: '1rem', fontWeight: 'bold', fontSize: '24px'}}>
-				{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }
+				{/*{ formatPrice(totalDue.reduce((a,b) => a + b), 0) }*/}
 			</div>
 		</CardTemplate>
 	);

@@ -7,6 +7,7 @@ import { refreshTasks } from '../services/taskSlice';
 import { refreshMonthlies } from '../services/monthlySlice';
 import { refreshOptions } from '../services/optionSlice';
 import { refreshBills } from '../services/billSlice';
+import { refreshMonthID } from '../services/uiSlice';
 
 export function AppWrapper({ Component, pageProps }) {
 	const precached = useSelector(isPrecached)
@@ -16,6 +17,7 @@ export function AppWrapper({ Component, pageProps }) {
 	React.useEffect( () => dispatch( refreshBills ), [] )
 	React.useEffect( () => dispatch( refreshMonthlies ), [] )
 	React.useEffect(() => dispatch(refreshOptions), [])
+	React.useEffect(() => dispatch(refreshMonthID), [])
 
 	return (
 		<>

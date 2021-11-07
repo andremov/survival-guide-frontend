@@ -6,11 +6,12 @@ export const formatDate = ( date ) => {
 	return `${ [ day, month, year ].join( '/' ) }`
 }
 
-const reverse = (string) => string.split("").reverse().join("")
+const reverse = ( string ) => string.split( "" )
+	.reverse()
+	.join( "" )
 
-const twoDigits = ( value ) => reverse(reverse(`0${value}`).substring(0,2))
-
-const monthDigit = ( month ) => ((month - 1) % 12) + 1
+const twoDigits = ( value ) => reverse( reverse( `0${ value }` )
+	.substring( 0, 2 ) )
 
 export const formatDateValue = ( date ) => {
 	if ( !date ) {
@@ -27,19 +28,14 @@ export const formatPrice = ( value ) => {
 		.slice( 4 ) }`
 }
 
-export const getSurroundingMonths = ( monthlies ) => {
-	const currentMonth = new Date().getMonth() + 1
-	return [ ...new Array( 3 ).keys() ]
-		.map(
-			( item, i ) => monthlies.find(
-				item => {
-					const m = +( item.exp_date.split( 'T' )[ 0 ].split( '-' )[ 1 ] )
-					return m === monthDigit(currentMonth + ( i - 1 ))
-				}
-			)
+export const getSurroundingMonths = ( monthlies, monthID ) => {
+	return [ monthID - 1, monthID, monthID + 1 ]
+		.map( month_id => monthlies
+			.find( monthly => monthly.month_id === month_id ) ?? month_id
 		)
-		.map(
-			( item, i ) =>
-				!item ? { exists : false, month : twoDigits(monthDigit(currentMonth + ( i - 1 ))) } : { ...item, exists : true }
+		.map( item =>
+			typeof item === 'number' ?
+				{ exists : false, month : ( ( item - 1 ) % 12 ) + 1 } :
+				{ ...item, exists : true }
 		)
 }

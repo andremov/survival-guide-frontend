@@ -10,6 +10,9 @@ export const ping = () => API.get( 'ping' )
 	.then( () => true )
 	.catch( () => false )
 
+export const fetchMonthID = () => API.get( 'monthid' )
+	.then( r => r.data.month_id )
+
 
 //
 

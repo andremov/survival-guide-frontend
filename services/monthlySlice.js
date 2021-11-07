@@ -34,7 +34,6 @@ export const {
 	monthlyLoading,
 } = monthlySlice.actions
 
-
 export const refreshMonthlies = async ( dispatch ) => {
 	dispatch( monthlyLoading() )
 	const monthlies = await fetchMonthlies()

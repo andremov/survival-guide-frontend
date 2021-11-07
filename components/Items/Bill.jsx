@@ -2,7 +2,7 @@ import React from 'react';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../Buttons';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModal } from '../../services/uiSlice';
+import { getMonthID, setModal } from '../../services/uiSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from './Monthly';
 import { getSurroundingMonths } from '../../services/utils';
 import { getMonthlies } from '../../services/monthlySlice';
@@ -11,6 +11,7 @@ import { setSelectedBill } from '../../services/billSlice';
 export function Bill( { billData } ) {
 	const dispatch = useDispatch()
 	const monthlies = useSelector( getMonthlies ).filter(item => item.parent === billData._id)
+	const curMonth = useSelector(getMonthID)
 
 	const openBill = () => {
 		dispatch( setSelectedBill( billData._id ) )
@@ -32,7 +33,7 @@ export function Bill( { billData } ) {
 			</div>
 			<div className={'monthly-bill-data'}>
 				{
-					getSurroundingMonths(monthlies).map(
+					getSurroundingMonths(monthlies, curMonth).map(
 						(item,i) => item.exists?
 							<Monthly key={ i } monthlyData={item}/> : <MonthlyBlank parent={billData._id} month={item.month} key={ i }/>
 					)

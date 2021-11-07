@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
 import { faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { setModal } from '../../../services/uiSlice';
+import { getMonthID, setModal } from '../../../services/uiSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
 import { Button } from '../../Buttons';
 import { getSurroundingMonths } from '../../../services/utils';
@@ -16,6 +16,7 @@ export default function InfoBillModal() {
 	const monthlies = useSelector( getMonthlies )
 		.filter( item => item.parent === billData._id )
 	const monthlyPrefetching = useSelector( isMonthlyPrefetching )
+	const curMonth = useSelector(getMonthID)
 
 	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
 	const onDelete = () => dispatch( setModal( 'delete-bill' ) )
@@ -62,7 +63,7 @@ export default function InfoBillModal() {
 					</div> :
 					<div className={ 'bill-value' }>
 						{
-							getSurroundingMonths( monthlies )
+							getSurroundingMonths( monthlies, curMonth )
 								.map(
 									( item, i ) => item.exists ?
 										<Monthly key={ i } monthlyData={ item }/> :
