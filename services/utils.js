@@ -1,20 +1,24 @@
-
-export const formatDate = (date) => {
-	if (!date) {
+export const formatDate = ( date ) => {
+	if ( !date ) {
 		return undefined
 	}
-	const [year, month,day] = date.split('T')[0].split('-')
-	return `${ [day,month,year].join('/') }`
+	const [ year, month, day ] = date.split( 'T' )[ 0 ].split( '-' )
+	return `${ [ day, month, year ].join( '/' ) }`
 }
 
-const twoDigits = (value) => `${value < 10? `0${value}` : value}`
+const reverse = (string) => string.split("").reverse().join("")
 
-export const formatDateValue = (date) => {
-	if (!date) {
+const twoDigits = ( value ) => reverse(reverse(`0${value}`).substring(0,2))
+
+const monthDigit = ( month ) => ((month - 1) % 12) + 1
+
+export const formatDateValue = ( date ) => {
+	if ( !date ) {
 		return undefined
 	}
-	const [day, month, year] =  formatDate(date).split('/')
-	return [year, twoDigits(month), twoDigits(day)].join('-')
+	const [ day, month, year ] = formatDate( date )
+		.split( '/' )
+	return [ year, twoDigits( month ), twoDigits( day ) ].join( '-' )
 }
 
 export const formatPrice = ( value ) => {
