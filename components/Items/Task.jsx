@@ -30,7 +30,7 @@ export function Task( { taskData } ) {
 			<div className={ 'check-box' } onClick={ handleClick }>
 				{ taskData.status === 'DONE' && <FontAwesomeIcon icon={ faCheck }/> }
 			</div>
-			<div className={ 'task-label' }>
+			<div className={ 'task-label' } onClick={ handleClick }>
 				{ taskData.name }
 			</div>
 			<Button
