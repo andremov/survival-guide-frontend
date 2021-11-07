@@ -7,6 +7,7 @@ import { getMonthlies, getSelectedBill, isMonthlyPrefetching } from '../../../se
 import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
 import { Button } from '../../Buttons';
 import { getSurroundingMonths } from '../../../services/utils';
+import { LineChart } from '../../LineChart';
 
 export default function InfoBillModal() {
 	const dispatch = useDispatch();
@@ -48,6 +49,11 @@ export default function InfoBillModal() {
 			<div className={ 'bill-value' }>
 				{ billData.information ? billData.information : 'No hay información adicional.' }
 			</div>
+
+			<LineChart
+				monthlies={ monthlies }
+			/>
+
 			{
 				monthlyPrefetching ?
 					<div className={ 'bill-value' }>

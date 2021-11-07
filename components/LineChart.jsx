@@ -22,27 +22,27 @@ const parseMonthlies = m => {
 	return {
 		labels, datasets: [
 			{
-				label: 'Debido',
-				data: dueData,
-				fill: true,
-				backgroundColor: 'rgb(255, 99, 132)',
-				borderColor: 'rgba(255, 99, 132, 0.2)',
-			},
-			{
 				label: 'Pagado',
 				data: paidData,
 				fill: true,
 				backgroundColor: 'rgb(109,255,99)',
 				borderColor: 'rgba(143,255,99,0.2)',
 			},
+			{
+				label: 'Debido',
+				data: dueData,
+				fill: true,
+				backgroundColor: 'rgb(255, 99, 132)',
+				borderColor: 'rgba(255, 99, 132, 0.2)',
+			},
 		]
 	}
 }
 
 
-export function LineChart() {
-	const monthlies = useSelector(getMonthlies)
-	const data = parseMonthlies(monthlies)
+export function LineChart({monthlies}) {
+	const generalMonthlies = useSelector(getMonthlies)
+	const data = parseMonthlies(monthlies ?? generalMonthlies)
 
 	const options = {
 		scales: {
