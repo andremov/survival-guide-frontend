@@ -8,7 +8,8 @@ import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getSelectedBill, refreshBills, refreshMonthlies } from '../../../services/billSlice';
+import { getSelectedBill } from '../../../services/billSlice';
+import { refreshMonthlies } from '../../../services/monthlySlice';
 
 export default function CreateMonthlyModal() {
 	const parent = useSelector(getSelectedBill)._id

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Task, TaskMock } from './Items/Task';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getTasks, isPrefetching } from '../services/taskSlice';
 
 export function TaskList() {

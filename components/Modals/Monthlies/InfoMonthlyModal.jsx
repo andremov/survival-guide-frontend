@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
 import { faDollarSign, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { getSelectedMonthly } from '../../../services/billSlice';
 import { Button } from '../../Buttons';
 import { formatDate, formatPrice } from '../../../services/utils';
 import { DoneBadge } from '../../Items/Badge';
+import { getSelectedMonthly } from '../../../services/monthlySlice';
 
 export default function InfoMonthlyModal() {
 	const dispatch = useDispatch();

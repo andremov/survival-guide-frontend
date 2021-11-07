@@ -8,7 +8,7 @@ import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
-import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
+import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
 
 export default function PayMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )

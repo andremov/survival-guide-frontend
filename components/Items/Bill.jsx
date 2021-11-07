@@ -4,8 +4,9 @@ import { Button } from '../Buttons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from './Monthly';
-import { getMonthlies, setSelectedBill } from '../../services/billSlice';
 import { getSurroundingMonths } from '../../services/utils';
+import { getMonthlies } from '../../services/monthlySlice';
+import { setSelectedBill } from '../../services/billSlice';
 
 export function Bill( { billData } ) {
 	const dispatch = useDispatch()

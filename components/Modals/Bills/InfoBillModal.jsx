@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
 import { faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { getMonthlies, getSelectedBill, isMonthlyPrefetching } from '../../../services/billSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
 import { Button } from '../../Buttons';
 import { getSurroundingMonths } from '../../../services/utils';
 import { LineChart } from '../../LineChart';
+import { getMonthlies, isMonthlyPrefetching } from '../../../services/monthlySlice';
+import { getSelectedBill } from '../../../services/billSlice';
 
 export default function InfoBillModal() {
 	const dispatch = useDispatch();

@@ -7,9 +7,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { RequestingContents } from '../../RequestingContents';
 import { SuccessContents } from '../../SuccessContents';
-import { getSelectedMonthly, refreshMonthlies } from '../../../services/billSlice';
 import { deleteMonthly } from '../../../services/api';
 import { formatDate } from '../../../services/utils';
+import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
 
 export default function DeleteMonthlyModal() {
 	const monthlyData = useSelector( getSelectedMonthly )

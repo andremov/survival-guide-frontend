@@ -6,9 +6,10 @@ import { refreshTasks } from '../services/taskSlice';
 import { setModal } from '../services/uiSlice';
 import { CardTemplate } from '../components/CardTemplate';
 import { BillList } from '../components/BillList';
-import { refreshBills, refreshMonthlies } from '../services/billSlice';
+import { refreshBills } from '../services/billSlice';
 import { TotalStatus } from '../components/TotalStatus';
 import { LineChart } from '../components/LineChart';
+import { refreshMonthlies } from '../services/monthlySlice';
 
 export default function Home() {
 	const dispatch = useDispatch()

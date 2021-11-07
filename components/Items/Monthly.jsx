@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
-import { setSelectedBill, setSelectedMonthly } from '../../services/billSlice';
 import { formatDate, formatPrice } from '../../services/utils';
+import { setSelectedBill } from '../../services/billSlice';
+import { setSelectedMonthly } from '../../services/monthlySlice';
 
 export function Monthly( { monthlyData } ) {
 	const dispatch = useDispatch()

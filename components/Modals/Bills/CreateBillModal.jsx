@@ -8,7 +8,8 @@ import { SuccessContents } from '../../SuccessContents';
 import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
-import { getInstitutions, getPeople, refreshBills, refreshExtras } from '../../../services/billSlice';
+import { getInstitutions, getPeople, refreshOptions } from '../../../services/optionSlice';
+import { refreshBills } from '../../../services/billSlice';
 
 export default function CreateBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
@@ -31,7 +32,7 @@ export default function CreateBillModal() {
 			.then( () => {
 				setFormState( 2 )
 				dispatch( refreshBills )
-				dispatch( refreshExtras )
+				dispatch( refreshOptions )
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {

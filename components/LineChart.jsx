@@ -1,12 +1,8 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { getMonthlies } from '../services/billSlice';
-
-const splitItemExpDate = item => ({
-	exp_month: +( item.exp_date.split( 'T' )[ 0 ].split( '-' )[ 1 ] ),
-	exp_year: +( item.exp_date.split( 'T' )[ 0 ].split( '-' )[ 0 ] )
-})
+import { splitItemExpDate } from '../services/utils';
+import { getMonthlies } from '../services/monthlySlice';
 
 const parseMonthlies = m => {
 	let monthlies= m.map(item => ({...item, ...splitItemExpDate(item)}))

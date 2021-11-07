@@ -1,11 +1,12 @@
 import React from 'react';
 import { ApiLoadModal } from './Modals/ApiLoadModal';
-import { Header } from './Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { isPrecached } from '../services/apiLoadSlice';
 import { ModalHandler } from './Modals/ModalHandler';
 import { refreshTasks } from '../services/taskSlice';
-import { refreshBills, refreshExtras, refreshMonthlies } from '../services/billSlice';
+import { refreshMonthlies } from '../services/monthlySlice';
+import { refreshOptions } from '../services/optionSlice';
+import { refreshBills } from '../services/billSlice';
 
 export function AppWrapper({ Component, pageProps }) {
 	const precached = useSelector(isPrecached)
@@ -14,7 +15,7 @@ export function AppWrapper({ Component, pageProps }) {
 	React.useEffect( () => dispatch( refreshTasks ), [] )
 	React.useEffect( () => dispatch( refreshBills ), [] )
 	React.useEffect( () => dispatch( refreshMonthlies ), [] )
-	React.useEffect(() => dispatch(refreshExtras), [])
+	React.useEffect(() => dispatch(refreshOptions), [])
 
 	return (
 		<>
