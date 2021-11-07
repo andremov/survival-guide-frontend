@@ -35,24 +35,44 @@ export default function InfoMonthlyModal() {
 
 			<div></div>
 
-			<div className={ 'monthly-value' }>
-				{ `Valor a pagar: ${formatPrice(monthlyData.amount_due)}` }
+			<div className={ 'monthly-info' }>
+				<div className={ 'monthly-info__label' }>
+					Valor a pagar:
+				</div>
+				<div className={ 'monthly-info__value' }>
+					{ monthlyData.amount_due }
+				</div>
 			</div>
 
-			<div className={ 'monthly-value' }>
-				{ `Pague antes de: ${formatDate( monthlyData.exp_date )}` }
+			<div className={ 'monthly-info' }>
+				<div className={ 'monthly-info__label' }>
+					Pague antes de:
+				</div>
+				<div className={ 'monthly-info__value' }>
+					{ formatDate( monthlyData.exp_date ) }
+				</div>
 			</div>
 
 			{
 				monthlyData.status === 'PAID'?
 					<>
 						<hr style={{width: '80%'}}/>
-						<div className={ 'monthly-value' }>
-							{ `Valor pagado: ${formatPrice(monthlyData.amount_paid)}` }
+						<div className={ 'monthly-info' }>
+							<div className={ 'monthly-info__label' }>
+								Valor pagado:
+							</div>
+							<div className={ 'monthly-info__value' }>
+								{ formatPrice( monthlyData.amount_paid ) }
+							</div>
 						</div>
 
-						<div className={ 'monthly-value' }>
-							{ `Pagado: ${formatDate( monthlyData.paid_date )}` }
+						<div className={ 'monthly-info' }>
+							<div className={ 'monthly-info__label' }>
+								Fecha de pago:
+							</div>
+							<div className={ 'monthly-info__value' }>
+								{ formatDate( monthlyData.paid_date ) }
+							</div>
 						</div>
 						<hr style={{width: '80%'}}/>
 						<DoneBadge

@@ -4,7 +4,7 @@ import { getSelectedTask } from '../../../services/taskSlice';
 import { ModalTemplate } from '../ModalTemplate';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { formatDate } from '../../../services/utils';
+import { formatDate, formatPrice } from '../../../services/utils';
 import { DoneBadge, PendingBadge } from '../../Items/Badge';
 
 export default function InfoTaskModal() {
@@ -30,18 +30,31 @@ export default function InfoTaskModal() {
 		] }>
 			<div></div>
 
-			<div className={ 'task-value' }>
+			<div className={ 'task-info' }>
 				{ taskData.information ? taskData.information : 'No hay información adicional.' }
 			</div>
 
 			{ taskData.done_date &&
-			<div className={ 'task-value' }>
-				{ `Fecha de entrega: ${formatDate( taskData.done_date)}` }
+			<div className={ 'task-info' }>
+				<div className={ 'monthly-info__label' }>
+					Fecha de entrega:
+				</div>
+				<div className={ 'monthly-info__value' }>
+					{ formatDate( taskData.done_date ) }
+				</div>
 			</div>
 			}
 
-			<div className={ 'task-value' }>
-				{ taskData.due_date ? `Fecha de plazo: ${formatDate( taskData.due_date )}` : 'No hay fecha de plazo establecida.' }
+			<div className={ 'task-info' }>
+				{ taskData.due_date ? <>
+					<div className={ 'monthly-info__label' }>
+						Fecha de plazo:
+					</div>
+					<div className={ 'monthly-info__value' }>
+						{ formatDate( taskData.due_date ) }
+					</div>
+				</> : 'No hay fecha de plazo establecida.'
+				}
 			</div>
 
 			<div>

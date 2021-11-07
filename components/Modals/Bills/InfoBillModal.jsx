@@ -40,15 +40,25 @@ export default function InfoBillModal() {
 
 			<div></div>
 
-			<div className={ 'bill-value' }>
-				{ `A nombre de: ${ billData.person_name }` }
+			<div className={ 'bill-info' }>
+				<div className={ 'bill-info__label' }>
+					A nombre de:
+				</div>
+				<div className={ 'bill-info__value' }>
+					{ billData.person_name }
+				</div>
 			</div>
 
-			<div className={ 'bill-value' }>
-				{ `Pagar a: ${ billData.institution }` }
+			<div className={ 'bill-info' }>
+				<div className={ 'bill-info__label' }>
+					Pagar a:
+				</div>
+				<div className={ 'bill-info__value' }>
+					{ billData.institution }
+				</div>
 			</div>
 
-			<div className={ 'bill-value' }>
+			<div className={ 'bill-info' }>
 				{ billData.information ? billData.information : 'No hay información adicional.' }
 			</div>
 
@@ -58,10 +68,10 @@ export default function InfoBillModal() {
 
 			{
 				monthlyPrefetching ?
-					<div className={ 'bill-value' }>
+					<div className={ 'bill-info' }>
 						{ [ ...new Array( 3 ).keys() ].map( ( item, i ) => <MonthlyMock key={ i }/> ) }
 					</div> :
-					<div className={ 'bill-value' }>
+					<div className={ 'bill-info' }>
 						{
 							getSurroundingMonths( monthlies, curMonth )
 								.map(

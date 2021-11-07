@@ -50,7 +50,7 @@ export default function DeleteMonthlyModal() {
 		>
 			<div></div>
 
-			<div className={ 'monthly-value' } style={ { textAlign : 'center' } }>
+			<div className={ 'monthly-info' } style={ { textAlign : 'center' } }>
 				{ `¿ Seguro desea borrar mensual [${ formatDate(monthlyData.exp_date) }] ?` }
 			</div>
 

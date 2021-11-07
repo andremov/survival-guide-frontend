@@ -49,7 +49,7 @@ export default function DeleteBillModal() {
 		>
 			<div></div>
 
-			<div className={ 'bill-value' } style={ { textAlign : 'center' } }>
+			<div className={ 'bill-info' } style={ { textAlign : 'center' } }>
 				{ `¿ Seguro desea borrar factura "${ billData.name }" ?` }
 			</div>
 

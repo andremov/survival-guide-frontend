@@ -49,7 +49,7 @@ export default function DeleteTaskModal() {
 		>
 			<div></div>
 
-			<div className={ 'task-value' } style={ { textAlign : 'center' } }>
+			<div className={ 'task-info' } style={ { textAlign : 'center' } }>
 				{ `¿ Seguro desea borrar tarea "${ taskData.name }" ?` }
 			</div>
 

@@ -17,7 +17,7 @@
   background-color: white;
   border-radius: 10px;
   position: relative;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 
@@ -62,12 +62,22 @@
   }
 }
 
-.task-value, .bill-value, .monthly-value {
+.task-info, .bill-info, .monthly-info {
   display: flex;
   grid-gap: 10px;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   margin: 0.5rem 0;
+}
+
+.totals-info {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 @keyframes spin {
@@ -83,7 +93,7 @@
     min-width: 0;
     padding: 1rem 0.5rem;
 
-    .task-value, .bill-value, .monthly-value {
+    .task-info, .bill-info, .monthly-info {
       font-size: 14px;
       grid-gap: 2px;
     }
