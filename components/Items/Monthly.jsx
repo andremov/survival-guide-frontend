@@ -37,7 +37,7 @@ export function MonthlyMock() {
 	);
 }
 
-export function MonthlyBlank( { parent } ) {
+export function MonthlyBlank( { parent, month } ) {
 	const dispatch = useDispatch()
 	const onAdd = () => {
 		dispatch( setSelectedBill( parent ) )
@@ -45,7 +45,11 @@ export function MonthlyBlank( { parent } ) {
 	}
 
 	return (
-		<div className={ 'monthly-item blank' } onClick={ onAdd }/>
+		<div className={ 'monthly-item blank' } onClick={ onAdd }>
+			<div className={ 'monthly-price' }>
+				{`Mes ${month}`}
+			</div>
+		</div>
 	);
 }
 

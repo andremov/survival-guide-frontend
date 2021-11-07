@@ -6,12 +6,14 @@ import { setModal } from '../../../services/uiSlice';
 import { getMonthlies, getSelectedBill, isMonthlyPrefetching } from '../../../services/billSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from '../../Items/Monthly';
 import { Button } from '../../Buttons';
+import { getSurroundingMonths } from '../../../services/utils';
 
 export default function InfoBillModal() {
 	const dispatch = useDispatch();
 	const billData = useSelector( getSelectedBill )
-	const monthlies = useSelector( getMonthlies ).filter( item => item.parent === billData._id )
-	const monthlyPrefetching = useSelector(isMonthlyPrefetching)
+	const monthlies = useSelector( getMonthlies )
+		.filter( item => item.parent === billData._id )
+	const monthlyPrefetching = useSelector( isMonthlyPrefetching )
 
 	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
 	const onDelete = () => dispatch( setModal( 'delete-bill' ) )
@@ -50,21 +52,24 @@ export default function InfoBillModal() {
 				monthlyPrefetching ?
 					<div className={ 'bill-value' }>
 						{ [ ...new Array( 3 ).keys() ].map( ( item, i ) => <MonthlyMock key={ i }/> ) }
-					</div>:
-			<div className={ 'bill-value' }>
-				{
-					monthlies
-						.map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
-				}
-				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank parent={billData._id} key={ i }/> ) }
-			</div>
+					</div> :
+					<div className={ 'bill-value' }>
+						{
+							getSurroundingMonths( monthlies )
+								.map(
+									( item, i ) => item.exists ?
+										<Monthly key={ i } monthlyData={ item }/> :
+										<MonthlyBlank parent={ billData._id } month={ item.month } key={ i }/>
+								)
+						}
+					</div>
 			}
 
 			<Button
-				color={'green'}
-				onClick={onAdd}
-				label={'Agregar Mensual'}
-				icon={faPlus}
+				color={ 'green' }
+				onClick={ onAdd }
+				label={ 'Agregar Mensual' }
+				icon={ faPlus }
 			/>
 		</ModalTemplate>
 	);

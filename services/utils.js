@@ -22,3 +22,20 @@ export const formatPrice = ( value ) => {
 	return `$ ${ dollarFormat.format( value )
 		.slice( 4 ) }`
 }
+
+export const getSurroundingMonths = ( monthlies ) => {
+	const currentMonth = new Date().getMonth() + 1
+	return [ ...new Array( 3 ).keys() ]
+		.map(
+			( item, i ) => monthlies.find(
+				item => {
+					const m = +( item.exp_date.split( 'T' )[ 0 ].split( '-' )[ 1 ] )
+					return m === monthDigit(currentMonth + ( i - 1 ))
+				}
+			)
+		)
+		.map(
+			( item, i ) =>
+				!item ? { exists : false, month : twoDigits(monthDigit(currentMonth + ( i - 1 ))) } : { ...item, exists : true }
+		)
+}

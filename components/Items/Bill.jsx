@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
 import { Monthly, MonthlyBlank, MonthlyMock } from './Monthly';
 import { getMonthlies, setSelectedBill } from '../../services/billSlice';
+import { getSurroundingMonths } from '../../services/utils';
 
 export function Bill( { billData } ) {
 	const dispatch = useDispatch()
@@ -30,9 +31,11 @@ export function Bill( { billData } ) {
 			</div>
 			<div className={'monthly-bill-data'}>
 				{
-					monthlies.map( ( item, i ) => <Monthly key={ i } monthlyData={item}/> )
+					getSurroundingMonths(monthlies).map(
+						(item,i) => item.exists?
+							<Monthly key={ i } monthlyData={item}/> : <MonthlyBlank parent={billData._id} month={item.month} key={ i }/>
+					)
 				}
-				{ [ ...new Array( 3-monthlies.length ).keys() ].map( ( item, i ) => <MonthlyBlank parent={billData._id} key={ i }/> ) }
 			</div>
 		</div>
 	);
