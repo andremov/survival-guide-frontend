@@ -180,6 +180,12 @@ hr {
   width: 100%;
 }
 
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (max-width: 1050px) {
   main {
     align-items: center;

@@ -24,12 +24,7 @@ export default function Home() {
 	return (
 		<>
 			<main>
-				<div style={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					margin: '0 auto'
-				}}>
+				<div className={'left-panel'} >
 					<CardTemplate
 						title={ 'Lista de Tareas' }
 						buttons={ [
