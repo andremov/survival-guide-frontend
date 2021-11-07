@@ -68,6 +68,25 @@ export default function EditMonthlyModal() {
 				onChange={ handleChange }
 				type={'date'}
 			/>
+			{
+				monthlyData.status === 'PAID' ?
+					<>
+					<Input
+						value={ monthlyData.amount_paid }
+						name={ 'amount_paid' }
+						placeholder={ 'Valor pagado' }
+						onChange={ handleChange }
+					/>
+					<Input
+						value={ formatDateValue(monthlyData.paid_date) }
+						name={ 'paid_date' }
+						placeholder={ 'Fecha de pago' }
+						onChange={ handleChange }
+						type={'date'}
+					/>
+					</>
+				: <></>
+			}
 			<DualInput>
 				<Button
 					onClick={ close }
