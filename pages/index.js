@@ -1,6 +1,6 @@
 import React from 'react';
 import { TaskList } from '../components/TaskList';
-import { faPlus, faRetweet } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSync } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { refreshTasks } from '../services/taskSlice';
 import { setModal } from '../services/uiSlice';
@@ -27,14 +27,14 @@ export default function Home() {
 		<>
 			<main>
 
-				<div className={'left-panel'} >
+				<div className={ 'left-panel' }>
 					<CardTemplate
 						title={ 'Lista de Tareas' }
 						buttons={ [
 							{
 								className : 'icon-button',
 								color : 'blue',
-								icon : faRetweet,
+								icon : faSync,
 								onClick : onRefreshTasks,
 							}, {
 								className : 'icon-button',
@@ -49,7 +49,9 @@ export default function Home() {
 
 					<TotalStatus/>
 
-					<LineChart/>
+					<CardTemplate className={ 'chart' }>
+						<LineChart/>
+					</CardTemplate>
 				</div>
 
 				<CardTemplate
@@ -58,7 +60,7 @@ export default function Home() {
 						{
 							className : 'icon-button',
 							color : 'blue',
-							icon : faRetweet,
+							icon : faSync,
 							onClick : onRefreshBills,
 						}, {
 							className : 'icon-button',

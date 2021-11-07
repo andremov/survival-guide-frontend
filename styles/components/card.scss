@@ -39,10 +39,15 @@
 .card:hover,
 .card:focus,
 .card:active {
+  border-color: #0070f3;
+
   h2 {
     color: #0070f3;
-    border-color: #0070f3;
   }
+}
+
+.card.chart {
+  padding: 1rem 0.25rem;
 }
 
 @media (max-width: 1050px) {
