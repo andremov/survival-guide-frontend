@@ -8,6 +8,7 @@ import { CardTemplate } from '../components/CardTemplate';
 import { BillList } from '../components/BillList';
 import { refreshBills, refreshMonthlies } from '../services/billSlice';
 import { TotalStatus } from '../components/TotalStatus';
+import { LineChart } from '../components/LineChart';
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -24,6 +25,7 @@ export default function Home() {
 	return (
 		<>
 			<main>
+
 				<div className={'left-panel'} >
 					<CardTemplate
 						title={ 'Lista de Tareas' }
@@ -45,6 +47,8 @@ export default function Home() {
 					</CardTemplate>
 
 					<TotalStatus/>
+
+					<LineChart/>
 				</div>
 
 				<CardTemplate
