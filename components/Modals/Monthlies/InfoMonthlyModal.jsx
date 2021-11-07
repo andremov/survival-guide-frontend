@@ -15,6 +15,7 @@ export default function InfoMonthlyModal() {
 	const onEdit = () => dispatch( setModal( 'edit-monthly' ) )
 	const onDelete = () => dispatch( setModal( 'delete-monthly' ) )
 	const onPay = () => dispatch( setModal( 'pay-monthly' ) )
+	const onClose = () => dispatch( setModal( '' ) )
 
 	return (
 		<ModalTemplate title={ `Mensual [${formatDate(monthlyData.exp_date)}]` } doCloseButton={ true } buttons={ [
@@ -54,7 +55,9 @@ export default function InfoMonthlyModal() {
 							{ `Pagado: ${formatDate( monthlyData.paid_date )}` }
 						</div>
 						<hr style={{width: '80%'}}/>
-						<DoneBadge/>
+						<DoneBadge
+							onClick={onClose}
+						/>
 					</> :
 					<Button
 						color={'blue'}
