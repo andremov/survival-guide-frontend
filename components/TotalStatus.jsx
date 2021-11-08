@@ -47,6 +47,15 @@ export function TotalStatus() {
 
 			<div className={ 'totals-info' }>
 				<div className={ 'totals-info__label' }>
+					Facturas totales:
+				</div>
+				<div className={ 'totals-info__price' }>
+					{ totalDueCount+totalPaidCount+totalMissingCount }
+				</div>
+			</div>
+
+			<div className={ 'totals-info' }>
+				<div className={ 'totals-info__label' }>
 					Facturas por pagar:
 				</div>
 				<div className={ 'totals-info__price' }>
