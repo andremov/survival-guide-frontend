@@ -26,7 +26,6 @@ export default function PayMonthlyModal() {
 
 	const editRequest = () => {
 		setFormState( 1 )
-		console.log(monthlyData)
 		patchMonthly( monthlyData )
 			.then( () => {
 				setFormState( 2 )

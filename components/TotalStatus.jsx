@@ -4,17 +4,17 @@ import { CardTemplate } from './CardTemplate';
 import { formatPrice } from '../services/utils';
 import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
 import { getMonthID } from '../services/uiSlice';
-import { getBills } from '../services/billSlice';
+import { getFilteredBills } from '../services/billSlice';
 
 export function TotalStatus() {
 	const monthlies = useSelector( getMonthlies )
 	const loading = useSelector( isMonthlyLoading )
-	const bills = useSelector( getBills )
+	const bills = useSelector( getFilteredBills ).map(bill => bill._id)
 	const month_id = useSelector( getMonthID )
 
-	let totalDueValue = monthlies.filter( item => item.status !== 'PAID' && item.month_id === month_id )
+	let totalDueValue = monthlies.filter( item => bills.includes(item.parent) && item.status !== 'PAID' && item.month_id === month_id )
 		.map( item => item.amount_due )
-	let totalPaidValue = monthlies.filter( item => item.status === 'PAID' && item.month_id === month_id )
+	let totalPaidValue = monthlies.filter( item => bills.includes(item.parent) && item.status === 'PAID' && item.month_id === month_id )
 		.map( item => item.amount_paid )
 
 	const totalDueCount = totalDueValue.length

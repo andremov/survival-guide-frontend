@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getBills, isBillPrefetching } from '../services/billSlice';
+import { getFilteredBills, isBillPrefetching } from '../services/billSlice';
 import { Bill, BillMock } from './Items/Bill';
 
 export function BillList() {
-	const bills = useSelector( getBills )
+	const bills = useSelector( getFilteredBills )
 	const prefetching = useSelector( isBillPrefetching )
 
 	if ( prefetching ) {

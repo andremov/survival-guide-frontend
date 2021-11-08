@@ -1,15 +1,16 @@
 import React from 'react';
 import { TaskList } from '../components/TaskList';
-import { faPlus, faSync } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faPlus, faSync } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { refreshTasks } from '../services/taskSlice';
 import { setModal } from '../services/uiSlice';
 import { CardTemplate } from '../components/CardTemplate';
 import { BillList } from '../components/BillList';
-import { refreshBills } from '../services/billSlice';
+import { clearFilters, refreshBills } from '../services/billSlice';
 import { TotalStatus } from '../components/TotalStatus';
 import { LineChart } from '../components/LineChart';
 import { refreshMonthlies } from '../services/monthlySlice';
+import { FilterBreadcrumbs } from '../components/FilterBreadcrumbs';
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -22,6 +23,7 @@ export default function Home() {
 		dispatch( refreshMonthlies )
 	}
 	const onNewBill = () => dispatch( setModal( 'create-bill' ) )
+	const onFilter = () => dispatch( setModal( 'filter-bill' ) )
 
 	return (
 		<>
@@ -59,6 +61,11 @@ export default function Home() {
 					buttons={ [
 						{
 							className : 'icon-button',
+							color : 'gray',
+							icon : faFilter,
+							onClick : onFilter,
+						}, {
+							className : 'icon-button',
 							color : 'blue',
 							icon : faSync,
 							onClick : onRefreshBills,
@@ -70,6 +77,7 @@ export default function Home() {
 						}
 					] }
 				>
+					<FilterBreadcrumbs/>
 					<BillList/>
 				</CardTemplate>
 			</main>

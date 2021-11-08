@@ -18,6 +18,11 @@
   border-radius: 10px;
   position: relative;
   padding: 2rem;
+
+  .card-body {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
 }
 
 .loading-spinner {
@@ -90,7 +95,6 @@
     animation: 1s mock-animate infinite linear;
   }
 }
-
 
 @media (max-width: 530px) {
   .modal {

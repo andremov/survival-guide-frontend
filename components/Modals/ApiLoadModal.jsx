@@ -18,7 +18,6 @@ export function ApiLoadModal( { precached } ) {
 
 		const checkDate = () => {
 			const timeDiff = ( updateDate - Date.now() ) + min15
-			console.log(timeDiff)
 			if ( timeDiff < 0 ) {
 				dispatch( setOnline( false ) )
 			} else {
