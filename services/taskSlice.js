@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { fetchTasks } from './api';
 
 const initialState = {
-	tasks : [],
+	data : [],
 	prefetching : true,
 	loading : true,
-	selectedTask: ''
+	selected: ''
 }
 
 export const taskSlice = createSlice( {
@@ -13,10 +13,10 @@ export const taskSlice = createSlice( {
 	initialState,
 	reducers : {
 		setSelectedTask: ( state, action ) => {
-			state.selectedTask = action.payload
+			state.selected = action.payload
 		},
 		tasksReceived : ( state, action ) => {
-			state.tasks = action.payload
+			state.data = action.payload
 			state.prefetching = false
 			state.loading = false
 		},
@@ -41,9 +41,9 @@ export const refreshTasks = async ( dispatch ) => {
 	}
 }
 
-export const getTasks = ( state ) => state.tasks.tasks
+export const getTasks = ( state ) => state.tasks.data
 export const isPrefetching = ( state ) => state.tasks.prefetching
 export const isLoading = ( state ) => state.tasks.loading
-export const getSelectedTask = ( state ) => state.tasks.tasks.find(item => item._id === state.tasks.selectedTask)
+export const getSelectedTask = ( state ) => state.tasks.data.find(item => item._id === state.tasks.selected)
 
 export default taskSlice.reducer

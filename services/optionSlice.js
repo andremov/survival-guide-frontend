@@ -4,8 +4,8 @@ import { fetchInstitutions, fetchPeople } from './api';
 const initialState = {
 	institutions : [],
 	people : [],
-	optionPrefetching : true,
-	optionLoading : true,
+	prefetching : true,
+	loading : true,
 }
 
 export const optionSlice = createSlice( {
@@ -15,12 +15,12 @@ export const optionSlice = createSlice( {
 		optionsReceived : ( state, action ) => {
 			state.institutions = action.payload.institutions
 			state.people = action.payload.people
-			state.optionPrefetching = false
-			state.extraLoading = false
+			state.prefetching = false
+			state.loading = false
 		},
 		optionsLoading : ( state ) => {
-			if ( !state.optionLoading ) {
-				state.optionLoading = true
+			if ( !state.loading ) {
+				state.loading = true
 			}
 		},
 	},
@@ -48,5 +48,7 @@ export const refreshOptions = async ( dispatch ) => {
 
 export const getInstitutions = ( state ) => state.options.institutions
 export const getPeople = ( state ) => state.options.people
+export const isOptionPrefetching = ( state ) => state.options.prefetching
+export const isOptionLoading = ( state ) => state.options.loading
 
 export default optionSlice.reducer

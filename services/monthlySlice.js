@@ -2,10 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { fetchMonthlies } from './api';
 
 const initialState = {
-	monthlies : [],
-	monthlyPrefetching : true,
-	monthlyLoading : true,
-	selectedMonthly : '',
+	data : [],
+	prefetching : true,
+	loading : true,
+	selected : '',
+	filters: {}
 }
 
 export const monthlySlice = createSlice( {
@@ -13,16 +14,16 @@ export const monthlySlice = createSlice( {
 	initialState,
 	reducers : {
 		setSelectedMonthly : ( state, action ) => {
-			state.selectedMonthly = action.payload
+			state.selected = action.payload
 		},
 		monthlyReceived : ( state, action ) => {
-			state.monthlies = action.payload
-			state.monthlyPrefetching = false
-			state.monthlyLoading = false
+			state.data = action.payload
+			state.prefetching = false
+			state.loading = false
 		},
 		monthlyLoading : ( state ) => {
-			if ( !state.monthlyLoading ) {
-				state.monthlyLoading = true
+			if ( !state.loading ) {
+				state.loading = true
 			}
 		},
 	},
@@ -45,10 +46,10 @@ export const refreshMonthlies = async ( dispatch ) => {
 	}
 }
 
-export const getMonthlies = ( state ) => state.monthlies.monthlies
-export const isMonthlyPrefetching = ( state ) => state.monthlies.monthlyPrefetching
-export const isMonthlyLoading = ( state ) => state.monthlies.monthlyLoading
-export const getSelectedMonthly = ( state ) => state.monthlies.monthlies.find(
-	item => item._id === state.monthlies.selectedMonthly )
+export const getMonthlies = ( state ) => state.monthlies.data
+export const isMonthlyPrefetching = ( state ) => state.monthlies.prefetching
+export const isMonthlyLoading = ( state ) => state.monthlies.loading
+export const getSelectedMonthly = ( state ) => state.monthlies.data.find(
+	item => item._id === state.monthlies.selected )
 
 export default monthlySlice.reducer

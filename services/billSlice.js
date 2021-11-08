@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { fetchBills } from './api';
 
 const initialState = {
-	bills : [],
-	billPrefetching : true,
-	billLoading : true,
-	selectedBill : '',
+	data : [],
+	prefetching : true,
+	loading : true,
+	selected : '',
 }
 
 export const billSlice = createSlice( {
@@ -13,16 +13,16 @@ export const billSlice = createSlice( {
 	initialState,
 	reducers : {
 		setSelectedBill : ( state, action ) => {
-			state.selectedBill = action.payload
+			state.selected = action.payload
 		},
 		billsReceived : ( state, action ) => {
-			state.bills = action.payload
-			state.billPrefetching = false
-			state.billLoading = false
+			state.data = action.payload
+			state.prefetching = false
+			state.loading = false
 		},
 		billsLoading : ( state ) => {
-			if ( !state.billLoading ) {
-				state.billLoading = true
+			if ( !state.loading ) {
+				state.loading = true
 			}
 		},
 	},
@@ -45,9 +45,9 @@ export const refreshBills = async ( dispatch ) => {
 	}
 }
 
-export const getBills = ( state ) => state.bills.bills
-export const isBillPrefetching = ( state ) => state.bills.billPrefetching
-export const isBillLoading = ( state ) => state.bills.billLoading
-export const getSelectedBill = ( state ) => state.bills.bills.find( item => item._id === state.bills.selectedBill )
+export const getBills = ( state ) => state.bills.data
+export const isBillPrefetching = ( state ) => state.bills.prefetching
+export const isBillLoading = ( state ) => state.bills.loading
+export const getSelectedBill = ( state ) => state.bills.data.find( item => item._id === state.bills.selected )
 
 export default billSlice.reducer
