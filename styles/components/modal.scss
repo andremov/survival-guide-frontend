@@ -91,11 +91,6 @@
   }
 }
 
-@keyframes spin {
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
 
 @media (max-width: 530px) {
   .modal {
