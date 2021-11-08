@@ -21,7 +21,7 @@ export function Bill( { billData } ) {
 	return (
 		<div className={ 'bill-item' }>
 			<div className={'bill-data'}>
-				<div className={ 'bill-label' }>
+				<div className={ 'bill-label' } onClick={openBill} >
 					{ `${ billData.name } - ${ billData.person_name } - ${ billData.institution }` }
 				</div>
 				<Button
