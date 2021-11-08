@@ -127,6 +127,18 @@ hr {
   width: 100%;
 }
 
+.chart-mock-up {
+  display: block;
+  box-sizing: border-box;
+  height: 245px;
+  width: 490px;
+  aspect-ratio: auto 490 / 245;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #55555555 25%, #cccccc55 50%, #55555555 75%);
+  background-size: 400% 100%;
+  animation: 1s mock-animate infinite linear;
+}
+
 @media (max-width: 1050px) {
   main {
     align-items: center;

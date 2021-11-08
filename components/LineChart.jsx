@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { getMonthlies } from '../services/monthlySlice';
+import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
 
 const parseMonthlies = monthlies => {
 	const startMonth = Math.min(...monthlies.map(item => item.month_id) )
@@ -36,6 +36,7 @@ const parseMonthlies = monthlies => {
 
 export function LineChart({monthlies}) {
 	const generalMonthlies = useSelector(getMonthlies)
+	const loading = useSelector(isMonthlyLoading)
 	const data = parseMonthlies(monthlies ?? generalMonthlies)
 
 	const options = {
@@ -47,6 +48,7 @@ export function LineChart({monthlies}) {
 	};
 
 	return (
+		loading? <div className={'chart-mock-up'}/>:
 		<Line data={data} options={options}  type={'line'}/>
 	);
 }

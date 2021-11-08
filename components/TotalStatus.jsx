@@ -2,12 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardTemplate } from './CardTemplate';
 import { formatPrice } from '../services/utils';
-import { getMonthlies } from '../services/monthlySlice';
+import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
 import { getMonthID } from '../services/uiSlice';
 import { getBills } from '../services/billSlice';
 
 export function TotalStatus() {
 	const monthlies = useSelector( getMonthlies )
+	const loading = useSelector( isMonthlyLoading )
 	const bills = useSelector( getBills )
 	const month_id = useSelector( getMonthID )
 
@@ -23,64 +24,78 @@ export function TotalStatus() {
 	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 )
 	totalPaidValue = totalPaidValue.reduce( ( a, b ) => a + b, 0 )
 
+	const totals = [
+		{
+			label : 'Total por pagar:',
+			value : formatPrice( totalDueValue ),
+		},
+		{
+			label : 'Total pagado:',
+			value : formatPrice( totalPaidValue ),
+		},
+		{
+			label : 'Facturas totales:',
+			value : totalDueCount + totalPaidCount + totalMissingCount,
+		},
+		{
+			label : 'Facturas por pagar:',
+			value : totalDueCount,
+		},
+		{
+			label : 'Facturas pagadas:',
+			value : totalPaidCount,
+		},
+		{
+			label : 'Facturas por reportar:',
+			value : totalMissingCount,
+		},
+	]
+
 	return (
 		<CardTemplate className={ 'totals-card' } title={ 'Totales' }>
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Total por pagar:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ formatPrice( totalDueValue ) }
-				</div>
-			</div>
+			{
+				loading ? totals.slice( 0, 2 )
+					.map( ( item, i ) => <TotalInfoMockup
+						{ ...item }
+						key={ i }
+					/> ) : totals.slice( 0, 2 )
+					.map( ( item, i ) => <TotalInfoItem
+						{ ...item }
+						key={ i }
+					/> )
+			}
 
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Total pagado:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ formatPrice( totalPaidValue ) }
-				</div>
-			</div>
+			<hr style={ { width : '80%' } }/>
 
-			<hr style={{width: '80%'}}/>
+			{
 
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Facturas totales:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ totalDueCount+totalPaidCount+totalMissingCount }
-				</div>
-			</div>
+				loading ? totals.slice( 2 )
+					.map( ( item, i ) => <TotalInfoMockup
+						{ ...item }
+						key={ i }
+					/> ) : totals.slice( 2 )
+					.map( ( item, i ) => <TotalInfoItem
+						{ ...item }
+						key={ i }
+					/> )
+			}
 
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Facturas por pagar:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ totalDueCount }
-				</div>
-			</div>
-
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Facturas pagadas:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ totalPaidCount }
-				</div>
-			</div>
-
-			<div className={ 'totals-info' }>
-				<div className={ 'totals-info__label' }>
-					Facturas por reportar:
-				</div>
-				<div className={ 'totals-info__price' }>
-					{ totalMissingCount }
-				</div>
-			</div>
 		</CardTemplate>
 	);
 }
 
+const TotalInfoItem = ( { label, value } ) => <div className={ 'totals-info' }>
+	<div className={ 'totals-info__label' }>
+		{ label }
+	</div>
+	<div className={ 'totals-info__value' }>
+		{ value }
+	</div>
+</div>
+
+const TotalInfoMockup = ({label}) => <div className={ 'totals-info mock-up' }>
+	<div className={ 'totals-info__label' }>
+		{ label }
+	</div>
+	<div className={ 'totals-info__value' }/>
+</div>

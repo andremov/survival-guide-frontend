@@ -55,9 +55,9 @@
     border-radius: 4px;
     background: linear-gradient(90deg, #55555555 25%, #cccccc55 50%, #55555555 75%);
     background-size: 400% 100%;
+    animation: 1s mock-animate infinite linear;
     width: 70%;
     flex: none;
-    animation: 1s mock-animate infinite linear;
   }
 }
 
