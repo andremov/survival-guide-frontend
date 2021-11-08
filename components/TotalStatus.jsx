@@ -18,7 +18,7 @@ export function TotalStatus() {
 
 	const totalDueCount = totalDueValue.length
 	const totalPaidCount = totalPaidValue.length
-	const totalMissingCount = bills.length
+	const totalMissingCount = bills.length - totalDueCount - totalPaidCount
 
 	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 )
 	totalPaidValue = totalPaidValue.reduce( ( a, b ) => a + b, 0 )
