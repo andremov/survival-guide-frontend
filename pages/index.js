@@ -28,6 +28,12 @@ export default function Home() {
 			<main>
 
 				<div className={ 'left-panel' }>
+					<TotalStatus/>
+
+					<CardTemplate className={ 'chart' }>
+						<LineChart/>
+					</CardTemplate>
+
 					<CardTemplate
 						title={ 'Lista de Tareas' }
 						buttons={ [
@@ -45,12 +51,6 @@ export default function Home() {
 						] }
 					>
 						<TaskList/>
-					</CardTemplate>
-
-					<TotalStatus/>
-
-					<CardTemplate className={ 'chart' }>
-						<LineChart/>
 					</CardTemplate>
 				</div>
 
