@@ -18,7 +18,7 @@ export default function InfoMonthlyModal() {
 	const onClose = () => dispatch( setModal( '' ) )
 
 	return (
-		<ModalTemplate title={ `Mensual [${formatDate(monthlyData.exp_date)}]` } doCloseButton={ true } buttons={ [
+		<ModalTemplate title={ `Mensual [${formatDate(monthlyData.exp_date)}]` } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',

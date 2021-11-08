@@ -43,13 +43,13 @@ export default function EditBillModal() {
 	}
 
 	if ( formState === 1 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<RequestingContents text={ 'Editando...' }/>
 		</ModalTemplate>
 	}
 
 	if ( formState === 2 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<SuccessContents/>
 		</ModalTemplate>
 	}

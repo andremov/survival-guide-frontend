@@ -32,13 +32,13 @@ export default function DeleteTaskModal() {
 	}
 
 	if ( formState === 1 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<RequestingContents text={ 'Borrando...' }/>
 		</ModalTemplate>
 	}
 
 	if ( formState === 2 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<SuccessContents/>
 		</ModalTemplate>
 	}

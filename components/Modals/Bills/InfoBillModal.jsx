@@ -23,7 +23,7 @@ export default function InfoBillModal() {
 	const onAdd = () => dispatch( setModal( 'create-monthly' ) )
 
 	return (
-		<ModalTemplate title={ billData.name } doCloseButton={ true } buttons={ [
+		<ModalTemplate title={ billData.name } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',

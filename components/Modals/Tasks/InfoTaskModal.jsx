@@ -14,7 +14,7 @@ export default function InfoTaskModal() {
 	const onDelete = () => dispatch( setModal( 'delete-task' ) )
 
 	return (
-		<ModalTemplate title={ taskData.name } doCloseButton={ true } buttons={ [
+		<ModalTemplate title={ taskData.name } buttons={ [
 			{
 				onClick : onEdit,
 				className : 'icon-button',

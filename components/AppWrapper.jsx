@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isPrecached } from '../services/apiLoadSlice';
 import { ModalHandler } from './Modals/ModalHandler';
 import { refreshTasks } from '../services/taskSlice';
-import { refreshMonthlies } from '../services/monthlySlice';
+import { monthlyTest, refreshMonthlies } from '../services/monthlySlice';
 import { refreshOptions } from '../services/optionSlice';
 import { refreshBills } from '../services/billSlice';
 import { refreshMonthID } from '../services/uiSlice';

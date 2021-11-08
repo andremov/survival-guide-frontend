@@ -6,7 +6,6 @@ const initialState = {
 	prefetching : true,
 	loading : true,
 	selected : '',
-	filters: {}
 }
 
 export const monthlySlice = createSlice( {

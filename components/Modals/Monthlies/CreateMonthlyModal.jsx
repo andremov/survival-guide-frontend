@@ -40,13 +40,13 @@ export default function CreateMonthlyModal() {
 	}
 
 	if ( formState === 1 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<RequestingContents text={ 'Creando...' }/>
 		</ModalTemplate>
 	}
 
 	if ( formState === 2 ) {
-		return <ModalTemplate>
+		return <ModalTemplate doCloseButton={false}>
 			<SuccessContents/>
 		</ModalTemplate>
 	}
