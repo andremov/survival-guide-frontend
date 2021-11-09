@@ -13,7 +13,7 @@ export default function FilterBillModal() {
 	const filters = useSelector( getFilters )
 	const dispatch = useDispatch()
 
-	const onClearFilters = () => dispatch( clearFilters )
+	const onClearFilters = () => dispatch( clearFilters() )
 	const onToggleFilter = ( type, value ) => dispatch( setFilters( { type, value } ) )
 
 	return <ModalTemplate
