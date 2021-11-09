@@ -40,7 +40,7 @@ export default function InfoMonthlyModal() {
 					Valor a pagar:
 				</div>
 				<div className={ 'monthly-info__value' }>
-					{ monthlyData.amount_due }
+					{ formatPrice(monthlyData.amount_due) }
 				</div>
 			</div>
 
