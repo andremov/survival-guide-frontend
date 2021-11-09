@@ -43,7 +43,8 @@ export const billSlice = createSlice( {
 			state.filtered = applyFilters( state.data, newFilters )
 		},
 		clearFilters : ( state ) => {
-			state.filters = {}
+			state.filters = {person_name : [], institution : []}
+			state.filtered = applyFilters( state.data, {person_name : [], institution : []} )
 		}
 	},
 } )
