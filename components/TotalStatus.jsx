@@ -24,6 +24,10 @@ export function TotalStatus() {
 	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 )
 	totalPaidValue = totalPaidValue.reduce( ( a, b ) => a + b, 0 )
 
+	const totalPaidPercent = (( totalPaidValue / ( totalPaidValue + totalDueValue ) ) * 100)
+	const billsPaidPercent = (( totalPaidCount / bills.length ) * 100)
+	const billsMissingPercent = (((bills.length-totalMissingCount) / bills.length ) * 100)
+
 	const totals = [
 		{
 			label : 'Total por pagar:',
@@ -65,6 +69,11 @@ export function TotalStatus() {
 					/> )
 			}
 
+			<ProgressBar
+				percent={totalPaidPercent}
+				label={'Total pagado'}
+			/>
+
 			<hr style={ { width : '80%' } }/>
 
 			{
@@ -79,6 +88,16 @@ export function TotalStatus() {
 						key={ i }
 					/> )
 			}
+
+			<ProgressBar
+				percent={billsMissingPercent}
+				label={'Facturas reportadas'}
+			/>
+
+			<ProgressBar
+				percent={billsPaidPercent}
+				label={'Facturas pagadas'}
+			/>
 
 		</CardTemplate>
 	);
@@ -99,3 +118,8 @@ const TotalInfoMockup = ({label}) => <div className={ 'totals-info mock-up' }>
 	</div>
 	<div className={ 'totals-info__value' }/>
 </div>
+
+const ProgressBar = ({percent, label}) =>	<div className={'progress-bar-container'}>
+		<div className={`bar ${percent === 100? 'borderless':''} `} style={{width: `${percent.toFixed(2)}%`}}/>
+		<div className={'perc-display'}>{`${label}: ${percent.toFixed(2)}%`}</div>
+	</div>
