@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
-import { DualInput } from '../../Input';
 import { Button } from '../../Buttons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';

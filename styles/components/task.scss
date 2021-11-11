@@ -9,15 +9,9 @@
     border-bottom: none;
   }
 
-  &.checked {
-    .task-label {
-      text-decoration: line-through;
-      color: #555555;
-    }
-
-    .check-box {
-      background-color: #444444;
-    }
+  .task-label.checked {
+    text-decoration: line-through;
+    color: #555555;
   }
 
   .task-label {
@@ -31,7 +25,7 @@
 
 .task-item.mock-up {
 
-  .check-box {
+  .checkbox {
     background-color: #888;
     border: none;
   }

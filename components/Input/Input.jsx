@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Select } from './Select';
 
-export function Input({ enableVisibilityToggle = false, type = 'text', placeholder, onChange, name, ...props}) {
+export default function Input({ enableVisibilityToggle = false, type = 'text', placeholder, onChange, name, ...props}) {
   const [visible, setVisible] = React.useState(false)
 
   if (type === 'select') {
@@ -91,59 +92,4 @@ export function SuggestiveInput({ placeholder, onChange, name, options=[], ...pr
   );
 }
 
-export function Select({ placeholder, onChange, name, options=[], ...props}) {
-  const [filterText, setFilterText] = React.useState('')
-  const [showOptions, setShowOptions] = React.useState(false)
 
-  const handleOption = (item) => {
-    onChange(name, item.val)
-    setFilterText(item.label)
-    setShowOptions(false)
-  }
-
-  const handleChange = e => {
-    setFilterText( e.target.value )
-    setShowOptions(true)
-  }
-
-  return (
-    <div className={'input-component'}>
-      {
-        !!placeholder && <div className={'input-label'+(!!(props.value || filterText)? ' has-text' : '')}>
-          {placeholder}
-        </div>
-      }
-      <input
-        onClick={() => setShowOptions(!showOptions)}
-        onChange={handleChange}
-        value={filterText}
-      />
-
-      { options.filter( item => item.label.includes( filterText ) ).length > 0 &&
-        <div className={ `dropdown ${ showOptions ? 'visible' : '' }` }
-             { ...props }
-             onChange={ e => onChange( name, e.target.value ) }
-        >
-          { options.filter( item => item.label.includes( filterText ) )
-            .map(
-              ( item, i ) => <div
-                className={ 'dropdown-option' }
-                key={ i }
-                onClick={ () => handleOption( item ) }
-              >
-                { item.label }
-              </div>
-            ) }
-        </div>
-      }
-    </div>
-  );
-}
-
-export function DualInput({children}) {
-  return (
-    <div className={'dual-input-container'}>
-      {children}
-    </div>
-  )
-}

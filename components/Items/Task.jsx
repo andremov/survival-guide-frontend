@@ -1,11 +1,11 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { patchTask } from '../../services/api';
 import { Button } from '../Buttons';
 import { refreshTasks, setSelectedTask } from '../../services/taskSlice';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
+import { Checkbox } from '../Input';
 
 export function Task( { taskData } ) {
 	const dispatch = useDispatch()
@@ -26,13 +26,13 @@ export function Task( { taskData } ) {
 	}
 
 	return (
-		<div className={ `task-item ${ taskData.status === 'DONE' ? 'checked' : '' }` }>
-			<div className={ 'check-box' } onClick={ handleClick }>
-				{ taskData.status === 'DONE' && <FontAwesomeIcon icon={ faCheck }/> }
-			</div>
-			<div className={ 'task-label' } onClick={ handleClick }>
-				{ taskData.name }
-			</div>
+		<div className={ 'task-item' }>
+			<Checkbox
+				isDone={taskData.status === 'DONE'}
+				handleClick={handleClick}
+				label={taskData.name}
+				labelClass={'task-label'}
+			/>
 			<Button
 				icon={ faInfo }
 				className={ 'icon-button' }
@@ -46,8 +46,7 @@ export function Task( { taskData } ) {
 export function TaskMock() {
 	return (
 		<div className={ 'task-item mock-up' }>
-			<div className={ 'check-box' }/>
-			<div className={ 'task-label' }/>
+			<Checkbox/>
 		</div>
 	);
 }

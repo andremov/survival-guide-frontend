@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
 import { getInstitutions, getPeople } from '../../../services/optionSlice';
 import { clearFilters, getBills, getFilters, setFilters } from '../../../services/billSlice';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackspace, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faBackspace } from '@fortawesome/free-solid-svg-icons';
+import { Checkbox } from '../../Input';
 
 export default function FilterBillModal() {
 	const institutions = useSelector( getInstitutions )
@@ -56,15 +56,14 @@ const FilterSection = ( { title, options = [], bills = [], toggleFilterCallback,
 
 					return <div
 						key={ i }
-						className={ `filter-item ${ checked ? 'checked' : '' }` }
+						className={ 'filter-item' }
 						onClick={ () => toggleFilterCallback( option.val ) }
 					>
-						<div className={ 'check-box' }>
-							{ checked && <FontAwesomeIcon icon={ faCheck }/> }
-						</div>
-						<div className={ 'filter-label' }>
-							{ `${ option.label } (${ bills.filter( bill => bill === option.val ).length })` }
-						</div>
+						<Checkbox
+							isDone={checked}
+							label={`${ option.label } (${ bills.filter( bill => bill === option.val ).length })`}
+							labelClass={'filter-label'}
+						/>
 					</div>
 				}
 			)
