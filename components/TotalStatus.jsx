@@ -2,24 +2,26 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardTemplate } from './CardTemplate';
 import { formatPrice } from '../services/utils';
-import { getCurrentMonthlies, isMonthlyLoading } from '../services/monthlySlice';
+import { isMonthlyLoading } from '../services/monthlySlice';
 import { useListedBills } from './Hooks/useListedBills';
 
 export function TotalStatus() {
-	const monthlies = useSelector( getCurrentMonthlies )
 	const loading = useSelector( isMonthlyLoading )
-	const bills = useListedBills().map(bill => bill._id)
+	const bills = useListedBills()
 
-	let totalDueValue = monthlies.filter( item => bills.includes(item.parent) && item.status !== 'PAID' )
-		.map( item => item.amount_due )
-	let totalPaidValue = monthlies.filter( item => bills.includes(item.parent) && item.status === 'PAID' )
-		.map( item => item.amount_paid )
+	let totalDueValue = bills.filter( bill => bill.monthly.status === 'PENDING' )
+		.map( item => item.monthly.amount_due )
+	let totalOverdueValue = bills.filter( bill => bill.monthly.status === 'OVERDUE' )
+		.map( item => item.monthly.amount_due )
+	let totalPaidValue = bills.filter( bill => bill.monthly.status === 'PAID' )
+		.map( item => item.monthly.amount_paid )
 
 	const totalDueCount = totalDueValue.length
+	const totalOverdueCount = totalOverdueValue.length
 	const totalPaidCount = totalPaidValue.length
-	const totalMissingCount = bills.length - totalDueCount - totalPaidCount
+	const totalMissingCount = bills.length - totalDueCount - totalPaidCount - totalOverdueCount
 
-	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 )
+	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 ) + totalOverdueValue.reduce( ( a, b ) => a + b, 0 )
 	totalPaidValue = totalPaidValue.reduce( ( a, b ) => a + b, 0 )
 
 	const totalPaidPercent = (( totalPaidValue / ( totalPaidValue + totalDueValue ) ) * 100)
@@ -37,11 +39,15 @@ export function TotalStatus() {
 		},
 		{
 			label : 'Facturas totales:',
-			value : totalDueCount + totalPaidCount + totalMissingCount,
+			value : bills.length,
 		},
 		{
 			label : 'Facturas por pagar:',
 			value : totalDueCount,
+		},
+		{
+			label : 'Facturas atrasadas:',
+			value : totalOverdueCount,
 		},
 		{
 			label : 'Facturas pagadas:',

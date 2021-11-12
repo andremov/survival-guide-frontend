@@ -22,7 +22,8 @@ export function FilterBreadcrumbs() {
 const dictionary = {
 	PAID: 'Pagado',
 	PENDING: 'Pendiente',
-	UNREPORTED: 'Sin Reportar'
+	UNREPORTED: 'Sin Reportar',
+	OVERDUE: 'Atrasado'
 }
 
 const Crumb = ( { value, removeFilter } ) => <div className={ 'crumb' } onClick={removeFilter}>

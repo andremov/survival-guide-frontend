@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getBills, getFilters } from '../../services/billSlice';
-import { getCurrentMonthlies } from '../../services/monthlySlice';
+import { getFilters } from '../../services/billSlice';
 import { getSortDirection, getSortField } from '../../services/uiSlice';
 import { useCurrentMonthBills } from './useCurrentMonthBills';
 

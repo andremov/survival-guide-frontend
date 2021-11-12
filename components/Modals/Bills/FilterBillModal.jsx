@@ -44,7 +44,7 @@ export default function FilterBillModal() {
 		/>
 		<FilterSection
 			title={ 'Estado' }
-			options={ [{label: 'Pagado', val: 'PAID'}, {label: 'Pendiente', val: 'PENDING'}, {label: 'Sin Reportar', val: 'UNREPORTED'}] }
+			options={ [{label: 'Pagado', val: 'PAID'}, {label: 'Pendiente', val: 'PENDING'}, {label: 'Sin Reportar', val: 'UNREPORTED'}, {label: 'Atrasado', val: 'OVERDUE'}] }
 			bills={ bills.map( item => item.monthly.status ) }
 			toggleFilterCallback={ value => onToggleFilter( 'monthly_status', value ) }
 			activeFilters={ filters.monthly_status ?? [] }

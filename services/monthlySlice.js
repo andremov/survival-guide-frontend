@@ -17,6 +17,7 @@ export const monthlySlice = createSlice( {
 		},
 		monthlyReceived : ( state, action ) => {
 			state.data = action.payload
+				.map(monthly => ({...monthly, status: getMonthlyStatusText(monthly.status, monthly.exp_date)}))
 			state.prefetching = false
 			state.loading = false
 		},
@@ -45,12 +46,14 @@ export const refreshMonthlies = async ( dispatch ) => {
 	}
 }
 
+const getMonthlyStatusText = (curText, expDate) => (curText === 'PENDING' ? ( new Date( expDate ) < new Date() ? 'OVERDUE' : 'PENDING' ) : curText)
+
 export const getMonthlies = ( state ) => state.monthlies.data
 export const isMonthlyPrefetching = ( state ) => state.monthlies.prefetching
 export const isMonthlyLoading = ( state ) => state.monthlies.loading
-export const getSelectedMonthly = ( state ) => state.monthlies.data.find(
-	item => item._id === state.monthlies.selected )
-export const getCurrentMonthlies = ( state ) => state.monthlies.data.filter(
-	item => item.month_id === state.ui.month )
+export const getSelectedMonthly = ( state ) => state.monthlies.data
+	.find(item => item._id === state.monthlies.selected )
+export const getCurrentMonthlies = ( state ) => state.monthlies.data
+	.filter(item => item.month_id === state.ui.month )
 
 export default monthlySlice.reducer
