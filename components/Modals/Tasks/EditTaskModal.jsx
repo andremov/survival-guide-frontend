@@ -4,8 +4,6 @@ import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { patchTask } from '../../../services/api';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
@@ -34,26 +32,16 @@ export default function EditTaskModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Editando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Editar tarea' }
+			formState={formState}
 		>
 			<Input
 				value={ taskData.name }

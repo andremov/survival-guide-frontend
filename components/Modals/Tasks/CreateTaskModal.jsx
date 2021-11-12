@@ -4,8 +4,6 @@ import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { createTask } from '../../../services/api';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { refreshTasks } from '../../../services/taskSlice';
@@ -34,26 +32,16 @@ export default function CreateTaskModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Creando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Nueva tarea' }
+			formState={formState}
 		>
 			<Input
 				value={ taskData.name }

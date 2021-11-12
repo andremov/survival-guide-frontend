@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Select } from './Select';
+import Select from './Select';
 
 export default function Input({ enableVisibilityToggle = false, type = 'text', placeholder, onChange, name, ...props}) {
   const [visible, setVisible] = React.useState(false)

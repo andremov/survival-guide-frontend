@@ -3,8 +3,6 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
@@ -12,7 +10,7 @@ import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlyS
 
 export default function PayMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
-	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData, paid_date: Date.now(), status: 'PAID' } )
+	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData, paid_date: Date.now(), status: 'PAID', amount_paid:'' } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
@@ -33,26 +31,16 @@ export default function PayMonthlyModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Pagando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Editar mensual' }
+			formState={formState}
 		>
 			<Input
 				value={ monthlyData.amount_paid }

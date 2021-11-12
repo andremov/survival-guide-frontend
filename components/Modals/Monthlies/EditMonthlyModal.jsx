@@ -3,8 +3,6 @@ import { ModalTemplate } from '../ModalTemplate';
 import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
@@ -34,26 +32,16 @@ export default function EditMonthlyModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Editando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Editar mensual' }
+			formState={formState}
 		>
 			<Input
 				value={ monthlyData.amount_due }

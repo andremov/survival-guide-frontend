@@ -4,8 +4,7 @@ import { ping } from '../../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { isOnline, lastRequestDate, setOnline, updateLastRequestDate } from '../../services/apiLoadSlice';
 import { Toast } from '../Toasts/Toast';
-import { RequestingContents } from '../RequestingContents';
-import { SuccessContents } from '../SuccessContents';
+import { RequestingContents, SuccessContents } from '../Contents';
 
 export function ApiLoadModal( { precached } ) {
 	const dispatch = useDispatch()

@@ -7,8 +7,6 @@ import { Button } from '../../Buttons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { deleteTask } from '../../../services/api';
-import { RequestingContents } from '../../RequestingContents';
-import { SuccessContents } from '../../SuccessContents';
 
 export default function DeleteTaskModal() {
 	const taskData = useSelector( getSelectedTask )
@@ -27,25 +25,15 @@ export default function DeleteTaskModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Borrando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Borrar tarea' }
+			formState={formState}
 		>
 			<div></div>
 

@@ -5,8 +5,6 @@ import { DualInput } from '../../Input';
 import { Button } from '../../Buttons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
-import { RequestingContents } from '../../RequestingContents';
-import { SuccessContents } from '../../SuccessContents';
 import { deleteMonthly } from '../../../services/api';
 import { formatDate } from '../../../services/utils';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
@@ -28,25 +26,15 @@ export default function DeleteMonthlyModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Borrando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Borrar mensual' }
+			formState={formState}
 		>
 			<div></div>
 

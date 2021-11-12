@@ -4,8 +4,6 @@ import { Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { patchBill } from '../../../services/api';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedBill, refreshBills } from '../../../services/billSlice';
@@ -37,26 +35,16 @@ export default function EditBillModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Editando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Editar factura' }
+			formState={formState}
 		>
 			<Input
 				value={ billData.name }

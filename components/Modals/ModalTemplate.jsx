@@ -3,10 +3,29 @@ import { CardTemplate } from '../CardTemplate';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../services/uiSlice';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FailureContents, RequestingContents, SuccessContents } from '../Contents';
 
-export function ModalTemplate( { children, title, doCloseButton=true, buttons = [] } ) {
+export function ModalTemplate( { children, title, doCloseButton=true, buttons = [], formState } ) {
 	const dispatch = useDispatch();
 	const closeModal = () => dispatch( setModal( '' ) )
+
+	if ( formState === 1 ) {
+		return <ModalTemplate doCloseButton={false}>
+			<RequestingContents text={ 'Editando...' }/>
+		</ModalTemplate>
+	}
+
+	if ( formState === 2 ) {
+		return <ModalTemplate doCloseButton={false}>
+			<SuccessContents/>
+		</ModalTemplate>
+	}
+
+	if ( formState === 3 ) {
+		return <ModalTemplate doCloseButton={false}>
+			<FailureContents/>
+		</ModalTemplate>
+	}
 
 	return (
 		<div className={ 'backdrop' }>

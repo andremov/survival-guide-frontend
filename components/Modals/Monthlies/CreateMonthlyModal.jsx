@@ -4,8 +4,6 @@ import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { createMonthly } from '../../../services/api';
-import { SuccessContents } from '../../SuccessContents';
-import { RequestingContents } from '../../RequestingContents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedBill } from '../../../services/billSlice';
@@ -34,26 +32,16 @@ export default function CreateMonthlyModal() {
 				setTimeout( close, 1000 )
 			} )
 			.catch( () => {
-				setFormState( 0 )
+				setFormState( 3 )
+				setTimeout( () => setFormState(0), 1000 )
 				setError( true )
 			} )
-	}
-
-	if ( formState === 1 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<RequestingContents text={ 'Creando...' }/>
-		</ModalTemplate>
-	}
-
-	if ( formState === 2 ) {
-		return <ModalTemplate doCloseButton={false}>
-			<SuccessContents/>
-		</ModalTemplate>
 	}
 
 	return (
 		<ModalTemplate
 			title={ 'Nuevo Mensual' }
+			formState={formState}
 		>
 			<Input
 				value={ monthlyData.amount_due }
