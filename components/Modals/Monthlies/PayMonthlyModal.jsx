@@ -10,7 +10,9 @@ import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlyS
 
 export default function PayMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
-	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData, paid_date: Date.now(), status: 'PAID', amount_paid:'' } )
+	const [ monthlyData, setMonthlyData ] = React.useState(
+		{ ...initialData, paid_date : Date.now(), status : 'PAID', amount_paid : initialData.amount_due }
+	)
 	const [ formState, setFormState ] = React.useState( 0 );
 	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
@@ -32,7 +34,7 @@ export default function PayMonthlyModal() {
 			} )
 			.catch( () => {
 				setFormState( 3 )
-				setTimeout( () => setFormState(0), 1000 )
+				setTimeout( () => setFormState( 0 ), 1000 )
 				setError( true )
 			} )
 	}
@@ -40,8 +42,8 @@ export default function PayMonthlyModal() {
 	return (
 		<ModalTemplate
 			title={ 'Editar mensual' }
-			formState={formState}
-			processText={'Pagando'}
+			formState={ formState }
+			processText={ 'Pagando' }
 		>
 			<Input
 				value={ monthlyData.amount_paid }
