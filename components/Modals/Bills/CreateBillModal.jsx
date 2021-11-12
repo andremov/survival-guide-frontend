@@ -44,6 +44,7 @@ export default function CreateBillModal() {
 		<ModalTemplate
 			title={ 'Nueva Factura' }
 			formState={formState}
+			processText={'Creando'}
 		>
 			<Input
 				value={ billData.name }

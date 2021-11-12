@@ -33,6 +33,7 @@ export default function DeleteBillModal() {
 		<ModalTemplate
 			title={ 'Borrar factura' }
 			formState={formState}
+			processText={'Borrando'}
 		>
 			<div></div>
 

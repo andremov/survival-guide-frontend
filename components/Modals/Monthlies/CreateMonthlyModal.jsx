@@ -42,6 +42,7 @@ export default function CreateMonthlyModal() {
 		<ModalTemplate
 			title={ 'Nuevo Mensual' }
 			formState={formState}
+			processText={'Creando'}
 		>
 			<Input
 				value={ monthlyData.amount_due }

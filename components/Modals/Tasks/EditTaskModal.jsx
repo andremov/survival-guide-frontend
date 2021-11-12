@@ -42,6 +42,7 @@ export default function EditTaskModal() {
 		<ModalTemplate
 			title={ 'Editar tarea' }
 			formState={formState}
+			processText={'Editando'}
 		>
 			<Input
 				value={ taskData.name }

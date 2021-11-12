@@ -34,6 +34,7 @@ export default function DeleteTaskModal() {
 		<ModalTemplate
 			title={ 'Borrar tarea' }
 			formState={formState}
+			processText={'Borrando'}
 		>
 			<div></div>
 

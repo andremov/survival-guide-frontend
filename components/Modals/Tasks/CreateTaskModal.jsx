@@ -42,6 +42,7 @@ export default function CreateTaskModal() {
 		<ModalTemplate
 			title={ 'Nueva tarea' }
 			formState={formState}
+			processText={'Creando'}
 		>
 			<Input
 				value={ taskData.name }

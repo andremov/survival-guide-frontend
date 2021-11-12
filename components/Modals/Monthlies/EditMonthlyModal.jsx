@@ -42,6 +42,7 @@ export default function EditMonthlyModal() {
 		<ModalTemplate
 			title={ 'Editar mensual' }
 			formState={formState}
+			processText={'Editando'}
 		>
 			<Input
 				value={ monthlyData.amount_due }

@@ -41,6 +41,7 @@ export default function PayMonthlyModal() {
 		<ModalTemplate
 			title={ 'Editar mensual' }
 			formState={formState}
+			processText={'Pagando'}
 		>
 			<Input
 				value={ monthlyData.amount_paid }

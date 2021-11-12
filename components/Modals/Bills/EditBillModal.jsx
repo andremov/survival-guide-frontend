@@ -45,6 +45,7 @@ export default function EditBillModal() {
 		<ModalTemplate
 			title={ 'Editar factura' }
 			formState={formState}
+			processText={'Editando'}
 		>
 			<Input
 				value={ billData.name }

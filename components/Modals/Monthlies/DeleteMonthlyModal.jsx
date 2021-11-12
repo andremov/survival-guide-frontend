@@ -35,6 +35,7 @@ export default function DeleteMonthlyModal() {
 		<ModalTemplate
 			title={ 'Borrar mensual' }
 			formState={formState}
+			processText={'Borrando'}
 		>
 			<div></div>
 
