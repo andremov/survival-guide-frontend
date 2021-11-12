@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
-import { getFilteredBills } from '../services/billSlice';
+import { useListedBills } from './Hooks/useListedBills';
 
 const parseMonthlies = monthlies => {
 	const startMonth = Math.min(...monthlies.map(item => item.month_id) )
@@ -36,7 +36,7 @@ const parseMonthlies = monthlies => {
 
 
 export function LineChart({monthlies}) {
-	const bills = useSelector( getFilteredBills ).map(bill => bill._id)
+	const bills = useListedBills().map(bill => bill._id)
 	const generalMonthlies = useSelector(getMonthlies).filter( item => bills.includes(item.parent))
 	const loading = useSelector(isMonthlyLoading)
 	const data = parseMonthlies(monthlies ?? generalMonthlies)

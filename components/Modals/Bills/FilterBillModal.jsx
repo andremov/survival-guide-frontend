@@ -2,14 +2,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalTemplate } from '../ModalTemplate';
 import { getInstitutions, getPeople } from '../../../services/optionSlice';
-import { clearFilters, getBills, getFilters, setFilters } from '../../../services/billSlice';
+import { clearFilters, getFilters, setFilters } from '../../../services/billSlice';
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { Checkbox } from '../../Input';
+import { useCurrentMonthBills } from '../../Hooks/useCurrentMonthBills';
 
 export default function FilterBillModal() {
 	const institutions = useSelector( getInstitutions )
 	const people = useSelector( getPeople )
-	const bills = useSelector( getBills )
+	const bills = useCurrentMonthBills()
 	const filters = useSelector( getFilters )
 	const dispatch = useDispatch()
 
@@ -41,6 +42,13 @@ export default function FilterBillModal() {
 			toggleFilterCallback={ value => onToggleFilter( 'person_name', value ) }
 			activeFilters={ filters.person_name ?? [] }
 		/>
+		<FilterSection
+			title={ 'Estado' }
+			options={ [{label: 'Pagado', val: 'PAID'}, {label: 'Pendiente', val: 'PENDING'}, {label: 'Sin Reportar', val: 'UNREPORTED'}] }
+			bills={ bills.map( item => item.monthly.status ) }
+			toggleFilterCallback={ value => onToggleFilter( 'monthly_status', value ) }
+			activeFilters={ filters.monthly_status ?? [] }
+		/>
 	</ModalTemplate>
 }
 
@@ -49,6 +57,7 @@ const FilterSection = ( { title, options = [], bills = [], toggleFilterCallback,
 		<h3>
 			{ title }
 		</h3>
+		<div className={'filter-item-list'}>
 		{
 			options.map(
 				( option, i ) => {
@@ -68,5 +77,6 @@ const FilterSection = ( { title, options = [], bills = [], toggleFilterCallback,
 				}
 			)
 		}
+		</div>
 	</div>
 

@@ -131,7 +131,11 @@ h2 {
   flex-direction: column;
   grid-gap: 10px;
   max-height: 40vh;
-  overflow-y: auto;
+
+  .filter-item-list {
+    overflow-y: auto;
+    width: 100%;
+  }
 
   h3 {
     margin: 0;
@@ -245,6 +249,36 @@ hr {
 
     &.borderless {
       border: 0;
+    }
+  }
+}
+
+.sorting-container {
+  border-bottom: 1px solid #555555;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+
+  .sort-item {
+    background-color: #ccc;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    cursor: pointer;
+    user-select: none;
+
+    &.active {
+      color: white;
+      background-color: #6fa7ea;
+    }
+
+    svg {
+      height: 20px;
+      width: auto;
     }
   }
 }

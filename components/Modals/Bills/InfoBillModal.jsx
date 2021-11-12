@@ -13,8 +13,7 @@ import { getSelectedBill } from '../../../services/billSlice';
 export default function InfoBillModal() {
 	const dispatch = useDispatch();
 	const billData = useSelector( getSelectedBill )
-	const monthlies = useSelector( getMonthlies )
-		.filter( item => item.parent === billData._id )
+	const monthlies = useSelector( getMonthlies ).filter( item => item.parent === billData._id )
 	const monthlyPrefetching = useSelector( isMonthlyPrefetching )
 	const curMonth = useSelector(getMonthID)
 

@@ -6,8 +6,7 @@ const initialState = {
 	prefetching : true,
 	loading : true,
 	selected : '',
-	filters : { person_name : [], institution : [] },
-	filtered : []
+	filters : { person_name : [], institution : [], monthly_status: [] },
 }
 
 export const billSlice = createSlice( {
@@ -19,7 +18,6 @@ export const billSlice = createSlice( {
 		},
 		billsReceived : ( state, action ) => {
 			state.data = action.payload
-			state.filtered = applyFilters( action.payload, state.filters )
 			state.prefetching = false
 			state.loading = false
 		},
@@ -38,13 +36,10 @@ export const billSlice = createSlice( {
 			} else {
 				filterData = [ ...filterData, action.payload.value ]
 			}
-			const newFilters = { ...state.filters, [ action.payload.type ] : filterData }
-			state.filters = newFilters
-			state.filtered = applyFilters( state.data, newFilters )
+			state.filters = { ...state.filters, [ action.payload.type ] : filterData }
 		},
 		clearFilters : ( state ) => {
-			state.filters = {person_name : [], institution : []}
-			state.filtered = applyFilters( state.data, {person_name : [], institution : []} )
+			state.filters = { person_name : [], institution : [], monthly_status: [] }
 		}
 	},
 } )
@@ -68,21 +63,7 @@ export const refreshBills = async ( dispatch ) => {
 	}
 }
 
-const applyFilters = ( bills, filters ) => {
-	const { person_name, institution } = filters
-	console.log(bills)
-	let filteredBills = [...bills]
-	if (person_name.length > 0) {
-		filteredBills = filteredBills.filter( bill => person_name.includes(bill.person_name))
-	}
-	if (institution.length > 0) {
-		filteredBills = filteredBills.filter( bill => institution.includes(bill.institution))
-	}
-	return filteredBills
-}
-
 export const getBills = ( state ) => state.bills.data
-export const getFilteredBills = ( state ) => state.bills.filtered
 export const isBillPrefetching = ( state ) => state.bills.prefetching
 export const isBillLoading = ( state ) => state.bills.loading
 export const getSelectedBill = ( state ) => state.bills.data.find( item => item._id === state.bills.selected )

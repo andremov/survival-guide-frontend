@@ -50,5 +50,7 @@ export const isMonthlyPrefetching = ( state ) => state.monthlies.prefetching
 export const isMonthlyLoading = ( state ) => state.monthlies.loading
 export const getSelectedMonthly = ( state ) => state.monthlies.data.find(
 	item => item._id === state.monthlies.selected )
+export const getCurrentMonthlies = ( state ) => state.monthlies.data.filter(
+	item => item.month_id === state.ui.month )
 
 export default monthlySlice.reducer

@@ -2,19 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardTemplate } from './CardTemplate';
 import { formatPrice } from '../services/utils';
-import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
-import { getMonthID } from '../services/uiSlice';
-import { getFilteredBills } from '../services/billSlice';
+import { getCurrentMonthlies, isMonthlyLoading } from '../services/monthlySlice';
+import { useListedBills } from './Hooks/useListedBills';
 
 export function TotalStatus() {
-	const monthlies = useSelector( getMonthlies )
+	const monthlies = useSelector( getCurrentMonthlies )
 	const loading = useSelector( isMonthlyLoading )
-	const bills = useSelector( getFilteredBills ).map(bill => bill._id)
-	const month_id = useSelector( getMonthID )
+	const bills = useListedBills().map(bill => bill._id)
 
-	let totalDueValue = monthlies.filter( item => bills.includes(item.parent) && item.status !== 'PAID' && item.month_id === month_id )
+	let totalDueValue = monthlies.filter( item => bills.includes(item.parent) && item.status !== 'PAID' )
 		.map( item => item.amount_due )
-	let totalPaidValue = monthlies.filter( item => bills.includes(item.parent) && item.status === 'PAID' && item.month_id === month_id )
+	let totalPaidValue = monthlies.filter( item => bills.includes(item.parent) && item.status === 'PAID' )
 		.map( item => item.amount_paid )
 
 	const totalDueCount = totalDueValue.length

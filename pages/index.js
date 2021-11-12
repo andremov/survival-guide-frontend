@@ -11,6 +11,7 @@ import { TotalStatus } from '../components/TotalStatus';
 import { LineChart } from '../components/LineChart';
 import { refreshMonthlies } from '../services/monthlySlice';
 import { FilterBreadcrumbs } from '../components/FilterBreadcrumbs';
+import { SortHandler } from '../components/SortHandler';
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -77,6 +78,7 @@ export default function Home() {
 						}
 					] }
 				>
+					<SortHandler/>
 					<FilterBreadcrumbs/>
 					<BillList/>
 				</CardTemplate>
