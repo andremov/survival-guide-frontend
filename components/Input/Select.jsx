@@ -16,14 +16,17 @@ export default function Select({ placeholder, onChange, name, options=[], ...pro
 	}
 
 	return (
-		<div className={'input-component'}>
+		<div
+			className={'input-component'}
+			onFocus={() => setShowOptions(true)}
+			onBlur={() => setShowOptions(false)}
+		>
 			{
 				!!placeholder && <div className={'input-label'+(!!(props.value || filterText)? ' has-text' : '')}>
 					{placeholder}
 				</div>
 			}
 			<input
-				onClick={() => setShowOptions(!showOptions)}
 				onChange={handleChange}
 				value={filterText}
 			/>
