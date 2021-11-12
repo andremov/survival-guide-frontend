@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalTemplate } from '../ModalTemplate';
-import { Input } from '../../Input';
+import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { patchBill } from '../../../services/api';

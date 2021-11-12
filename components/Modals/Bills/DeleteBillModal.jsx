@@ -6,6 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { deleteBill } from '../../../services/api';
 import { getSelectedBill, refreshBills } from '../../../services/billSlice';
+import { DualInput } from '../../Input';
 
 export default function DeleteBillModal() {
 	const billData = useSelector( getSelectedBill )
