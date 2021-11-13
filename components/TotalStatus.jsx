@@ -124,6 +124,6 @@ const TotalInfoMockup = ({label}) => <div className={ 'totals-info mock-up' }>
 </div>
 
 const ProgressBar = ({percent, label}) =>	<div className={'progress-bar-container'}>
-		<div className={`bar ${percent === 100? 'borderless':''} `} style={{width: `${percent.toFixed(2)}%`}}/>
+		<div className={`bar ${percent%100 === 0? 'borderless':''} `} style={{width: `${percent.toFixed(2)}%`}}/>
 		<div className={'perc-display'}>{`${label}: ${percent.toFixed(2)}%`}</div>
 	</div>
