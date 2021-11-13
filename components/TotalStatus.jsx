@@ -24,7 +24,7 @@ export function TotalStatus() {
 	totalDueValue = totalDueValue.reduce( ( a, b ) => a + b, 0 ) + totalOverdueValue.reduce( ( a, b ) => a + b, 0 )
 	totalPaidValue = totalPaidValue.reduce( ( a, b ) => a + b, 0 )
 
-	const totalPaidPercent = (( totalPaidValue / ( totalPaidValue + totalDueValue ) ) * 100)
+	const totalPaidPercent = totalPaidValue + totalDueValue === 0? 0 : (( totalPaidValue / ( totalPaidValue + totalDueValue ) ) * 100)
 	const billsPaidPercent = (( totalPaidCount / bills.length ) * 100)
 	const billsMissingPercent = (((bills.length-totalMissingCount) / bills.length ) * 100)
 
