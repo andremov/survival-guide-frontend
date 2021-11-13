@@ -197,7 +197,8 @@ hr {
   display: flex;
   flex-wrap: wrap;
   grid-gap: 5px;
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
 
   .crumb {
     font-size: 14px;
