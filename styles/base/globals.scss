@@ -240,9 +240,7 @@ hr {
   }
 
   .bar {
-    background: linear-gradient(-33deg, rgb(34, 158, 1) 25%, rgb(52, 255, 0) 50%, rgb(34, 158, 1) 75%);
-    background-size: 400% 100%;
-    animation: 3s mock-animate infinite linear;
+    background-color: rgb(47, 201, 7);
     height: inherit;
     border-right: 2px solid white;
     transition: 0.5s width;
