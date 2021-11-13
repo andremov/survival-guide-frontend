@@ -10,7 +10,6 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   min-width: 500px;
-  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -34,6 +33,10 @@
     font-size: 18px;
     flex: 1;
   }
+}
+
+.card:not(.chart) {
+  position: relative;
 }
 
 .card:hover,
