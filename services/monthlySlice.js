@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchMonthlies } from './api';
-import { updateLastRequestDate } from './apiLoadSlice';
+import { setOnline, updateLastRequestDate } from './apiLoadSlice';
 
 const initialState = {
 	data : [],
@@ -41,7 +41,8 @@ export const refreshMonthlies = async ( dispatch ) => {
 	const monthlies = await fetchMonthlies()
 
 	if ( !monthlies ) {
-		setTimeout( () => dispatch( refreshMonthlies ), 100 )
+		// setTimeout( () => dispatch( refreshMonthlies ), 5000 )
+		dispatch(setOnline(false))
 	} else {
 		dispatch( monthlyReceived( monthlies ) )
 		dispatch( updateLastRequestDate() )

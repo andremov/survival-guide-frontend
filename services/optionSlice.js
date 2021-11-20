@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchInstitutions, fetchPeople } from './api';
-import { updateLastRequestDate } from './apiLoadSlice';
+import { setOnline, updateLastRequestDate } from './apiLoadSlice';
 
 const initialState = {
 	institutions : [],
@@ -38,7 +38,8 @@ export const refreshOptions = async ( dispatch ) => {
 	let people = await fetchPeople()
 
 	if ( !institutions || !people ) {
-		setTimeout( () => dispatch( refreshOptions ), 100 )
+		// setTimeout( () => dispatch( refreshOptions ), 5000 )
+		dispatch(setOnline(false))
 	} else {
 		institutions = institutions.map( item => ( { label : item, val : item } ) ).sort((a,b) => a.label.localeCompare(b.label))
 		people = people.map( item => ( { label : item, val : item } ) ).sort((a,b) => a.label.localeCompare(b.label))

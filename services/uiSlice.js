@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchMonthID} from './api';
-import { updateLastRequestDate } from './apiLoadSlice';
+import { setOnline, updateLastRequestDate } from './apiLoadSlice';
 
 const initialState = {
 	modal : '',
@@ -42,7 +42,8 @@ export const refreshMonthID = async ( dispatch ) => {
 	const id = await fetchMonthID()
 
 	if ( !id ) {
-		setTimeout( () => dispatch( refreshMonthID ), 100 )
+		// setTimeout( () => dispatch( refreshMonthID ), 5000 )
+		dispatch(setOnline(false))
 	} else {
 		dispatch( monthIdReceived( id ) )
 		dispatch( updateLastRequestDate() )
