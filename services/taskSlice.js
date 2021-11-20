@@ -44,8 +44,8 @@ export const refreshTasks = async ( dispatch ) => {
 }
 
 export const getTasks = ( state ) => state.tasks.data
-export const isPrefetching = ( state ) => state.tasks.prefetching
-export const isLoading = ( state ) => state.tasks.loading
+export const isTaskPrefetching = ( state ) => state.tasks.prefetching
+export const isTaskLoading = ( state ) => state.tasks.loading
 export const getSelectedTask = ( state ) => state.tasks.data.find(item => item._id === state.tasks.selected)
 
 export default taskSlice.reducer
