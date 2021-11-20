@@ -14,13 +14,21 @@ export function AppWrapper({ Component, pageProps }) {
 	const dispatch = useDispatch()
 
 	React.useEffect( () => {
-		if (precached) {
-			dispatch( refreshTasks )
-			dispatch( refreshBills )
-			dispatch( refreshMonthlies )
-			dispatch( refreshOptions )
-			dispatch( refreshMonthID )
+		let interval = undefined
+		const refreshAll = () => {
+				dispatch( refreshTasks )
+				dispatch( refreshBills )
+				dispatch( refreshMonthlies )
+				dispatch( refreshOptions )
+				dispatch( refreshMonthID )
 		}
+
+		if (precached) {
+			refreshAll()
+			interval = setInterval(refreshAll, 900000)
+		}
+
+		return () => clearInterval(interval)
 	}, [precached])
 
 	return (
