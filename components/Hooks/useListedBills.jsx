@@ -22,7 +22,6 @@ const applyFilters = (bills,filters) => {
 
 const applySort = (bills, sortField, sortDirection) => {
 	if ( sortField === 'amount' ) {
-		console.log(bills)
 		return bills.sort(
 			( a, b ) => ( b.monthly.amount - a.monthly.amount ) * sortDirection
 		)
