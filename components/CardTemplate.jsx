@@ -17,6 +17,7 @@ export function CardTemplate( { title = '', className = '', buttons = [], childr
 									color={ item.color }
 									icon={ item.icon }
 									onClick={ item.onClick }
+									disabled={!!item.disabled}
 									key={ i }
 								/> )
 							}
