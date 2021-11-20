@@ -94,7 +94,7 @@ export default function CreateMonthlyModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

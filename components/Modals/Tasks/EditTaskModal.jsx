@@ -73,7 +73,7 @@ export default function EditTaskModal() {
 					icon={ faPen }
 					label={ 'Editar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

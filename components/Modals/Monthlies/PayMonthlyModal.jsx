@@ -61,7 +61,7 @@ export default function PayMonthlyModal() {
 					icon={ faPen }
 					label={ 'Pagar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

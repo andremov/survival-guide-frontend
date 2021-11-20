@@ -73,7 +73,7 @@ export default function CreateTaskModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

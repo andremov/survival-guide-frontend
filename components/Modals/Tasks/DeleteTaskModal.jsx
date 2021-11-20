@@ -55,7 +55,7 @@ export default function DeleteTaskModal() {
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

@@ -86,7 +86,7 @@ export default function EditMonthlyModal() {
 					icon={ faPen }
 					label={ 'Editar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

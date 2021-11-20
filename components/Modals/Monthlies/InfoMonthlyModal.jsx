@@ -26,14 +26,14 @@ export default function InfoMonthlyModal() {
 				className : 'icon-button',
 				color : 'yellow',
 				icon : faPen,
-				disabled: onlineState
+				disabled: !onlineState
 			},
 			{
 				onClick : onDelete,
 				className : 'icon-button',
 				color : 'red',
 				icon : faTrash,
-				disabled: onlineState
+				disabled: !onlineState
 			}
 		] }>
 
@@ -88,7 +88,7 @@ export default function InfoMonthlyModal() {
 						onClick={onPay}
 						label={'Marcar Pagado'}
 						icon={faDollarSign}
-						disabled={onlineState}
+						disabled={!onlineState}
 					/>
 			}
 		</ModalTemplate>

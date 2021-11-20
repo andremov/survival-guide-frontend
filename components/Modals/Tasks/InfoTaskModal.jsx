@@ -23,14 +23,14 @@ export default function InfoTaskModal() {
 				className : 'icon-button',
 				color : 'yellow',
 				icon : faPen,
-				disabled: onlineState
+				disabled: !onlineState
 			},
 			{
 				onClick : onDelete,
 				className : 'icon-button',
 				color : 'red',
 				icon : faTrash,
-				disabled: onlineState
+				disabled: !onlineState
 			}
 		] }>
 			<div></div>

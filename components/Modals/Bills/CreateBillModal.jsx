@@ -96,7 +96,7 @@ export default function CreateBillModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
-					disabled={onlineState}
+					disabled={!onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>
