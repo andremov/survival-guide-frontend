@@ -36,10 +36,10 @@ export default function InfoTaskModal() {
 
 			{ taskData.done_date &&
 			<div className={ 'task-info' }>
-				<div className={ 'monthly-info__label' }>
+				<div className={ 'task-info__label' }>
 					Fecha de entrega:
 				</div>
-				<div className={ 'monthly-info__value' }>
+				<div className={ 'task-info__value' }>
 					{ formatDate( taskData.done_date ) }
 				</div>
 			</div>
@@ -47,10 +47,10 @@ export default function InfoTaskModal() {
 
 			<div className={ 'task-info' }>
 				{ taskData.due_date ? <>
-					<div className={ 'monthly-info__label' }>
+					<div className={ 'task-info__label' }>
 						Fecha de plazo:
 					</div>
-					<div className={ 'monthly-info__value' }>
+					<div className={ 'task-info__value' }>
 						{ formatDate( taskData.due_date ) }
 					</div>
 				</> : 'No hay fecha de plazo establecida.'
