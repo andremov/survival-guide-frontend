@@ -87,6 +87,12 @@ button {
   &:disabled {
     background-color: #ddd;
     color: #aaa;
+    cursor: default;
+
+    &:hover {
+      background-color: #ddd;
+      color: #aaa;
+    }
   }
 }
 
