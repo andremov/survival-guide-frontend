@@ -23,7 +23,7 @@ const parseMonthlies = (monthlies, currentMonth) => {
 		.reduce( ( a, b ) => a + b, 0 ) )
 
 	labels = labels.map(
-		item => `${ ( ( item - 1 ) % 12 ) + 1 }/${ ( "" + ( Math.floor( item / 12 ) + 2010 ) ).substring( 2 ) }` )
+		item => `${ ( ( item - 1 ) % 12 ) + 1 }/${ ( "" + ( Math.floor( (item-1) / 12 ) + 2010 ) ).substring( 2 ) }` )
 
 	return {
 		labels, datasets : [
