@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { getMonthlies, isMonthlyLoading } from '../services/monthlySlice';
+import { getMonthlies, isMonthlyPrefetching } from '../services/monthlySlice';
 import { useListedBills } from './Hooks/useListedBills';
 import { getMonthID } from '../services/uiSlice';
 
@@ -51,7 +51,7 @@ export function LineChart( { monthlies } ) {
 		.map( bill => bill._id )
 	const generalMonthlies = useSelector( getMonthlies )
 		.filter( item => bills.includes( item.parent ) )
-	const loading = useSelector( isMonthlyLoading )
+	const loading = useSelector( isMonthlyPrefetching )
 	const currentMonth = useSelector(getMonthID)
 	const data = parseMonthlies( monthlies ?? generalMonthlies, currentMonth )
 	const [ fullscreen, setFullscreen ] = React.useState( false )

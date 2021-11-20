@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardTemplate } from './CardTemplate';
 import { formatPrice } from '../services/utils';
-import { isMonthlyLoading } from '../services/monthlySlice';
+import { isMonthlyPrefetching } from '../services/monthlySlice';
 import { useListedBills } from './Hooks/useListedBills';
 
 export function TotalStatus() {
-	const loading = useSelector( isMonthlyLoading )
+	const loading = useSelector( isMonthlyPrefetching )
 	const bills = useListedBills()
 
 	let totalDueValue = bills.filter( bill => bill.monthly.status === 'PENDING' )
