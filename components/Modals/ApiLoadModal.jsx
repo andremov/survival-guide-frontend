@@ -33,7 +33,7 @@ export function ApiLoadModal( { precached } ) {
 			if ( payload ) {
 				setTimeout( checkDate, min15 )
 			} else {
-				setTimeout( doPing, 100 )
+				setTimeout( doPing, 5000 )
 			}
 		}
 
