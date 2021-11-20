@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchBills } from './api';
+import { updateLastRequestDate } from './apiLoadSlice';
 
 const initialState = {
 	data : [],
@@ -60,6 +61,7 @@ export const refreshBills = async ( dispatch ) => {
 		setTimeout( () => dispatch( refreshBills ), 100 )
 	} else {
 		dispatch( billsReceived( bills ) )
+		dispatch( updateLastRequestDate() )
 	}
 }
 

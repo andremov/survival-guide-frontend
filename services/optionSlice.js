@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchInstitutions, fetchPeople } from './api';
+import { updateLastRequestDate } from './apiLoadSlice';
 
 const initialState = {
 	institutions : [],
@@ -43,6 +44,7 @@ export const refreshOptions = async ( dispatch ) => {
 		people = people.map( item => ( { label : item, val : item } ) )
 
 		dispatch( optionsReceived( { institutions, people } ) )
+		dispatch( updateLastRequestDate() )
 	}
 }
 

@@ -53,7 +53,7 @@ export function ApiLoadModal( { precached } ) {
 			online && <SuccessContents/>
 		}
 		{
-			!online && <RequestingContents text={'Revisando...'}/>
+			!online && <RequestingContents text={'Verificando...'}/>
 		}
 	</Toast>
 }
