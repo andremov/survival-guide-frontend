@@ -40,8 +40,8 @@ export const refreshOptions = async ( dispatch ) => {
 	if ( !institutions || !people ) {
 		setTimeout( () => dispatch( refreshOptions ), 100 )
 	} else {
-		institutions = institutions.map( item => ( { label : item, val : item } ) )
-		people = people.map( item => ( { label : item, val : item } ) )
+		institutions = institutions.map( item => ( { label : item, val : item } ) ).sort((a,b) => a.label.localeCompare(b.label))
+		people = people.map( item => ( { label : item, val : item } ) ).sort((a,b) => a.label.localeCompare(b.label))
 
 		dispatch( optionsReceived( { institutions, people } ) )
 		dispatch( updateLastRequestDate() )
