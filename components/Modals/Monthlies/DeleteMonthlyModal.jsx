@@ -8,11 +8,13 @@ import { setModal } from '../../../services/uiSlice';
 import { deleteMonthly } from '../../../services/api';
 import { formatDate } from '../../../services/utils';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function DeleteMonthlyModal() {
+	const [ formState, setFormState ] = React.useState( 0 );
 	const monthlyData = useSelector( getSelectedMonthly )
 	const dispatch = useDispatch()
-	const [ formState, setFormState ] = React.useState( 0 );
+	const onlineState = useSelector(isOnline)
 
 	const close = () => dispatch( setModal( '' ) )
 	const back = () => dispatch( setModal( 'info-monthly' ) )
@@ -54,6 +56,7 @@ export default function DeleteMonthlyModal() {
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

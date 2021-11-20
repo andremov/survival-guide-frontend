@@ -6,10 +6,13 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { formatDate, formatPrice } from '../../../services/utils';
 import { DoneBadge, PendingBadge } from '../../Items/Badge';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function InfoTaskModal() {
 	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
+
 	const onEdit = () => dispatch( setModal( 'edit-task' ) )
 	const onDelete = () => dispatch( setModal( 'delete-task' ) )
 
@@ -20,12 +23,14 @@ export default function InfoTaskModal() {
 				className : 'icon-button',
 				color : 'yellow',
 				icon : faPen,
+				disabled: onlineState
 			},
 			{
 				onClick : onDelete,
 				className : 'icon-button',
 				color : 'red',
 				icon : faTrash,
+				disabled: onlineState
 			}
 		] }>
 			<div></div>

@@ -7,11 +7,13 @@ import { Button } from '../../Buttons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { setModal } from '../../../services/uiSlice';
 import { deleteTask } from '../../../services/api';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function DeleteTaskModal() {
+	const [ formState, setFormState ] = React.useState( 0 );
 	const taskData = useSelector( getSelectedTask )
 	const dispatch = useDispatch()
-	const [ formState, setFormState ] = React.useState( 0 );
+	const onlineState = useSelector(isOnline)
 
 	const close = () => dispatch( setModal( '' ) )
 	const back = () => dispatch( setModal( 'info-task' ) )
@@ -53,6 +55,7 @@ export default function DeleteTaskModal() {
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

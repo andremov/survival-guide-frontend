@@ -8,12 +8,14 @@ import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
 import { formatDateValue } from '../../../services/utils';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function EditMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
 	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setMonthlyData( { ...monthlyData, [ name ] : value } )
@@ -84,6 +86,7 @@ export default function EditMonthlyModal() {
 					icon={ faPen }
 					label={ 'Editar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

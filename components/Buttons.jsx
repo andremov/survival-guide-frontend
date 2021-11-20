@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export function Button( { className = '', color, onClick, ...props } ) {
+export function Button( { className = '', color, onClick, disabled=false, ...props } ) {
 	return (
-		<button className={ `${ className } ${ ( color ? `color-${ color }` : '' ) }` } onClick={ onClick }>
+		<button disabled={ disabled } className={ `${ className } ${ ( color ? `color-${ color }` : '' ) }` } onClick={ onClick }>
 			<ButtonContents
 				{ ...props }
 			/>

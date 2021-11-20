@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { patchMonthly } from '../../../services/api';
 import { getSelectedMonthly, refreshMonthlies } from '../../../services/monthlySlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function PayMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
@@ -15,6 +16,7 @@ export default function PayMonthlyModal() {
 	)
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setMonthlyData( { ...monthlyData, [ name ] : value } )
@@ -59,6 +61,7 @@ export default function PayMonthlyModal() {
 					icon={ faPen }
 					label={ 'Pagar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

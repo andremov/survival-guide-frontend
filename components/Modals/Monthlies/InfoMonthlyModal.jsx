@@ -7,10 +7,12 @@ import { Button } from '../../Buttons';
 import { formatDate, formatPrice } from '../../../services/utils';
 import { DoneBadge } from '../../Items/Badge';
 import { getSelectedMonthly } from '../../../services/monthlySlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function InfoMonthlyModal() {
 	const dispatch = useDispatch();
 	const monthlyData = useSelector( getSelectedMonthly )
+	const onlineState = useSelector(isOnline)
 
 	const onEdit = () => dispatch( setModal( 'edit-monthly' ) )
 	const onDelete = () => dispatch( setModal( 'delete-monthly' ) )
@@ -24,12 +26,14 @@ export default function InfoMonthlyModal() {
 				className : 'icon-button',
 				color : 'yellow',
 				icon : faPen,
+				disabled: onlineState
 			},
 			{
 				onClick : onDelete,
 				className : 'icon-button',
 				color : 'red',
 				icon : faTrash,
+				disabled: onlineState
 			}
 		] }>
 
@@ -84,6 +88,7 @@ export default function InfoMonthlyModal() {
 						onClick={onPay}
 						label={'Marcar Pagado'}
 						icon={faDollarSign}
+						disabled={onlineState}
 					/>
 			}
 		</ModalTemplate>

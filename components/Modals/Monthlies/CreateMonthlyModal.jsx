@@ -9,6 +9,7 @@ import { setModal } from '../../../services/uiSlice';
 import { getSelectedBill } from '../../../services/billSlice';
 import { getMonthlies, refreshMonthlies } from '../../../services/monthlySlice';
 import { formatDate, formatDateValue, formatPrice } from '../../../services/utils';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function CreateMonthlyModal() {
 	const parent = useSelector(getSelectedBill)._id
@@ -21,6 +22,7 @@ export default function CreateMonthlyModal() {
 	} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setMonthlyData( { ...monthlyData, [ name ] : value } )
@@ -92,6 +94,7 @@ export default function CreateMonthlyModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

@@ -7,11 +7,13 @@ import { setModal } from '../../../services/uiSlice';
 import { deleteBill } from '../../../services/api';
 import { getSelectedBill, refreshBills } from '../../../services/billSlice';
 import { DualInput } from '../../Input';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function DeleteBillModal() {
+	const [ formState, setFormState ] = React.useState( 0 );
 	const billData = useSelector( getSelectedBill )
 	const dispatch = useDispatch()
-	const [ formState, setFormState ] = React.useState( 0 );
+	const onlineState = useSelector(isOnline)
 
 	const close = () => dispatch( setModal( '' ) )
 	const back = () => dispatch( setModal( 'info-bill' ) )
@@ -53,6 +55,7 @@ export default function DeleteBillModal() {
 					icon={ faTrash }
 					label={ 'Borrar' }
 					color={ 'red' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

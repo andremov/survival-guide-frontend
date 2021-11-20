@@ -4,9 +4,10 @@ import { DualInput, Input } from '../../Input';
 import { Button } from '../../Buttons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { createTask } from '../../../services/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { refreshTasks } from '../../../services/taskSlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function CreateTaskModal() {
 	const [ taskData, setTaskData ] = React.useState( {
@@ -14,6 +15,7 @@ export default function CreateTaskModal() {
 	} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setTaskData( { ...taskData, [ name ] : value } )
@@ -71,6 +73,7 @@ export default function CreateTaskModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

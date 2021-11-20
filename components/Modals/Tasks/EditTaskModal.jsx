@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedTask, refreshTasks } from '../../../services/taskSlice';
 import { formatDateValue } from '../../../services/utils';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function EditTaskModal() {
 	const initialData = useSelector( getSelectedTask )
 	const [ taskData, setTaskData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setTaskData( { ...taskData, [ name ] : value } )
@@ -71,6 +73,7 @@ export default function EditTaskModal() {
 					icon={ faPen }
 					label={ 'Editar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

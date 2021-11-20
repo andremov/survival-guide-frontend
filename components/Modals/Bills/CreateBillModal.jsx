@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getInstitutions, getPeople, refreshOptions } from '../../../services/optionSlice';
 import { refreshBills } from '../../../services/billSlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function CreateBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
@@ -15,6 +16,7 @@ export default function CreateBillModal() {
 	const dispatch = useDispatch();
 	const institutions = useSelector(getInstitutions)
 	const people = useSelector(getPeople)
+	const onlineState = useSelector(isOnline)
 
 	const handleChange = ( name, value ) => {
 		setBillData( { ...billData, [ name ] : value } )
@@ -94,6 +96,7 @@ export default function CreateBillModal() {
 					icon={ faPlus }
 					label={ 'Agregar' }
 					color={ 'green' }
+					disabled={onlineState}
 				/>
 			</DualInput>
 		</ModalTemplate>

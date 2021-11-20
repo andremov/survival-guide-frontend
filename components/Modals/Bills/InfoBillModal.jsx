@@ -9,6 +9,7 @@ import { getSurroundingMonths } from '../../../services/utils';
 import { LineChart } from '../../LineChart';
 import { getMonthlies, isMonthlyPrefetching } from '../../../services/monthlySlice';
 import { getSelectedBill } from '../../../services/billSlice';
+import { isOnline } from '../../../services/apiLoadSlice';
 
 export default function InfoBillModal() {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function InfoBillModal() {
 	const monthlies = useSelector( getMonthlies ).filter( item => item.parent === billData._id )
 	const monthlyPrefetching = useSelector( isMonthlyPrefetching )
 	const curMonth = useSelector(getMonthID)
+	const onlineState = useSelector(isOnline)
 
 	const onEdit = () => dispatch( setModal( 'edit-bill' ) )
 	const onDelete = () => dispatch( setModal( 'delete-bill' ) )
@@ -28,12 +30,14 @@ export default function InfoBillModal() {
 				className : 'icon-button',
 				color : 'yellow',
 				icon : faPen,
+				disabled: onlineState
 			},
 			{
 				onClick : onDelete,
 				className : 'icon-button',
 				color : 'red',
 				icon : faTrash,
+				disabled: onlineState
 			}
 		] }>
 
@@ -87,6 +91,7 @@ export default function InfoBillModal() {
 				onClick={ onAdd }
 				label={ 'Agregar Mensual' }
 				icon={ faPlus }
+				disabled={onlineState}
 			/>
 		</ModalTemplate>
 	);
