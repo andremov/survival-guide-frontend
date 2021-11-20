@@ -71,7 +71,6 @@ const FilterSection = ( { title, options = [], bills = [], toggleFilterCallback,
 						<Checkbox
 							isDone={checked}
 							label={`${ option.label } (${ bills.filter( bill => bill === option.val ).length })`}
-							labelClass={'filter-label'}
 						/>
 					</div>
 				}

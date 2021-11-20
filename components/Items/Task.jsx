@@ -31,7 +31,6 @@ export function Task( { taskData } ) {
 				isDone={taskData.status === 'DONE'}
 				handleClick={handleClick}
 				label={taskData.name}
-				labelClass={'task-label'}
 			/>
 			<Button
 				icon={ faInfo }
