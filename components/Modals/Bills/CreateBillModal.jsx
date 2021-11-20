@@ -12,14 +12,12 @@ import { refreshBills } from '../../../services/billSlice';
 export default function CreateBillModal() {
 	const [ billData, setBillData ] = React.useState( {} )
 	const [ formState, setFormState ] = React.useState( 0 );
-	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 	const institutions = useSelector(getInstitutions)
 	const people = useSelector(getPeople)
 
 	const handleChange = ( name, value ) => {
 		setBillData( { ...billData, [ name ] : value } )
-		setError( false )
 	}
 
 	const close = () => dispatch( setModal( '' ) )
@@ -36,7 +34,6 @@ export default function CreateBillModal() {
 			.catch( () => {
 				setFormState( 3 )
 				setTimeout( () => setFormState(0), 1000 )
-				setError( true )
 			} )
 	}
 

@@ -13,12 +13,10 @@ export default function EditMonthlyModal() {
 	const initialData = useSelector( getSelectedMonthly )
 	const [ monthlyData, setMonthlyData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
-	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
 		setMonthlyData( { ...monthlyData, [ name ] : value } )
-		setError( false )
 	}
 
 	const close = () => dispatch( setModal( 'info-monthly' ) )
@@ -34,7 +32,6 @@ export default function EditMonthlyModal() {
 			.catch( () => {
 				setFormState( 3 )
 				setTimeout( () => setFormState(0), 1000 )
-				setError( true )
 			} )
 	}
 

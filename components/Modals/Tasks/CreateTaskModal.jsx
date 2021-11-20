@@ -13,12 +13,10 @@ export default function CreateTaskModal() {
 		status : 'PENDING'
 	} )
 	const [ formState, setFormState ] = React.useState( 0 );
-	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 
 	const handleChange = ( name, value ) => {
 		setTaskData( { ...taskData, [ name ] : value } )
-		setError( false )
 	}
 
 	const close = () => dispatch( setModal( '' ) )
@@ -34,7 +32,6 @@ export default function CreateTaskModal() {
 			.catch( () => {
 				setFormState( 3 )
 				setTimeout( () => setFormState(0), 1000 )
-				setError( true )
 			} )
 	}
 

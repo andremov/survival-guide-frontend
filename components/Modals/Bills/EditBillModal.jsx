@@ -13,14 +13,12 @@ export default function EditBillModal() {
 	const initialData = useSelector( getSelectedBill )
 	const [ billData, setBillData ] = React.useState( { ...initialData } )
 	const [ formState, setFormState ] = React.useState( 0 );
-	const [ hasError, setError ] = React.useState( false );
 	const dispatch = useDispatch();
 	const institutions = useSelector(getInstitutions)
 	const people = useSelector(getPeople)
 
 	const handleChange = ( name, value ) => {
 		setBillData( { ...billData, [ name ] : value } )
-		setError( false )
 	}
 
 	const close = () => dispatch( setModal( 'info-bill' ) )
@@ -37,7 +35,6 @@ export default function EditBillModal() {
 			.catch( () => {
 				setFormState( 3 )
 				setTimeout( () => setFormState(0), 1000 )
-				setError( true )
 			} )
 	}
 
