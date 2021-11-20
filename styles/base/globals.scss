@@ -12,6 +12,7 @@ a {
 
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 main {
@@ -148,7 +149,6 @@ h2 {
   align-items: center;
   margin: 0.25rem 0;
   cursor: pointer;
-  user-select: none;
 
   .filter-label.checked {
     font-weight: bold;
@@ -268,7 +268,6 @@ hr {
     align-items: center;
     grid-gap: 10px;
     cursor: pointer;
-    user-select: none;
 
     &.active {
       color: white;
