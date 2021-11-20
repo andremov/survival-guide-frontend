@@ -54,7 +54,7 @@ export default function EditTaskModal() {
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ formatDateValue(taskData.due_date) }
+				value={ formatDateValue( { date: taskData.due_date }) }
 				name={ 'due_date' }
 				placeholder={ 'Fecha limite' }
 				onChange={ handleChange }

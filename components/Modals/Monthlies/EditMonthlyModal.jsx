@@ -48,7 +48,7 @@ export default function EditMonthlyModal() {
 				onChange={ handleChange }
 			/>
 			<Input
-				value={ formatDateValue(monthlyData.exp_date) }
+				value={ formatDateValue({ date: monthlyData.exp_date}) }
 				name={ 'exp_date' }
 				placeholder={ 'Plazo' }
 				onChange={ handleChange }
@@ -64,7 +64,7 @@ export default function EditMonthlyModal() {
 						onChange={ handleChange }
 					/>
 					<Input
-						value={ formatDateValue(monthlyData.paid_date) }
+						value={ formatDateValue({ date: monthlyData.paid_date}) }
 						name={ 'paid_date' }
 						placeholder={ 'Fecha de pago' }
 						onChange={ handleChange }

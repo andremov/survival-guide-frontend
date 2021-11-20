@@ -7,11 +7,18 @@ import { createMonthly } from '../../../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../../services/uiSlice';
 import { getSelectedBill } from '../../../services/billSlice';
-import { refreshMonthlies } from '../../../services/monthlySlice';
+import { getMonthlies, refreshMonthlies } from '../../../services/monthlySlice';
+import { formatDate, formatDateValue, formatPrice } from '../../../services/utils';
 
 export default function CreateMonthlyModal() {
 	const parent = useSelector(getSelectedBill)._id
-	const [ monthlyData, setMonthlyData ] = React.useState( {parent, status: 'PENDING'} )
+	const prevMonthly = useSelector( getMonthlies ).filter( item => item.parent === parent ).slice(-1)[0]
+	const [ monthlyData, setMonthlyData ] = React.useState( {
+		parent, status: 'PENDING',
+		exp_date: formatDateValue(
+			{ date: prevMonthly?.exp_date, monthsToAdd: 1}
+		)
+	} )
 	const [ formState, setFormState ] = React.useState( 0 );
 	const dispatch = useDispatch();
 
@@ -41,6 +48,26 @@ export default function CreateMonthlyModal() {
 			formState={formState}
 			processText={'Creando'}
 		>
+			{ prevMonthly && <div style={{backgroundColor: '#ccc', width: '100%', padding: '0 0.5rem', borderRadius: '10px'}}>
+				<div className={ 'monthly-info' }>
+					<div className={ 'monthly-info__label' }>
+						Valor previo:
+					</div>
+					<div className={ 'monthly-info__value' }>
+						{ formatPrice( prevMonthly.amount_due ) }
+					</div>
+				</div>
+
+				<div className={ 'monthly-info' }>
+					<div className={ 'monthly-info__label' }>
+						Fecha previa:
+					</div>
+					<div className={ 'monthly-info__value' }>
+						{ formatDate( prevMonthly.exp_date ) }
+					</div>
+				</div>
+			</div>
+			}
 			<Input
 				value={ monthlyData.amount_due }
 				name={ 'amount_due' }

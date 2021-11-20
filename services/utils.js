@@ -13,12 +13,16 @@ const reverse = ( string ) => string.split( "" )
 const twoDigits = ( value ) => reverse( reverse( `0${ value }` )
 	.substring( 0, 2 ) )
 
-export const formatDateValue = ( date ) => {
+export const formatDateValue = ( { date, monthsToAdd = 0 } ) => {
+	console.log(date)
 	if ( !date ) {
 		return undefined
 	}
-	const [ day, month, year ] = formatDate( date )
+	let [ day, month, year ] = formatDate( date )
 		.split( '/' )
+	month = parseInt(month) + monthsToAdd
+	year = parseInt(year) + Math.floor((month-1)/12)
+	month = ((month-1)%12)+1
 	return [ year, twoDigits( month ), twoDigits( day ) ].join( '-' )
 }
 
