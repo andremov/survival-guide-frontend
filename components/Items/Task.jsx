@@ -21,7 +21,7 @@ export function Task( { taskData } ) {
 			status : taskData.status === 'DONE' ? 'PENDING' : 'DONE',
 			done_date: taskData.status === 'DONE' ? '' : Date.now()
 		}
-		await patchTask( task )
+		await patchTask( task ).catch(e => {})
 		dispatch( refreshTasks )
 	}
 
