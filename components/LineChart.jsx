@@ -31,14 +31,14 @@ const parseMonthlies = (monthlies, currentMonth) => {
 				label : 'Pagado',
 				data : paidData,
 				fill : true,
-				backgroundColor : 'rgb(109,255,99)',
+				backgroundColor : 'rgb(109,255,99, 0.5)',
 				borderColor : 'rgba(143,255,99,0.2)',
 			},
 			{
 				label : 'Debido',
 				data : dueData,
 				fill : true,
-				backgroundColor : 'rgb(255, 99, 132)',
+				backgroundColor : 'rgb(255, 99, 132, 0.5)',
 				borderColor : 'rgba(255, 99, 132, 0.2)',
 			},
 		]
